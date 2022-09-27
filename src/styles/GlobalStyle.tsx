@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     }
     html {
       background: ${theme.bg.main};
+      color: ${theme.colors.gray100};
     }
   `}
 `;

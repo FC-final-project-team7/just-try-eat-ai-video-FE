@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     * {
       box-sizing: border-box;
     }
-    body {
+    html {
       background: ${theme.bg.main};
     }
   `}

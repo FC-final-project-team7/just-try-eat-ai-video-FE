@@ -41,7 +41,7 @@
     "vite-plugin-svgr": "^2.2.1"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix --max-warnings 0",
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix --max-warnings 0",
     "src/**/*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   },
   "packageManager": "yarn@3.2.3"

@@ -15,7 +15,7 @@ export const ListCard = styled.div`
 
 export const ListTitle = styled.div`
   font-size: ${(props) => props.theme.fontSize.large};
-  font-weight: ${(props) => props.theme.fontWeight.bold};
+  font-weight: ${(props) => props.theme.fontWeight.light};
   align-self: flex-end;
 `;
 
@@ -24,7 +24,16 @@ export const ListHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 32px;
 `;
-export const button = styled(FilledButton).attrs(({ theme }) => ({
+
+export const Button = styled(FilledButton).attrs(({ theme }) => ({
   width: '148px',
   height: theme.buttonsSize.big.h,
-}))``;
+}))`
+  ${(props) => props.theme.flex.flexAround};
+  padding: 12px 16px;
+`;
+
+export const ButtonText = styled.span`
+  font-size: ${(props) => props.theme.fontSize.medium};
+  font-weight: ${(props) => props.theme.fontWeight.medium};
+`;

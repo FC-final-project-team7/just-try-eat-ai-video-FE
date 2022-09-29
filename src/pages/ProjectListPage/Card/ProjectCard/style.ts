@@ -15,7 +15,7 @@ export const CardBlock = styled.div`
 export const ImageBlock = styled.div`
   width: 180px;
   height: 120px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.gray100};
   border-radius: 4px;
   position: absolute;
   top: 10px;
@@ -23,12 +23,10 @@ export const ImageBlock = styled.div`
 `;
 
 export const ProjectInfo = styled.div`
+  ${(props) => props.theme.flex.flexColumn};
   position: absolute;
   width: 100%;
   height: 42px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; //TODO 이것도 뺴!
   bottom: 27px;
 `;
 
@@ -36,8 +34,9 @@ export const ProjectTitle = styled.span`
   font-size: ${(props) => props.theme.fontSize.medium};
   font-weight: ${(props) => props.theme.fontWeight.medium};
 `;
+
 export const ProjectDate = styled.span`
   font-size: ${(props) => props.theme.fontSize.large};
   font-weight: ${(props) => props.theme.fontWeight.regular};
-  color: #b1a9ff; //TODO 이거 빼
+  color: ${(props) => props.theme.colors.sub.purple};
 `;

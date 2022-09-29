@@ -1,21 +1,14 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
 import { SvgrElement } from '*.svg';
 
 import BaseButton, { BaseButtonProps } from '~/components/Buttons/BaseButton';
 
 type Props = {
   children: React.ReactHTMLElement<HTMLImageElement> | SvgrElement;
-} & Omit<BaseButtonProps, 'children'>;
-
-const FitButton = styled(BaseButton)`
-  ${() => css`
-    width: fit-content;
-  `}
-`;
+} & Omit<BaseButtonProps, 'children' | 'width' | 'height'>;
 
 const ImageButton = (props: Props) => {
-  return <FitButton {...props} />;
+  return <BaseButton {...props} width="fit-content" height="unset" />;
 };
 
 export default ImageButton;

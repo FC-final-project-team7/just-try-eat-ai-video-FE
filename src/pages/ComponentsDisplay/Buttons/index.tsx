@@ -23,20 +23,28 @@ const ComponentsDisplayButtons = () => {
       <h1>FilledButton</h1>
       <Container>
         <h3>enabled</h3>
-        <FilledButton>채운 버튼 테스트!</FilledButton>
+        <FilledButton width="small" height="small">
+          채운 버튼 테스트!
+        </FilledButton>
       </Container>
       <Container>
         <h3>disabled</h3>
-        <FilledButton disabled>채운 버튼 테스트!</FilledButton>
+        <FilledButton width="small" height="small" disabled>
+          채운 버튼 테스트!
+        </FilledButton>
       </Container>
       <h1>OutlinedButton</h1>
       <Container>
         <h3>enabled</h3>
-        <OutlinedButton>태두리 버튼 테스트!</OutlinedButton>
+        <OutlinedButton width="small" height="small">
+          태두리 버튼 테스트!
+        </OutlinedButton>
       </Container>
       <Container>
         <h3>disabled</h3>
-        <OutlinedButton disabled>태두리 버튼 테스트!</OutlinedButton>
+        <OutlinedButton width="small" height="small" disabled>
+          태두리 버튼 테스트!
+        </OutlinedButton>
       </Container>
       <h1>ImageButton</h1>
       <h2>PNG</h2>

@@ -3,22 +3,20 @@ import BaseButton from '~/components/Buttons/BaseButton';
 
 const OutlinedButton = styled(BaseButton)`
   ${({ theme }) => css`
-    border: ${theme.colors.main.purple} 4px solid;
-    border-radius: 4px;
+    border: ${theme.colors.main.purple} 1px solid;
 
+    background-color: ${theme.colors.gray100};
     color: ${theme.colors.main.purple};
 
     &:hover {
-      border-color: red;
     }
     &:focus {
-      border-color: black;
     }
     &:active {
-      border-color: green;
     }
     &:disabled {
-      border-color: blue;
+      border-color: ${theme.colors.gray400};
+      color: ${theme.colors.gray400};
     }
   `}
 `;

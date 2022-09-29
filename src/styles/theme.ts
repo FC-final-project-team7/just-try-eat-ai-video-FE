@@ -22,6 +22,36 @@ const colors = {
   gray100: '#FFFFFF',
 };
 
+const buttonsSize = {
+  small: {
+    w: '168px',
+    h: '40px',
+  },
+  big: {
+    w: '392px',
+    h: '48px',
+  },
+};
+
+// FIXME 각 페이지나 컴포넌트 style 로 이동하는 것이 좋아 보인다
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const buttonsSizeCalc = {
+  gnb: {
+    w: '136px',
+    h: buttonsSize.small.h,
+  },
+  modal: {
+    small: {
+      w: '148px',
+      h: buttonsSize.big.h,
+    },
+    big: {
+      w: '328px',
+      h: buttonsSize.big.h,
+    },
+  },
+};
+
 const fontSize = {
   xxxLarge: '40px',
   xxLarge: '32px',
@@ -59,6 +89,7 @@ const flex = {
 const theme = {
   bg,
   colors,
+  buttonsSize,
   fontSize,
   fontWeight,
   flex,

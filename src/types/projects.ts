@@ -1,3 +1,10 @@
+export type TProjectData = {
+  projectId: number;
+  name: string;
+  createdDate: string;
+  thumbnail: string;
+};
+
 export type TProjectText = {
   projectId: number;
   projectName: string;

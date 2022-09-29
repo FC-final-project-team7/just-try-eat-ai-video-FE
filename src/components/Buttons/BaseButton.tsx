@@ -9,6 +9,7 @@ const BaseButton = styled.button<BaseButtonProps>`
   text-align: center;
   cursor: pointer;
   outline: inherit;
+  box-sizing: border-box;
 `;
 
 export default BaseButton;

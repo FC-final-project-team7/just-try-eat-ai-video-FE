@@ -1,38 +1,36 @@
+import projectCardThumbnail from '../ProjectListPage/assets/dummy/project-card-thumbnail.png';
+import videoCardThumbnail from '../ProjectListPage/assets/dummy/video-card-thumbnail.png';
+
 const PROJECT_DATA = [
   {
     projectId: 1,
     name: '프로젝트명1',
     createdDate: '2022-09-28',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/18bcdf7c-b3db-42ba-ac4a-00b37096501b/image.png',
+    thumbnail: projectCardThumbnail,
   },
   {
     projectId: 2,
     name: '프로젝트명2',
     createdDate: '2022-09-28',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/18bcdf7c-b3db-42ba-ac4a-00b37096501b/image.png',
+    thumbnail: projectCardThumbnail,
   },
   {
     projectId: 3,
     name: '프로젝트명3',
     createdDate: '2022-09-28',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/18bcdf7c-b3db-42ba-ac4a-00b37096501b/image.png',
+    thumbnail: projectCardThumbnail,
   },
   {
     projectId: 4,
     name: '프로젝트명4',
     createdDate: '2022-09-28',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/18bcdf7c-b3db-42ba-ac4a-00b37096501b/image.png',
+    thumbnail: projectCardThumbnail,
   },
   {
     projectId: 5,
     name: '프로젝트명5',
     createdDate: '2022-09-28',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/18bcdf7c-b3db-42ba-ac4a-00b37096501b/image.png',
+    thumbnail: projectCardThumbnail,
   },
 ];
 
@@ -42,16 +40,35 @@ const VIDEO_DATA = [
     name: '영상1',
     generated: false,
     createdDate: '2022-10-01',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/d5ca1dc5-0279-46dd-9f00-a892e4d21fa0/image.png',
+    thumbnail: videoCardThumbnail,
   },
   {
     videoId: 2,
     name: '영상2',
     generated: false,
     createdDate: '2022-10-01',
-    thumbnail:
-      'https://velog.velcdn.com/images/yejine2/post/d5ca1dc5-0279-46dd-9f00-a892e4d21fa0/image.png',
+    thumbnail: videoCardThumbnail,
+  },
+  {
+    videoId: 3,
+    name: '영상3',
+    generated: false,
+    createdDate: '2022-10-01',
+    thumbnail: videoCardThumbnail,
+  },
+  {
+    videoId: 4,
+    name: '영상4',
+    generated: false,
+    createdDate: '2022-10-01',
+    thumbnail: videoCardThumbnail,
+  },
+  {
+    videoId: 5,
+    name: '영상5',
+    generated: false,
+    createdDate: '2022-10-01',
+    thumbnail: videoCardThumbnail,
   },
 ];
 

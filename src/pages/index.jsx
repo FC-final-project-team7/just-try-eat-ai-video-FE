@@ -3,6 +3,7 @@ import { pagesPath } from '~/pages/pages'
 
 import MainPage from '~/pages/Main'
 import LoginPage from '~/pages/Login'
+import ProjectListPage from '~/pages/ProjectListPage'
 
 import ComponentsDisplayRoute from '~/pages/ComponentsDisplay'
 
@@ -12,7 +13,7 @@ const Pages = () => {
       <Routes>
         <Route path={pagesPath.main} element={<MainPage />} />
         <Route path={pagesPath.login} element={<LoginPage />} />
-
+        <Route path={pagesPath.projects} element={<ProjectListPage />} />
         <Route path="/__test__">{ComponentsDisplayRoute}</Route>
       </Routes>
     </BrowserRouter>

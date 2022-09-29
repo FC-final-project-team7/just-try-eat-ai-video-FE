@@ -24,7 +24,7 @@ export const ListHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 32px;
 `;
-export const button = styled(FilledButton)`
-  width: 148px;
-  height: 48px;
-`;
+export const button = styled(FilledButton).attrs(({ theme }) => ({
+  width: '148px',
+  height: theme.buttonsSize.big.h,
+}))``;

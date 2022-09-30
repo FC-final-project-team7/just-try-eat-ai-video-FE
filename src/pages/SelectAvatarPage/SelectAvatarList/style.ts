@@ -2,19 +2,26 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: absolute;
-  top: 240px;
+  top: 644px;
   width: 680px;
-  height: 380px;
-  border: 1px solid #000;
+  height: 248px;
+
+  background: #33354c;
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
 `;
 
-export const PreviewBox = styled.div`
+export const InfoText = styled.p`
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #08a689;
+  top: 24px;
+  left: 24px;
+  margin: 0;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  /* identical to box height */
+
+  color: #ffffff;
 `;

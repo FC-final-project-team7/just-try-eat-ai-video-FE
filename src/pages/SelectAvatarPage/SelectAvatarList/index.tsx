@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import * as S from './style';
+import Slide from './Slide';
 
-const index = () => {
+function index() {
   return (
-    <div>index</div>
-  )
+    <S.Container>
+      <S.InfoText>아바타를 선택해주세요</S.InfoText>
+      <Slide />
+    </S.Container>
+  );
 }
 
-export default index
+export default index;

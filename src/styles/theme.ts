@@ -22,6 +22,11 @@ const colors = {
   gray100: '#FFFFFF',
 };
 
+const textColors = {
+  light: colors.gray100,
+  dark: bg.main,
+};
+
 const buttonsSize = {
   small: {
     w: '168px',
@@ -89,6 +94,7 @@ const flex = {
 const theme = {
   bg,
   colors,
+  textColors,
   buttonsSize,
   fontSize,
   fontWeight,

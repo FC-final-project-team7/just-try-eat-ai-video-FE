@@ -5,6 +5,14 @@ export type TProjectData = {
   thumbnail: string;
 };
 
+export type TVideoData = {
+  videoId: number;
+  name: string;
+  generated: boolean;
+  createdDate: string;
+  thumbnail: string;
+};
+
 export type TProjectText = {
   projectId: number;
   projectName: string;

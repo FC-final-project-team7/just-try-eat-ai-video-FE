@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProjectList from './ListContainer/ProjectList';
+import VideoList from './ListContainer/VideoList';
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ function ProjectListPage() {
   return (
     <Container>
       <ProjectList />
+      <VideoList />
     </Container>
   );
 }

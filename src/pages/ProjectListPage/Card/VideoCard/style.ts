@@ -2,13 +2,11 @@ import styled from 'styled-components';
 
 export const CardBlock = styled.div`
   width: 208px;
-  height: 240px;
-  background-color: ${(props) => props.theme.colors.sub.blueGray};
-  border-radius: 8px;
+  height: 218px;
   position: relative;
-  padding-top: 20px;
   margin-left: 40px;
   cursor: pointer;
+  border-radius: 8px;
   &:first-child {
     margin-left: 0;
   }
@@ -19,7 +17,7 @@ export const CardHoverBlock = styled.div`
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
+  bottom: 74px;
   border-radius: inherit;
   background-color: rgba(255, 255, 255, 0.15);
 `;
@@ -36,9 +34,8 @@ export const CardHoverButtonBlock = styled.div`
 `;
 
 export const ImageBlock = styled.div`
-  width: 180px;
-  height: 120px;
-  background-color: ${(props) => props.theme.colors.gray100};
+  width: 208px;
+  height: 144px;
   border-radius: 4px;
   margin: 0 auto;
 `;

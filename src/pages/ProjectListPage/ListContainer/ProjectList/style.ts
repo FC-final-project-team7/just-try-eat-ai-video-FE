@@ -15,7 +15,7 @@ export const ListCard = styled.div`
 
 export const ListTitle = styled.div`
   font-size: ${(props) => props.theme.fontSize.large};
-  font-weight: ${(props) => props.theme.fontWeight.light};
+  font-weight: ${(props) => props.theme.fontWeight.medium};
   align-self: flex-end;
 `;
 

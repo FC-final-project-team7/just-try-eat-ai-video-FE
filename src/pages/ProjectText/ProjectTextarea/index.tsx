@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { fontFamily } from '~/styles/mixins';
 import { mixin } from '../styles';
 
-const ProjectTextArea = styled.textarea.attrs(() => ({
+const ProjectTextarea = styled.textarea.attrs(() => ({
   placeholder: '텍스트를 입력하세요.',
 }))`
   ${({ theme }) => css`
@@ -26,4 +26,4 @@ const ProjectTextArea = styled.textarea.attrs(() => ({
   `}
 `;
 
-export default ProjectTextArea;
+export default ProjectTextarea;

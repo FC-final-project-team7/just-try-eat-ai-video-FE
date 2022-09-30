@@ -11,7 +11,8 @@ export const pagesTo = {
   projects: '/projects',
   text: (id: string) => `/text/${id}`,
   sentence: (id: string) => `/sentence/${id}`,
-  avatar: (id: string) => `/avatar/${id}`,
+  avatar: '/avatar',
+  // avatar: (id: string) => `/avatar/${id}`,
   avatarUploadAudio: (id: string) => `/avatar-audio/${id}`,
 };
 
@@ -28,6 +29,7 @@ export const pagesPath = {
   projects: pagesTo.projects,
   text: pagesTo.text(':id'),
   sentence: pagesTo.sentence(':id'),
-  avatar: pagesTo.avatar(':id'),
+  avatar: pagesTo.avatar,
+  // avatar: pagesTo.avatar(':id'),
   avatarUploadAudio: pagesTo.avatarUploadAudio(':id'),
 };

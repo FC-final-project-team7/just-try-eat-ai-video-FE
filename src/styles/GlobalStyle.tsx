@@ -1,5 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components';
 import { reset } from '~/styles/reset';
+import { fontFamily } from '~/styles/mixins';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -13,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     html {
       background: ${theme.bg.main};
       color: ${theme.colors.gray100};
-      font-family: 'Noto Sans KR', sans-serif;
+      ${fontFamily}
     }
   `}
 `;

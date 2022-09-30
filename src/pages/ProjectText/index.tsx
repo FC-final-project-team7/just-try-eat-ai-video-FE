@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ProjectTextStepper from '~/pages/ProjectText/ProjectTextStepper';
-import ProjectTextArea from '~/pages/ProjectText/ProjectTextArea';
+import ProjectTextarea from '~/pages/ProjectText/ProjectTextarea';
 import ProjectVoiceOptions from '~/pages/ProjectText/ProjectVoiceOptions';
 import ProjectVoiceSelect from '~/pages/ProjectText/ProjectVoiceSelect';
 
@@ -20,7 +20,7 @@ const ProjectTextPage = () => {
         <ProjectTextStepper />
       </HeaderContainer>
       <ContentsContainer>
-        <ProjectTextArea />
+        <ProjectTextarea />
         <ProjectVoiceOptions />
         <ProjectVoiceSelect />
       </ContentsContainer>

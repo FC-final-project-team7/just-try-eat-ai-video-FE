@@ -9,7 +9,7 @@ export const ListBlock = styled.div`
 
 export const ListCard = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const ListTitle = styled.div`

@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
       color: ${theme.colors.gray100};
       font-family: 'Noto Sans KR', sans-serif;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   `}
 `;
 

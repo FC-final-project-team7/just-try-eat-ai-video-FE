@@ -84,6 +84,11 @@ const flex = {
     flex-direction: column;
     align-items: center;
   `,
+  flexBetween: `
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `,
 };
 
 const theme = {

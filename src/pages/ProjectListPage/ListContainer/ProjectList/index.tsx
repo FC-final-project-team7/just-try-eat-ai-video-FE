@@ -6,9 +6,11 @@ import NoticeModal from '~/components/Popup/NoticeModal';
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
 import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
+import ErrorModal from '~/components/Popup/ErrorModal';
 
 function ProjectList() {
   const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const onProjectAddHandler = () => {
     setShowModal(true);
@@ -40,6 +42,12 @@ function ProjectList() {
       )}
       {showModal && PROJECT_DATA.length < 5 && (
         <ProjectSelectModal setShowModal={setShowModal} />
+      )}
+      {showErrorModal && (
+        <ErrorModal
+          content="음성 업로드에 실패했습니다. 다시 시도해주세요"
+          setShowErrorModal={setShowErrorModal}
+        />
       )}
     </>
   );

@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useRef } from 'react';
 import * as S from './style';
 import PopupPortal from '../PopupPortal';
+import useOnClickOutside from '../hooks';
 import cloud from '~/assets/icons/cloud.svg';
 import text from '~/assets/icons/text.svg';
 import close from '~/assets/icons/close.svg';
@@ -15,6 +16,11 @@ type Props = {
 const ProjectSelectModal = (props: Props) => {
   const { setShowModal } = props;
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(modalRef, () => {
+    setShowModal(false);
+  });
 
   const onFileUploadHandler = () => {
     inputRef.current?.click();
@@ -26,7 +32,7 @@ const ProjectSelectModal = (props: Props) => {
 
   return (
     <PopupPortal>
-      <S.ModalBackground>
+      <S.ModalBackground ref={modalRef}>
         <S.ModalContainer>
           <S.ModalTitle>음성을 보유하고 계신가요?</S.ModalTitle>
           <S.ModalContent>

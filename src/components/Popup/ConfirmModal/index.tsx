@@ -1,6 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 import PopupPortal from '../PopupPortal';
 import * as S from './style';
+import useOnClickOutside from '../hooks';
 
 type Props = {
   content: string;
@@ -9,6 +10,11 @@ type Props = {
 
 function ConfirmModal(props: Props) {
   const { content, setShowConfirmModal } = props;
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(modalRef, () => {
+    setShowConfirmModal(false);
+  });
 
   // project id 넘겨주기
   const onRemoveHandler = () => {
@@ -23,7 +29,7 @@ function ConfirmModal(props: Props) {
 
   return (
     <PopupPortal>
-      <S.ModalBackground>
+      <S.ModalBackground ref={modalRef}>
         <S.ModalContainer>
           <S.ModalContent>{content}</S.ModalContent>
           <S.ModalButtonGroup>

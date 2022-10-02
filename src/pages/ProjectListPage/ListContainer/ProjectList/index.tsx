@@ -8,10 +8,10 @@ import plus from '~/assets/icons/plus.svg';
 import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
 
 function ProjectList() {
-  const [showNoticeModal, setShowNoticeModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const onProjectAddHandler = () => {
-    setShowNoticeModal(true);
+    setShowModal(true);
   };
 
   return (
@@ -30,16 +30,16 @@ function ProjectList() {
           ))}
         </S.ListCard>
       </S.ListBlock>
-      {showNoticeModal && PROJECT_DATA.length === 5 && (
+      {showModal && PROJECT_DATA.length === 5 && (
         <NoticeModal
-          setShowNoticeModal={setShowNoticeModal}
+          setShowModal={setShowModal}
           content={
             '프로젝트는 5개까지 제작 가능해요 \n 사용하지 않는 프로젝트를 삭제해주세요'
           }
         />
       )}
-      {showNoticeModal && PROJECT_DATA.length < 5 && (
-        <ProjectSelectModal setShowNoticeModal={setShowNoticeModal} />
+      {showModal && PROJECT_DATA.length < 5 && (
+        <ProjectSelectModal setShowModal={setShowModal} />
       )}
     </>
   );

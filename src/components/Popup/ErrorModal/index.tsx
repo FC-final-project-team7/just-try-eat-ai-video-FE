@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
   width: 582px;
   height: 104px;
   border-radius: 12px;
-  background-color: rgba(41, 41, 81, 0.8);
+  background-color: ${(props) => props.theme.bg.modal};
   backdrop-filter: blur(15px);
   padding: 32px 40px 32px;
 `;

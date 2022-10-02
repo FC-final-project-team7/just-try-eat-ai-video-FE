@@ -7,13 +7,14 @@ export const ModalBackground = styled.div`
   transform: translate(-50%, -50%);
   z-index: 20;
 `;
+
 export const ModalContainer = styled.div`
   ${(props) => props.theme.flex.flexColumn}
   width: 928px;
   height: 530px;
   position: relative;
   border-radius: 20px;
-  background-color: rgba(41, 41, 81, 0.8);
+  background-color: ${(props) => props.theme.bg.modal};
   backdrop-filter: blur(15px);
   padding: 84px 164px 88px;
   gap: 32px;

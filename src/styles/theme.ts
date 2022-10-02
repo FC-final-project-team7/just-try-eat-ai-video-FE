@@ -1,7 +1,7 @@
 const bg = {
   main: '#13141E',
   sub: '#222426',
-  modal: '#292951',
+  modal: 'rgba(41, 41, 81, 0.8)',
 };
 
 const colors = {

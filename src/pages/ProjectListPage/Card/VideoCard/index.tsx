@@ -2,6 +2,7 @@ import * as S from './style';
 import { TVideoData } from '~/types/projects';
 import { useState, useCallback } from 'react';
 import remove from '~/assets/icons/remove.svg';
+import ConfirmModal from '~/components/Popup/ConfirmModal';
 
 type Props = {
   video: TVideoData;
@@ -10,6 +11,7 @@ type Props = {
 function VideoCard(props: Props) {
   const { video } = props;
   const [showHoverBlock, setShowHoverBlock] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const onMouseOverHandler = useCallback(() => {
     setShowHoverBlock(true);
@@ -20,7 +22,7 @@ function VideoCard(props: Props) {
   }, [setShowHoverBlock]);
 
   const onCardRemoveHandler = () => {
-    console.log('삭제 모달 띄우기');
+    setShowConfirmModal(true);
   };
 
   return (
@@ -42,6 +44,12 @@ function VideoCard(props: Props) {
             <img src={remove} alt="remove-icon" />
           </S.CardHoverButtonBlock>
         </>
+      )}
+      {showConfirmModal && (
+        <ConfirmModal
+          content="해당 프로젝트를 삭제할까요?"
+          setShowConfirmModal={setShowConfirmModal}
+        />
       )}
     </S.CardBlock>
   );

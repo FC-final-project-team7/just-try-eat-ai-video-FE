@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
       color: ${theme.colors.gray100};
       ${fontFamily}
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   `}
 `;
 

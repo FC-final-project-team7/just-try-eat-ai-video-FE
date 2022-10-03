@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
 import { mixin } from '~/pages/ProjectText/mixin';
 
-interface Props {}
+interface Props {
+  className?: string;
+}
 
 const Container = styled.div`
   ${() => css`
     ${mixin.base};
     ${mixin.containerBg};
-    ${mixin.size.contents.voiceSelect};
 
     display: flex;
     flex-flow: column;
@@ -16,7 +17,8 @@ const Container = styled.div`
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProjectVoiceSelect = (props: Props) => {
-  return <Container>ProjectVoiceSelect</Container>;
+  const { className } = props;
+  return <Container className={className}>ProjectVoiceSelect</Container>;
 };
 
 export default ProjectVoiceSelect;

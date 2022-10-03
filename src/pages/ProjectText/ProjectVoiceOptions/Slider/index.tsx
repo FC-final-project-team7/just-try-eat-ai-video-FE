@@ -1,21 +1,46 @@
 import * as S from '~/pages/ProjectText/ProjectVoiceOptions/Slider/styles';
+import { ChangeEvent, useCallback, useMemo } from 'react';
+import { getDefaultNumber } from '~/utils/number';
 
-type Props = Omit<JSX.IntrinsicElements['input'], 'type' | 'className'> & {
-  id: string;
+type Props = {
   className?: string;
-  dataList: Array<{ value: string | number; text: string }>;
+
+  id: string;
+  step: number;
+  value?: number;
+  onChange?: (e: { id: string; value: number }) => void;
+  disabled?: boolean;
+
+  dataList: Array<{ value: number; text: string }>;
+};
+
+const defaultValue: Partial<Props> = {
+  disabled: false,
 };
 
 // TODO track 에 점은 나중에 더럽게 어렵네
 const Slider = (props: Props) => {
-  const { id, className, dataList } = props;
+  const { id } = props;
+
+  const { className, dataList, onChange, ...sliderProps } = props;
+  const onChangeHandler = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      onChange?.({ id, value: getDefaultNumber(e.target.value) });
+    },
+    [onChange, id]
+  );
+
+  const [min, max] = useMemo(() => {
+    return [dataList[0].value, dataList[dataList.length - 1].value];
+  }, dataList);
+
   return (
     <S.Container className={className}>
       <S.StyledSlider
-        id={id}
-        min="-0.5"
-        max="0.5"
-        step="0.1"
+        {...sliderProps}
+        onChange={onChangeHandler}
+        min={min}
+        max={max}
         list={`${id}-dataList`}
       />
 
@@ -29,5 +54,7 @@ const Slider = (props: Props) => {
     </S.Container>
   );
 };
+
+Slider.defaultValue = defaultValue;
 
 export default Slider;

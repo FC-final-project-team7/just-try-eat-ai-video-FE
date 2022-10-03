@@ -7,7 +7,6 @@ const ProjectTextarea = styled.textarea.attrs(() => ({
 }))`
   ${({ theme }) => css`
     ${mixin.base}
-    ${mixin.size.contents.textarea}
     padding: 32px;
     border: transparent 2px solid;
     resize: none;

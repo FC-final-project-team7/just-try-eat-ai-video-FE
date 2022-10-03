@@ -4,9 +4,10 @@ import { pagesPath } from '~/pages/pages'
 import MainPage from '~/pages/Main'
 import LoginPage from '~/pages/Login'
 import ProjectListPage from '~/pages/ProjectListPage'
+import ProjectTextPage from '~/pages/ProjectText'
+import SelectAvatarPage from './SelectAvatarPage'
 
 import ComponentsDisplayRoute from '~/pages/ComponentsDisplay'
-import ProjectTextPage from '~/pages/ProjectText'
 
 const Pages = () => {
   return (
@@ -16,6 +17,7 @@ const Pages = () => {
         <Route path={pagesPath.login} element={<LoginPage />} />
         <Route path={pagesPath.projects} element={<ProjectListPage />} />
         <Route path={pagesPath.text} element={<ProjectTextPage />} />
+        <Route path={pagesPath.avatar} element={<SelectAvatarPage />} />
 
         <Route path="/__test__">{ComponentsDisplayRoute}</Route>
       </Routes>

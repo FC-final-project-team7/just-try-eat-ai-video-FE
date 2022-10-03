@@ -24,7 +24,7 @@ export const mixin = {
       `,
       voiceOptions: css`
         width: 600px;
-        h: 256px;
+        height: 256px;
       `,
       voiceSelect: css`
         width: 568px;

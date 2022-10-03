@@ -6,7 +6,6 @@ export const Container = styled.div`
   ${() => css`
     ${mixin.base};
     ${mixin.containerBg};
-    ${mixin.size.contents.voiceOptions};
 
     display: flex;
     flex-flow: column;

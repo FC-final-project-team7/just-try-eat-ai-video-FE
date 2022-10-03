@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mixin } from '~/pages/ProjectText/styles';
+import { mixin } from '~/pages/ProjectText/mixin';
 import SliderBase from '~/pages/ProjectText/ProjectVoiceOptions/Slider';
 
 export const Container = styled.div`

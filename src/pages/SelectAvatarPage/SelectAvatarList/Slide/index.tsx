@@ -1,29 +1,31 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
-import 'swiper/css';
-import SwiperCore, { Navigation } from 'swiper';
+import { SwiperProps } from 'swiper/react/swiper-react';
+import { Navigation } from 'swiper';
 
 // test
 import { PROJECT_DATA } from '~/pages/ProjectListPage/data';
 
-// interface AvatarSliderProps {
-//   avatarList: ReactElement[];
-//   slidesPerView: 4;
-// }
+interface AvatarSliderProps {
+  // avatarList: ReactElement[];
+
+  // https://subji.github.io/posts/2020/03/03/howtovalidatepropertiesdefault 참조해보세용
+  slidesPerView: 4;
+}
 
 function AvatarSlider(props: AvatarSliderProps) {
-  const { avatarList, slidesPerView } = props;
-
-  // 슬라이더에서 사용할 기능 추가
-  SwiperCore.use([Navigation]);
+  const { /*avatarList,*/ slidesPerView } = props;
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-  const [swiperSetting, setSwiperSetting] = useState<Swiper | null>(null);
+  const [swiperSetting, setSwiperSetting] = useState<SwiperProps | null>(null);
 
   useEffect(() => {
+    if (!prevRef.current || !nextRef.current) return;
+
     if (!swiperSetting) {
       setSwiperSetting({
+        modules: [Navigation],
         spaceBetween: 20,
         navigation: {
           prevEl: prevRef.current,
@@ -31,7 +33,7 @@ function AvatarSlider(props: AvatarSliderProps) {
         },
         slidesPerView: 4,
         slidesPerGroup: 4,
-        onBeforeInit: (swiper: SwiperCore) => {
+        onBeforeInit: (swiper) => {
           if (typeof swiper.params.navigation !== 'boolean') {
             if (swiper.params.navigation) {
               swiper.params.navigation.prevEl = prevRef.current;

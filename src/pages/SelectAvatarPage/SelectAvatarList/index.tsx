@@ -6,7 +6,7 @@ function index() {
   return (
     <S.Container>
       <S.InfoText>아바타를 선택해주세요</S.InfoText>
-      <Slide />
+      <Slide slidesPerView={4} />
     </S.Container>
   );
 }

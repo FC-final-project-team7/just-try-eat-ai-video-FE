@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import 'swiper/css';
 
 export const Container = styled.div`
   position: relative;
@@ -29,7 +30,9 @@ export const TabMenu = styled.ul`
     justify-content: center;
     cursor: pointer;
 
-    .focused border-bottom: 1px solid #fff;
+    .focused {
+      border-bottom: 1px solid #fff;
+    }
   }
 `;
 

@@ -23,6 +23,7 @@ const index = () => {
   const selectTabHandler = (index: number) => {
     setSelectedTab(index);
   };
+  const Closet = menuList[selectedTab].Component;
 
   return (
     <>
@@ -42,7 +43,9 @@ const index = () => {
             );
           })}
         </S.TabMenu>
-        <S.TabContents>{menuList[selectedTab].Component}</S.TabContents>
+        <S.TabContents>
+          <Closet index={selectedTab} />
+        </S.TabContents>
       </S.Container>
     </>
   );

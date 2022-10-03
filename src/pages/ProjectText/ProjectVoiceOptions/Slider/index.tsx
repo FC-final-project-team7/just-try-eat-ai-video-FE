@@ -16,7 +16,7 @@ const Slider = (props: Props) => {
         min="-0.5"
         max="0.5"
         step="0.1"
-        dataList={`${id}-dataList`}
+        list={`${id}-dataList`}
       />
 
       <S.Datalist id={`${id}-dataList`}>

@@ -4,6 +4,11 @@ export const mixin = {
   base: css`
     border-radius: 10px;
   `,
+  containerBg: css`
+    ${({ theme }) => css`
+      background-color: ${theme.colors.sub.blueGray};
+    `}
+  `,
   size: {
     contents: {
       size: css`
@@ -23,7 +28,7 @@ export const mixin = {
       `,
       voiceSelect: css`
         width: 568px;
-        height: 100%;
+        height: 648px;
       `,
     },
   },

@@ -8,7 +8,10 @@ import ProjectVoiceSelect from '~/pages/ProjectText/ProjectVoiceSelect';
 
 const Container = styled.div``;
 const HeaderContainer = styled.div``;
-const ContentsContainer = styled.div``;
+const ContentsContainer = styled.div`
+  display: grid;
+  gap: 32px;
+`;
 
 const ProjectTextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -48,7 +48,7 @@ const ErrorModal = (props: Props) => {
           <img src={error} alt="error-icon" />
           <ModalContent>{content}</ModalContent>
           <ModalCloseButton onClick={onModalCloseHandler}>
-            <img src={errorClose} alt="text-icon" />
+            <img src={errorClose} alt="close-icon" />
           </ModalCloseButton>
         </ModalContainer>
       </ModalBackground>

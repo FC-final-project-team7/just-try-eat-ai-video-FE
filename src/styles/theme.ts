@@ -2,6 +2,7 @@ const bg = {
   main: '#13141E',
   sub: '#222426',
   modal: 'rgba(41, 41, 81, 0.8)',
+  preview: '#F1F1F1;',
 };
 
 const colors = {

@@ -50,7 +50,7 @@ const ProjectSelectModal = (props: Props) => {
             </Link>
           </S.ModalContent>
           <S.ModalCloseButton onClick={onModalCloseHandler}>
-            <img src={close} alt="text-icon" />
+            <img src={close} alt="close-icon" />
           </S.ModalCloseButton>
         </S.ModalContainer>
       </S.ModalBackground>

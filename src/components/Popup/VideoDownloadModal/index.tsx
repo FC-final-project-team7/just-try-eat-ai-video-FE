@@ -41,7 +41,7 @@ export const PreviewBlock = styled.div`
   width: 720px;
   height: 400px;
   border-radius: 20px;
-  background-color: #f1f1f1;
+  background-color: ${(props) => props.theme.bg.preview};
   margin: 200px 0 56px;
 `;
 export const ModalCloseButton = styled.div`

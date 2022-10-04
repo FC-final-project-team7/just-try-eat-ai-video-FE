@@ -36,6 +36,7 @@ export const CardHoverButtonBlock = styled.div`
 `;
 
 export const ImageBlock = styled.div`
+  ${(props) => props.theme.flex.flexCenter}
   width: 180px;
   height: 120px;
   background-color: ${(props) => props.theme.colors.gray100};

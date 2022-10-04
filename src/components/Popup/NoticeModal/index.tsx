@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import PopupPortal from '../PopupPortal';
 import styled from 'styled-components';
 import FilledButton from '~/components/Buttons/FilledButton';
+import useOnClickOutside from '../hooks';
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -15,7 +16,7 @@ export const ModalContainer = styled.div`
   width: 540px;
   height: 360px;
   border-radius: 20px;
-  background-color: rgba(41, 41, 81, 0.8);
+  background-color: ${(props) => props.theme.bg.modal};
   backdrop-filter: blur(15px);
   padding: 120px 98px 60px;
   gap: 72px;
@@ -41,6 +42,11 @@ type Props = {
 
 const NoticeModal = (props: Props) => {
   const { content, setShowModal } = props;
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(modalRef, () => {
+    setShowModal(false);
+  });
 
   const onClickHandler = () => {
     setShowModal(false);
@@ -48,7 +54,7 @@ const NoticeModal = (props: Props) => {
 
   return (
     <PopupPortal>
-      <ModalBackground>
+      <ModalBackground ref={modalRef}>
         <ModalContainer>
           <ModalContent>{content}</ModalContent>
           <ModalButton width="328px" height="48px" onClick={onClickHandler}>

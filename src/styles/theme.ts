@@ -1,7 +1,8 @@
 const bg = {
   main: '#13141E',
   sub: '#222426',
-  modal: '#292951',
+  modal: 'rgba(41, 41, 81, 0.8)',
+  preview: '#F1F1F1;',
 };
 
 const colors = {
@@ -88,6 +89,11 @@ const flex = {
     display: flex;
     flex-direction: column;
     align-items: center;
+  `,
+  flexBetween: `
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   `,
 };
 

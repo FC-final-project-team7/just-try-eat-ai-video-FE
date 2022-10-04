@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import remove from '~/assets/icons/remove.svg';
 import ConfirmModal from '~/components/Popup/ConfirmModal';
 import VideoDownloadModal from '~/components/Popup/VideoDownloadModal';
+import Loader from '~/components/Popup/Loaders/BaseLoader';
 
 type Props = {
   video: TVideoData;
@@ -39,11 +40,17 @@ function VideoCard(props: Props) {
         onClick={onCardClickHandler}
       >
         <S.ImageBlock>
-          {video.thumbnail && <img src={video.thumbnail} alt="thumbnail" />}
+          {video.generated ? (
+            <img src={video.thumbnail} alt="thumbnail" />
+          ) : (
+            <Loader />
+          )}
         </S.ImageBlock>
         <S.ProjectInfo>
           <S.ProjectTitle>{video.name}</S.ProjectTitle>
-          <S.ProjectDate>{video.createdDate}</S.ProjectDate>
+          <S.ProjectDate>
+            {video.generated ? video.createdDate : '생성중'}
+          </S.ProjectDate>
         </S.ProjectInfo>
         {showHoverBlock && (
           <>
@@ -60,7 +67,7 @@ function VideoCard(props: Props) {
           />
         )}
       </S.CardBlock>
-      {showDownloadModal && (
+      {video.generated && showDownloadModal && (
         <VideoDownloadModal
           setShowDownloadModal={setShowDownloadModal}
           videoName={video.name}

@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import remove from '~/assets/icons/remove.svg';
 import ConfirmModal from '~/components/Popup/ConfirmModal';
 import VideoDownloadModal from '~/components/Popup/VideoDownloadModal';
-import Loader from '~/components/Popup/Loaders/BaseLoader';
+import Loader from '~/components/Popup/Loaders/Loader';
 
 type Props = {
   video: TVideoData;

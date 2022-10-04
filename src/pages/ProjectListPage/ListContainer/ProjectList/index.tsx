@@ -6,7 +6,7 @@ import NoticeModal from '~/components/Popup/NoticeModal';
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
 import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
-import ErrorModal from '~/components/Popup/ErrorModal';
+import UploadErrorModal from '~/components/Popup/ErrorModal/UploadErrorModal';
 
 function ProjectList() {
   const [showModal, setShowModal] = useState(false);
@@ -32,19 +32,18 @@ function ProjectList() {
           ))}
         </S.ListCard>
       </S.ListBlock>
-      {showModal && PROJECT_DATA.length === 5 && (
+      {showModal && PROJECT_DATA.length === 5 ? (
         <NoticeModal
           setShowModal={setShowModal}
           content={
             '프로젝트는 5개까지 제작 가능해요 \n 사용하지 않는 프로젝트를 삭제해주세요'
           }
         />
-      )}
-      {showModal && PROJECT_DATA.length < 5 && (
-        <ProjectSelectModal setShowModal={setShowModal} />
+      ) : (
+        showModal && <ProjectSelectModal setShowModal={setShowModal} />
       )}
       {showErrorModal && (
-        <ErrorModal
+        <UploadErrorModal
           content="음성 업로드에 실패했습니다. 다시 시도해주세요"
           setShowErrorModal={setShowErrorModal}
         />

@@ -37,7 +37,6 @@ function VideoCard(props: Props) {
       <S.CardBlock
         onMouseOver={onMouseOverHandler}
         onMouseOut={onMouseOutHandler}
-        onClick={onCardClickHandler}
       >
         <S.ImageBlock>
           {video.generated ? (
@@ -46,7 +45,7 @@ function VideoCard(props: Props) {
             <Loader />
           )}
         </S.ImageBlock>
-        <S.ProjectInfo>
+        <S.ProjectInfo onClick={onCardClickHandler}>
           <S.ProjectTitle>{video.name}</S.ProjectTitle>
           <S.ProjectDate>
             {video.generated ? video.createdDate : '생성중'}
@@ -54,7 +53,7 @@ function VideoCard(props: Props) {
         </S.ProjectInfo>
         {showHoverBlock && (
           <>
-            <S.CardHoverBlock />
+            <S.CardHoverBlock onClick={onCardClickHandler} />
             <S.CardHoverButtonBlock onClick={onCardRemoveHandler}>
               <img src={remove} alt="remove-icon" />
             </S.CardHoverButtonBlock>

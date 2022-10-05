@@ -26,11 +26,20 @@ function ProjectList() {
             <S.ButtonText>새프로젝트</S.ButtonText>
           </S.Button>
         </S.ListHeader>
-        <S.ListCard>
-          {PROJECT_DATA?.map((project) => (
-            <ProjectCard key={project.projectId} project={project} />
-          ))}
-        </S.ListCard>
+
+        {PROJECT_DATA.length === 0 ? (
+          <S.EmptyBlock>
+            <S.EmptyBlockTitle>
+              새프로젝트 버튼을 눌러 프로젝트를 시작해보세요
+            </S.EmptyBlockTitle>
+          </S.EmptyBlock>
+        ) : (
+          <S.ListCard>
+            {PROJECT_DATA?.map((project) => (
+              <ProjectCard key={project.projectId} project={project} />
+            ))}
+          </S.ListCard>
+        )}
       </S.ListBlock>
       {showModal && PROJECT_DATA.length === 5 ? (
         <NoticeModal

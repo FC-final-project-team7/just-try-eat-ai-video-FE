@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: absolute;
-  top: 240px;
   width: 680px;
   height: 380px;
   border: 1px solid #000;
@@ -13,7 +11,6 @@ export const Container = styled.div`
 `;
 
 export const PreviewBox = styled.div`
-  position: absolute;
   width: 100%;
   height: 100%;
   background-color: #08a689;

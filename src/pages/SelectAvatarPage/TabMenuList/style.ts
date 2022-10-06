@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-import 'swiper/css';
 
 export const Container = styled.div`
-  position: relative;
-  top: 240px;
-
   width: 496px;
   height: 652px;
 

@@ -1,31 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import * as S from './style';
+import 'swiper/css';
+import SwiperCore, { Navigation } from 'swiper';
 import { SwiperProps } from 'swiper/react/swiper-react';
-import { Navigation } from 'swiper';
 
 // test
 import { PROJECT_DATA } from '~/pages/ProjectListPage/data';
 
 interface AvatarSliderProps {
   // avatarList: ReactElement[];
-
-  // https://subji.github.io/posts/2020/03/03/howtovalidatepropertiesdefault 참조해보세용
   slidesPerView: 4;
 }
 
 function AvatarSlider(props: AvatarSliderProps) {
-  const { /*avatarList,*/ slidesPerView } = props;
+  const { slidesPerView } = props;
+
+  // 슬라이더에서 사용할 기능 추가
+  SwiperCore.use([Navigation]);
 
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const [swiperSetting, setSwiperSetting] = useState<SwiperProps | null>(null);
 
   useEffect(() => {
-    if (!prevRef.current || !nextRef.current) return;
-
     if (!swiperSetting) {
       setSwiperSetting({
-        modules: [Navigation],
         spaceBetween: 20,
         navigation: {
           prevEl: prevRef.current,
@@ -33,7 +32,7 @@ function AvatarSlider(props: AvatarSliderProps) {
         },
         slidesPerView: 4,
         slidesPerGroup: 4,
-        onBeforeInit: (swiper) => {
+        onBeforeInit: (swiper: SwiperCore) => {
           if (typeof swiper.params.navigation !== 'boolean') {
             if (swiper.params.navigation) {
               swiper.params.navigation.prevEl = prevRef.current;
@@ -61,20 +60,20 @@ function AvatarSlider(props: AvatarSliderProps) {
           {/* {avatarList.map(avatar)=>(<S.SliderItem key={avatar.key}>{avatar}</S.SliderItem>)} */}
 
           {PROJECT_DATA?.map((project) => (
-            <>
-              <S.SliderItem key={project.projectId}>
+            <div key={project.projectId}>
+              <S.SliderItem>
                 {project.thumbnail && (
                   <img src={project.thumbnail} alt="thumbnail" />
                 )}
                 <S.ItemName>{project.name}</S.ItemName>
               </S.SliderItem>
-            </>
+            </div>
           ))}
         </S.Slider>
       )}
       <S.StyledButton ref={nextRef}>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/181/181669.png"
+          src="https://cdn-icons-png.flaticon.com/512/189/189253.png"
           alt="next"
           width={32}
           height={32}

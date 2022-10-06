@@ -5,13 +5,12 @@ export const SliderRoot = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
   width: 100%;
-  height: 100%;
 `;
 
 export const StyledButton = styled.button`
   position: relative;
+  bottom: 20px;
   margin: 10px;
   background: none;
   border: none;
@@ -19,21 +18,19 @@ export const StyledButton = styled.button`
 `;
 
 export const Slider = styled(Swiper)`
-  position: absolute;
-  top: 68px;
-  left: 64px;
   width: 552px;
-  height: 132px;
 `;
 
 export const SliderItem = styled(SwiperSlide)`
-  background-color: #fff;
-  border-radius: 4px;
+  img {
+    width: 120px;
+    height: 132px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
 `;
 
 export const ItemName = styled.p`
-  position: relative;
-  bottom: 20px;
-  color: #000;
+  color: #fff;
   text-align: center;
 `;

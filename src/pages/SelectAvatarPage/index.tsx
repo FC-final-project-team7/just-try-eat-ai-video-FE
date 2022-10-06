@@ -4,13 +4,16 @@ import SelectedAvatarPreview from './SelectedAvatarPreview';
 import SelectAvatarList from './SelectAvatarList';
 import TabMenuList from './TabMenuList';
 
-const Container = styled.div`  
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
 
 const AvatarPage = styled.div`
-  position: relative;
   display: flex;
-  justify-content: space-around;
+  gap: 24px;
 `;
 
 function SelectAvatarPage() {

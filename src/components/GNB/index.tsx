@@ -26,7 +26,7 @@ const GNB = () => {
         {/* <img src={logo} alt="logo" /> */}
       </Link>
       {/* TODO 텍스트페이지(id) id받아서 추가 요망 */}
-      {location === pagesTo.avatar && <TitleInput init="프로젝트명" />}
+      {location === pagesTo.avatar && <TitleInput defaultValue="프로젝트명" />}
 
       <S.ButtonGroup>
         {location === pagesTo.main && (

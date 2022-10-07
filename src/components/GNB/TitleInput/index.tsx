@@ -31,14 +31,14 @@ export const GNBTitleInput = styled.input`
 `;
 
 type Props = {
-  init: string;
+  defaultValue: string;
 };
 
 function TitleInput(props: Props) {
-  const { init } = props;
+  const { defaultValue } = props;
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const [text, setText] = useState(init);
+  const [text, setText] = useState(defaultValue);
   const [editable, setEditable] = useState(false);
 
   const onEditHandler = () => {
@@ -70,7 +70,7 @@ function TitleInput(props: Props) {
             onKeyDown={onKeyDownHandler}
           />
         ) : (
-          <div onClick={onEditHandler}>{`${text}(더블클릭시 수정).proj`}</div>
+          <div onClick={onEditHandler}>{`${text}.proj`}</div>
         )}
       </GNBTitleContainer>
     </>

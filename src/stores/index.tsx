@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { emptySplitApi } from '~/stores/apis';
+import { emptySplitApi, emptySplitApiWithReauth } from '~/stores/apis';
 
 export const store = configureStore({
   reducer: {
     [emptySplitApi.reducerPath]: emptySplitApi.reducer,
+    [emptySplitApiWithReauth.reducerPath]: emptySplitApiWithReauth.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(emptySplitApi.middleware),
+    getDefaultMiddleware().concat(
+      emptySplitApi.middleware,
+      emptySplitApiWithReauth.middleware
+    ),
 });
 
 setupListeners(store.dispatch);

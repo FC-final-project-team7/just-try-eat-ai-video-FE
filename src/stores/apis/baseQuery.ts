@@ -13,7 +13,9 @@ import { ITokenResult } from '~/types/auth';
 
 const baseUrl = 'https://aipark.crjkje.com';
 export const getUrl = (path: string, mockWithAbsoluteURL = false) =>
-  mockWithAbsoluteURL ? new URL('/mock/' + path, location.origin).href : path;
+  mockWithAbsoluteURL
+    ? new URL('/mock/' + path.replace(/^\//, ''), location.origin).href
+    : path;
 
 export const baseQuery = fetchBaseQuery({
   baseUrl,

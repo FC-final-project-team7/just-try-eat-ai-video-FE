@@ -8,10 +8,12 @@ import ProjectTextPage from '~/pages/ProjectText'
 import SelectAvatarPage from './SelectAvatarPage'
 
 import ComponentsDisplayRoute from '~/pages/ComponentsDisplay'
+import GNB from '~/components/GNB'
 
 const Pages = () => {
   return (
     <BrowserRouter>
+      <GNB />
       <Routes>
         <Route path={pagesPath.main} element={<MainPage />} />
         <Route path={pagesPath.login} element={<LoginPage />} />

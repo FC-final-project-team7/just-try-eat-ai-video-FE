@@ -90,6 +90,11 @@ const flex = {
     flex-direction: column;
     align-items: center;
   `,
+  flexColumnStart: `
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  `,
   flexBetween: `
     display: flex;
     align-items: center;

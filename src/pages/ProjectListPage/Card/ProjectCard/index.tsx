@@ -34,7 +34,7 @@ function ProjectCard(props: Props) {
         {project.thumbnail && <img src={project.thumbnail} alt="thumbnail" />}
       </S.ImageBlock>
       <S.ProjectInfo>
-        <S.ProjectTitle>{project.name}</S.ProjectTitle>
+        <S.ProjectTitle>{project.projectName}</S.ProjectTitle>
         <S.ProjectDate>{project.createdDate}</S.ProjectDate>
       </S.ProjectInfo>
       {showHoverBlock && (

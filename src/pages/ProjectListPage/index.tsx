@@ -6,7 +6,7 @@ import VideoList from './ListContainer/VideoList';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 180px;
+  padding-top: 120px;
   margin: 0 auto;
   gap: 80px;
 `;

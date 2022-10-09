@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { PROJECT_DATA } from '~/pages/ProjectListPage/data';
+// import { PROJECT_DATA } from '~/pages/ProjectListPage/data';
 import ProjectCard from '../../Card/ProjectCard';
 import NoticeModal from '~/components/Popup/NoticeModal';
+import { useGetProjectsQuery } from '~/stores/apis/projectList';
 
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
@@ -9,6 +10,7 @@ import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
 import UploadErrorModal from '~/components/Popup/ErrorModal/UploadErrorModal';
 
 function ProjectList() {
+  const { data, isLoading } = useGetProjectsQuery();
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -27,7 +29,7 @@ function ProjectList() {
           </S.Button>
         </S.ListHeader>
 
-        {PROJECT_DATA.length === 0 ? (
+        {data?.length === 0 ? (
           <S.EmptyBlock>
             <S.EmptyBlockTitle>
               새프로젝트 버튼을 눌러 프로젝트를 시작해보세요
@@ -35,13 +37,13 @@ function ProjectList() {
           </S.EmptyBlock>
         ) : (
           <S.ListCard>
-            {PROJECT_DATA?.map((project) => (
+            {data?.map((project: any) => (
               <ProjectCard key={project.projectId} project={project} />
             ))}
           </S.ListCard>
         )}
       </S.ListBlock>
-      {showModal && PROJECT_DATA.length === 5 ? (
+      {showModal && data?.length === 5 ? (
         <NoticeModal
           setShowModal={setShowModal}
           content={

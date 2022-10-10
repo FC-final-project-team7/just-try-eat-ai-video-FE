@@ -1,7 +1,7 @@
 export type TProjectData = {
   projectId: number;
   projectName: string;
-  createdDate: string;
+  modifiedDate: string;
   thumbnail: string;
 };
 

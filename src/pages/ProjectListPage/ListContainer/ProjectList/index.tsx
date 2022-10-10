@@ -10,7 +10,7 @@ import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
 import UploadErrorModal from '~/components/Popup/ErrorModal/UploadErrorModal';
 
 function ProjectList() {
-  const { data, isLoading } = useGetProjectsQuery();
+  const { data } = useGetProjectsQuery();
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -37,7 +37,7 @@ function ProjectList() {
           </S.EmptyBlock>
         ) : (
           <S.ListCard>
-            {data?.map((project: any) => (
+            {data?.map((project) => (
               <ProjectCard key={project.projectId} project={project} />
             ))}
           </S.ListCard>

@@ -13,6 +13,8 @@ function ProjectCard(props: Props) {
   const [showHoverBlock, setShowHoverBlock] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  const modifiedDate = project.modifiedDate.toString().substring(0, 10);
+
   const onMouseOverHandler = useCallback(() => {
     setShowHoverBlock(true);
   }, [setShowHoverBlock]);
@@ -35,7 +37,7 @@ function ProjectCard(props: Props) {
       </S.ImageBlock>
       <S.ProjectInfo>
         <S.ProjectTitle>{project.projectName}</S.ProjectTitle>
-        <S.ProjectDate>{project.createdDate}</S.ProjectDate>
+        <S.ProjectDate>{modifiedDate}</S.ProjectDate>
       </S.ProjectInfo>
       {showHoverBlock && (
         <>

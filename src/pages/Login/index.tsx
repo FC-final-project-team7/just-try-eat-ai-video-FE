@@ -29,7 +29,7 @@ const LoginPage = () => {
         아이디 <input type="text" name="username" defaultValue="test" />
       </label>
       <label>
-        비밀번호 <input type="text" name="password" defaultValue="test" />
+        비밀번호 <input type="text" name="password" defaultValue="1234" />
       </label>
       <button type="submit">로그인</button>
       <h3>login result</h3>

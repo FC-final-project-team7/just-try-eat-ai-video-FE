@@ -1,12 +1,15 @@
-import { emptySplitApi } from '~/stores/apis/index';
-import { ILogin, ITokenResult } from '~/types/auth';
-import { Tokens } from '~/stores/token';
-import { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query';
-import { baseQueryWithToken } from '~/stores/apis/baseQuery';
+import { QueryReturnValue } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+
+import { emptySplitApi } from './';
+import { baseQueryWithToken } from './baseQuery';
+
+import { Tokens } from '~/stores/token';
+
+import { ILogin, ITokenResult } from '~/types/auth';
 
 export const authApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
@@ -34,8 +37,8 @@ export const authApi = emptySplitApi.injectEndpoints({
       queryFn: async (arg, api, extraOptions) => {
         const result = await baseQueryWithToken(
           {
-            body: Tokens.getBody(),
             url: '/auth/login',
+            body: Tokens.getBody(),
             method: 'POST',
           },
           api,

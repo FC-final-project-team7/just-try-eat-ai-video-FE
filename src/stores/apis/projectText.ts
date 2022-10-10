@@ -1,20 +1,20 @@
 import { emptySplitApiWithReauth } from './';
+import { getUrl as _getUrl } from './baseQuery';
 
 import { PROJECT_TEXT_TAG } from './tags';
-import { TProjectSentence, TProjectText } from '~/types/projects';
-import { getUrl as _getUrl } from '~/stores/apis/baseQuery';
+import { TProjectSentence, TProject } from '~/types/project/projects';
 
 const getUrl = (path: string) => _getUrl(path, true);
 
 export const projectTextApi = emptySplitApiWithReauth.injectEndpoints({
   endpoints: (build) => ({
-    getProjectText: build.query<TProjectText, number>({
+    getProjectText: build.query<TProject, number>({
       query: (id: number) => ({ url: getUrl(`projects/${id}`) }),
-      transformResponse: (response: TProjectText) => response,
+      transformResponse: (response: TProject) => response,
       providesTags: (result, error, id) => [{ type: PROJECT_TEXT_TAG, id }],
     }),
-    updateProjectText: build.mutation<Record<string, unknown>, TProjectText>({
-      query: (projectText: TProjectText) => ({
+    updateProjectText: build.mutation<Record<string, unknown>, TProject>({
+      query: (projectText: TProject) => ({
         url: getUrl('projects/auto'),
         method: 'PUT',
         body: projectText,
@@ -23,8 +23,8 @@ export const projectTextApi = emptySplitApiWithReauth.injectEndpoints({
         { type: PROJECT_TEXT_TAG, id: projectId },
       ],
     }),
-    next: build.mutation<TProjectSentence, TProjectText>({
-      query: (projectText: TProjectText) => ({
+    next: build.mutation<TProjectSentence, TProject>({
+      query: (projectText: TProject) => ({
         url: getUrl('projects/edit'),
         method: 'PUT',
         body: projectText,

@@ -11,11 +11,13 @@ import { Tokens } from '~/stores/token';
 
 import { ITokenResult } from '~/types/auth';
 
-const baseUrl = 'https://aipark.crjkje.com';
-export const getUrl = (path: string, mockWithAbsoluteURL = false) =>
-  mockWithAbsoluteURL
-    ? new URL('/mock/' + path.replace(/^\//, ''), location.origin).href
+const baseUrl = '/api';
+export const getUrl = (path: string, mockWithAbsoluteURL = false) => {
+  const url = mockWithAbsoluteURL
+    ? new URL('/mocks/' + path.replace(/^\//, ''), location.origin).href
     : path;
+  return url;
+};
 
 export const baseQuery = fetchBaseQuery({
   baseUrl,

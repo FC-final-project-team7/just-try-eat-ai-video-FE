@@ -1,5 +1,9 @@
-import * as S from '~/pages/ProjectText/ProjectVoiceOptions/Slider/styles';
 import { ChangeEvent, useCallback, useMemo } from 'react';
+
+import * as S from '~/pages/ProjectText/ProjectVoiceOptions/Slider/styles';
+
+import { useTranslate } from '../../translate/hooks';
+
 import { getDefaultNumber } from '~/utils/number';
 
 type Props = {
@@ -11,7 +15,7 @@ type Props = {
   onChange?: (e: { name: string; value: number }) => void;
   disabled?: boolean;
 
-  dataList: Array<{ value: number; text: string }>;
+  dataList: Array<{ value: number; labelKey: string | object }>;
 };
 
 const defaultValue: Partial<Props> = {
@@ -21,8 +25,9 @@ const defaultValue: Partial<Props> = {
 // TODO track 에 점은 나중에 더럽게 어렵네
 const Slider = (props: Props) => {
   const { name } = props;
-
   const { className, dataList, onChange, ...sliderProps } = props;
+  const { tu } = useTranslate();
+
   const onChangeHandler = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.({ name, value: getDefaultNumber(e.target.value) });
@@ -45,9 +50,9 @@ const Slider = (props: Props) => {
       />
 
       <S.Datalist id={`${name}-dataList`}>
-        {dataList.map(({ value, text }) => (
+        {dataList.map(({ value, labelKey }) => (
           <option key={value} value={value}>
-            {text}
+            {tu(labelKey)}
           </option>
         ))}
       </S.Datalist>

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { PROJECT_DATA } from '~/pages/ProjectListPage/data';
 import ProjectCard from '../../Card/ProjectCard';
 import NoticeModal from '~/components/Popup/NoticeModal';
 import { useGetProjectsQuery } from '~/stores/apis/projectList';
@@ -7,12 +6,10 @@ import { useGetProjectsQuery } from '~/stores/apis/projectList';
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
 import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
-import UploadErrorModal from '~/components/Popup/ErrorModal/UploadErrorModal';
 
 function ProjectList() {
   const { data } = useGetProjectsQuery();
   const [showModal, setShowModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const onProjectAddHandler = () => {
     setShowModal(true);
@@ -52,12 +49,6 @@ function ProjectList() {
         />
       ) : (
         showModal && <ProjectSelectModal setShowModal={setShowModal} />
-      )}
-      {showErrorModal && (
-        <UploadErrorModal
-          content="음성 업로드에 실패했습니다. 다시 시도해주세요"
-          setShowErrorModal={setShowErrorModal}
-        />
       )}
     </>
   );

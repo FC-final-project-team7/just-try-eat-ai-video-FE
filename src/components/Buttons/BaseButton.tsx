@@ -1,6 +1,6 @@
 import { memo } from 'react';
-
-import styled, { css, DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
+import styled, { css } from '~/utils/styled-components-fast';
 
 export type BaseButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   width: keyof DefaultTheme['buttonsSize'] | string;

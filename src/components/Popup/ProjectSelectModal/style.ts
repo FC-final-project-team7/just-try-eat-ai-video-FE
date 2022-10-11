@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 
 export const ModalBackground = styled.div`
   position: fixed;

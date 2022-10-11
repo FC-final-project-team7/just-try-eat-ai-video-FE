@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import FilledButton from '../Buttons/FilledButton';
 
 export const GNBContainer = styled.div`

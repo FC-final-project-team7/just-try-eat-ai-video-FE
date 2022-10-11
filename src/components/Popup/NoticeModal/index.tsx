@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useRef } from 'react';
 import PopupPortal from '../PopupPortal';
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import FilledButton from '~/components/Buttons/FilledButton';
 import useOnClickOutside from '../hooks';
 

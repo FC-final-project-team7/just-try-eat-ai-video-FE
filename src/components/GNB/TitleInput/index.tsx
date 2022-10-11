@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import useOnClickOutside from '~/components/Popup/hooks';
 
 export const GNBTitleContainer = styled.div`

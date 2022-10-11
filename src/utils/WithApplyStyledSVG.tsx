@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from '~/utils/styled-components-fast';
 
 import { SvgrComponentType } from '~/types/types';
 

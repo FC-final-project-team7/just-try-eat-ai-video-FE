@@ -1,4 +1,4 @@
-import 'styled-components';
+import '~/utils/styled-components-fast';
 
 import theme from '~/styles/theme';
 type ThemeType = typeof theme;

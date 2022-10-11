@@ -1,8 +1,8 @@
 import { ObjectTyped } from 'object-typed';
+import { ObjectPath, ObjectPathValue } from '~/types/objectPath';
 
 const ObjectEx = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  map: <O extends {}, U>(
+  mapValue: <O extends object, U>(
     o: O,
     mapFn: (value: [keyof O, O[keyof O]], index: number, obj: O) => U
   ) => {
@@ -16,6 +16,17 @@ const ObjectEx = {
 
     return n;
   },
+
+  get: <O, K extends ObjectPath<O>>(obj: O, path: K): ObjectPathValue<O, K> => {
+    return (
+      (path as string)
+        .split('.')
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .reduce((v, idx) => v[idx], obj as any) as ObjectPathValue<O, K>
+    );
+  },
+
+  k: <O, K extends ObjectPath<O>>(obj: O, path: K) => path,
 };
 
 export default ObjectEx;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import ProjectList from './ListContainer/ProjectList';
 import VideoList from './ListContainer/VideoList';
 

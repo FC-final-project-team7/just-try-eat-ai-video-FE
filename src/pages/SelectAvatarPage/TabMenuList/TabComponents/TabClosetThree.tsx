@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const TabClosetThree = () => {
   return (
@@ -7,4 +7,4 @@ const TabClosetThree = () => {
     </>
   );
 };
-export default TabClosetThree
+export default TabClosetThree;

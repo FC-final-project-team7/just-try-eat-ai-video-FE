@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import 'swiper/css';
 
 export const Container = styled.div`

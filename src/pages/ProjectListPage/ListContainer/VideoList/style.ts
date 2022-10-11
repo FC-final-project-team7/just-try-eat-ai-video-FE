@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 
 export const ListBlock = styled.div`
   width: 1200px;

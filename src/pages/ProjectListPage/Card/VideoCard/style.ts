@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 
 export const CardBlock = styled.div`
   width: 208px;

@@ -1,7 +1,10 @@
+import { useCallback, useState } from 'react';
 import * as S from './style';
 import { Link } from 'react-router-dom';
 import { pagesTo } from '../pages';
 
+import FilledButton from '~/components/Buttons/FilledButton';
+import video from '~/assets/videos/demo-video.mp4';
 import mainImg from '~/assets/images/main.png';
 import videoImg from '~/assets/images/video.png';
 import play from '~/assets/icons/video-play.svg';
@@ -15,12 +18,15 @@ import processText2 from '~/assets/images/process-text-2.svg';
 import processAvartar from '~/assets/images/process-avatar.svg';
 import processCheck from '~/assets/images/process-check.svg';
 import processCloud from '~/assets/images/process-cloud.svg';
-import processLogo from '~/assets/images/process-logo.svg';
-
-import video from '~/assets/videos/demo-video.mp4';
-
-import FilledButton from '~/components/Buttons/FilledButton';
-import { useCallback, useState } from 'react';
+// import processLogo from '~/assets/images/process-logo.svg';
+import partners from '~/assets/images/partners.png';
+import hexagonImg1 from '~/assets/images/hexagon-1.png';
+import hexagonImg2 from '~/assets/images/hexagon-2.png';
+import hexagonImg3 from '~/assets/images/hexagon-3.png';
+import hexagonImg4 from '~/assets/images/hexagon-4.png';
+import hexagonImg5 from '~/assets/images/hexagon-5.png';
+import hexagonImg6 from '~/assets/images/hexagon-6.png';
+import hexagonImg7 from '~/assets/images/hexagon-7.png';
 
 const MainPage = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -30,7 +36,7 @@ const MainPage = () => {
   }, [setShowVideo]);
 
   return (
-    <>
+    <S.MainWrapper>
       <S.MainSection>
         <S.MainContents>
           <S.LeftTextGroup>
@@ -112,111 +118,127 @@ const MainPage = () => {
       </S.AdvantageSection>
 
       <S.ProcessSection>
-        <S.ProcessContent>
-          <S.ProcessBg>
-            <S.CenterTextGrop>
-              <S.Title>Process</S.Title>
-              <S.Description>
-                음성 파일 여부에 따라 다른 과정으로 누구나 손쉽게 영상 제작이
-                가능합니다.
-              </S.Description>
-            </S.CenterTextGrop>
-            <S.ProcessGroup>
-              <S.ProcessLine>
-                <img src={processBorder1} alt="process Line" />
-              </S.ProcessLine>
-              <S.ProcessList>
-                <S.ProcessItem>
+        <S.ProcessBg>
+          <S.CenterTextGrop>
+            <S.Title>Process</S.Title>
+            <S.Description>
+              음성 파일 여부에 따라 다른 과정으로 누구나 손쉽게 영상 제작이
+              가능합니다.
+            </S.Description>
+          </S.CenterTextGrop>
+          <S.ProcessGroup>
+            <S.ProcessLine>
+              <img src={processBorder1} alt="process Line" />
+            </S.ProcessLine>
+            <S.ProcessList>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processText1} alt="텍스트 입력" />
+                </S.ItemBg>
+                <S.ItemTitle>텍스트 입력</S.ItemTitle>
+                <S.ItemDescription>
+                  스크립트 입력 후 <br />
+                  언어 및 목소리 선택하기
+                </S.ItemDescription>
+              </S.ProcessItem>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processText2} alt="텍스트 수정" />
+                </S.ItemBg>
+                <S.ItemTitle>텍스트 수정</S.ItemTitle>
+                <S.ItemDescription>
+                  음성 변환된 텍스트를 <br />
+                  미리 들어보고 수정하기
+                </S.ItemDescription>
+              </S.ProcessItem>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processAvartar} alt="아바타 선택" />
+                </S.ItemBg>
+                <S.ItemTitle>아바타 선택</S.ItemTitle>
+                <S.ItemDescription>
+                  마음에 드는 아바타 <br />
+                  선택하기
+                </S.ItemDescription>
+              </S.ProcessItem>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processCheck} alt="완성" />
+                </S.ItemBg>
+                <S.ItemTitle>완성</S.ItemTitle>
+                <S.ItemDescription>
+                  클릭 한번으로 <br />
+                  AI아바타 영상 생성!
+                </S.ItemDescription>
+              </S.ProcessItem>
+            </S.ProcessList>
+          </S.ProcessGroup>
+          <S.SecondProcessGroup>
+            <S.ProcessLine>
+              <img src={processBorder2} alt="process Line" />
+            </S.ProcessLine>
+            <S.SecondProcessList>
+              <S.ProcessItem>
+                <S.UploadIcon>
                   <S.ItemBg>
-                    <img src={processText1} alt="텍스트 입력" />
+                    <img src={processCloud} alt="음성 업로드" />
                   </S.ItemBg>
-                  <S.ItemTitle>텍스트 입력</S.ItemTitle>
+                  <S.ItemTitle>음성 업로드</S.ItemTitle>
                   <S.ItemDescription>
-                    스크립트 입력 후 <br />
-                    언어 및 목소리 선택하기
+                    보유한 음성파일 <br />
+                    업로드하기
                   </S.ItemDescription>
-                </S.ProcessItem>
-                <S.ProcessItem>
-                  <S.ItemBg>
-                    <img src={processText2} alt="텍스트 수정" />
-                  </S.ItemBg>
-                  <S.ItemTitle>텍스트 수정</S.ItemTitle>
-                  <S.ItemDescription>
-                    음성 변환된 텍스트를 <br />
-                    미리 들어보고 수정하기
-                  </S.ItemDescription>
-                </S.ProcessItem>
-                <S.ProcessItem>
-                  <S.ItemBg>
-                    <img src={processAvartar} alt="아바타 선택" />
-                  </S.ItemBg>
-                  <S.ItemTitle>아바타 선택</S.ItemTitle>
-                  <S.ItemDescription>
-                    마음에 드는 아바타 <br />
-                    선택하기
-                  </S.ItemDescription>
-                </S.ProcessItem>
-                <S.ProcessItem>
-                  <S.ItemBg>
-                    <img src={processCheck} alt="완성" />
-                  </S.ItemBg>
-                  <S.ItemTitle>완성</S.ItemTitle>
-                  <S.ItemDescription>
-                    클릭 한번으로 <br />
-                    AI아바타 영상 생성!
-                  </S.ItemDescription>
-                </S.ProcessItem>
-              </S.ProcessList>
-            </S.ProcessGroup>
-
-            <S.SecondProcessGroup>
-              <S.ProcessLine>
-                <img src={processBorder2} alt="process Line" />
-              </S.ProcessLine>
-              <S.SecondProcessList>
-                <S.ProcessItem>
-                  <S.UploadIcon>
-                    <S.ItemBg>
-                      <img src={processCloud} alt="음성 업로드" />
-                    </S.ItemBg>
-                    <S.ItemTitle>음성 업로드</S.ItemTitle>
-                    <S.ItemDescription>
-                      보유한 음성파일 <br />
-                      업로드하기
-                    </S.ItemDescription>
-                  </S.UploadIcon>
-                </S.ProcessItem>
-
-                <S.ProcessItem>
-                  <S.ItemBg>
-                    <img src={processAvartar} alt="아바타 선택" />
-                  </S.ItemBg>
-                  <S.ItemTitle>아바타 선택</S.ItemTitle>
-                  <S.ItemDescription>
-                    마음에 드는 아바타 <br />
-                    선택하기
-                  </S.ItemDescription>
-                </S.ProcessItem>
-                <S.ProcessItem>
-                  <S.ItemBg>
-                    <img src={processCheck} alt="완성" />
-                  </S.ItemBg>
-                  <S.ItemTitle>완성</S.ItemTitle>
-                  <S.ItemDescription>
-                    클릭 한번으로 <br />
-                    AI아바타 영상 생성!
-                  </S.ItemDescription>
-                </S.ProcessItem>
-              </S.SecondProcessList>
-            </S.SecondProcessGroup>
-            <S.ProcessLogoBlock>
-              <S.ProcessLogoTitle>무한한 영상세계</S.ProcessLogoTitle>
-              {/* <img src={processLogo} alt="logo" /> */}
-            </S.ProcessLogoBlock>
-          </S.ProcessBg>
-        </S.ProcessContent>
+                </S.UploadIcon>
+              </S.ProcessItem>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processAvartar} alt="아바타 선택" />
+                </S.ItemBg>
+                <S.ItemTitle>아바타 선택</S.ItemTitle>
+                <S.ItemDescription>
+                  마음에 드는 아바타 <br />
+                  선택하기
+                </S.ItemDescription>
+              </S.ProcessItem>
+              <S.ProcessItem>
+                <S.ItemBg>
+                  <img src={processCheck} alt="완성" />
+                </S.ItemBg>
+                <S.ItemTitle>완성</S.ItemTitle>
+                <S.ItemDescription>
+                  클릭 한번으로 <br />
+                  AI아바타 영상 생성!
+                </S.ItemDescription>
+              </S.ProcessItem>
+            </S.SecondProcessList>
+          </S.SecondProcessGroup>
+          <S.ProcessLogoBlock>
+            <S.ProcessLogoTitle>무한한 영상세계</S.ProcessLogoTitle>
+            {/* <img src={processLogo} alt="logo" /> */}
+          </S.ProcessLogoBlock>
+        </S.ProcessBg>
       </S.ProcessSection>
-    </>
+
+      <S.PartnersSection>
+        <S.CenterTextGrop>
+          <S.Title>Partners</S.Title>
+          <S.Description>
+            이미 많은 파트너들과 함께 영상을 제작했습니다
+          </S.Description>
+        </S.CenterTextGrop>
+        <S.PartnersImg>
+          <img src={partners} alt="partners" />
+        </S.PartnersImg>
+      </S.PartnersSection>
+
+      <S.HexagonImg1 src={hexagonImg1} alt="bg" />
+      <S.HexagonImg2 src={hexagonImg2} alt="bg" />
+      <S.HexagonImg3 src={hexagonImg3} alt="bg" />
+      <S.HexagonImg4 src={hexagonImg4} alt="bg" />
+      <S.HexagonImg5 src={hexagonImg5} alt="bg" />
+      <S.HexagonImg6 src={hexagonImg6} alt="bg" />
+      <S.HexagonImg7 src={hexagonImg7} alt="bg" />
+    </S.MainWrapper>
   );
 };
 

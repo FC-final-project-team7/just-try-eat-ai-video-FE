@@ -1,27 +1,20 @@
 import styled, { css } from 'styled-components';
-import { fontFamily } from '~/styles/mixins';
+import { textInputStyle } from '~/styles/mixins';
 import { mixin } from '../mixin';
 
-const ProjectTextarea = styled.textarea.attrs(() => ({
-  placeholder: '텍스트를 입력하세요.',
-}))`
+const ProjectTextarea = styled.textarea`
   ${({ theme }) => css`
     ${mixin.base}
-    padding: 32px;
-    border: transparent 2px solid;
+    ${textInputStyle({
+      borderWidth: '2px',
+      placeholderColor: theme.textColors.dark,
+    })}
+    
     resize: none;
-    outline: none;
+
+    padding: 32px;
 
     font-size: ${theme.fontSize.medium};
-
-    &::placeholder {
-      ${fontFamily};
-      color: ${theme.textColors.dark};
-    }
-
-    &:focus-visible {
-      border: ${theme.colors.main.purple} 2px solid;
-    }
   `}
 `;
 

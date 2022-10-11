@@ -51,5 +51,8 @@
     "src/**/*.{js,jsx,ts,tsx}": "eslint --fix --max-warnings 0",
     "src/**/*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.3",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }

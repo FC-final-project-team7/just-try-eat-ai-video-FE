@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 if (process.env.NODE_ENV === 'development') {
-  await import('./mocks/browser').then((m) => m.worker.start({ quiet: true }));
+  await import('./mocks/browser').then((m) =>
+    m.worker.start({ quiet: true, onUnhandledRequest: 'bypass' })
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

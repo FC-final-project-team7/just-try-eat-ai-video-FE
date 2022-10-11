@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useRef } from 'react';
 
-// import SentenceInterval from './SentenceInterval';
+import SentenceInterval from './SentenceInterval';
 import Label from '../components/Label';
 // import IconButton from '../components/IconButton';
 import * as S from './styles';
@@ -10,7 +10,7 @@ import { useTranslate } from '../translate/hooks';
 // import { ReactComponent as PlaySVG } from '~/assets/icons/play.svg';
 // import { ReactComponent as StopSVG } from '~/assets/icons/stop.svg';
 
-import { kSliderList } from './constants';
+import { kSentenceOption, kSliderList } from './constants';
 
 import { TVoiceOption } from '~/types/project/voices';
 
@@ -49,14 +49,14 @@ const ProjectVoiceOptions = (props: Props) => {
           />
         </Fragment>
       ))}
-      {/*<>*/}
-      {/*  <Label>{t(kSentenceOption.labelKey)}</Label>*/}
-      {/*  <SentenceInterval*/}
-      {/*    name={kSentenceOption.key}*/}
-      {/*    onChange={onChangeOptionsHandler}*/}
-      {/*    {...kSentenceOption.props}*/}
-      {/*  />*/}
-      {/*</>*/}
+      <>
+        <Label>{t(kSentenceOption.labelKey)}</Label>
+        <SentenceInterval
+          name={kSentenceOption.key}
+          onChange={onChangeOptionsHandler}
+          {...kSentenceOption.props}
+        />
+      </>
       {/*<>*/}
       {/*  <Label>{t('voiceOption.prelisten')}</Label>*/}
       {/*  <S.Prelisten>*/}

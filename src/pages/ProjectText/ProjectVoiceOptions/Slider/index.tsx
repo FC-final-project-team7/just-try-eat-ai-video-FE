@@ -1,9 +1,10 @@
 import { ChangeEvent, useCallback, useMemo } from 'react';
 
-import * as S from '~/pages/ProjectText/ProjectVoiceOptions/Slider/styles';
+import * as S from './styles';
 
 import { useTranslate } from '../../translate/hooks';
 
+import { makeDefaultProps } from '~/utils/makeDefaultProps';
 import { getDefaultNumber } from '~/utils/number';
 
 type Props = {
@@ -18,14 +19,17 @@ type Props = {
   dataList: Array<{ value: number; labelKey: string | object }>;
 };
 
-const defaultValue: Partial<Props> = {
+const defaultProps = makeDefaultProps<Props>()({
   disabled: false,
-};
+});
 
 // TODO track 에 점은 나중에 더럽게 어렵네
 const Slider = (props: Props) => {
   const { name } = props;
-  const { className, dataList, onChange, ...sliderProps } = props;
+  const { className, dataList, onChange, ...sliderProps } = {
+    ...defaultProps,
+    ...props,
+  };
   const { tu } = useTranslate();
 
   const onChangeHandler = useCallback(
@@ -41,14 +45,13 @@ const Slider = (props: Props) => {
 
   return (
     <S.Container className={className}>
-      <S.StyledSlider
+      <S.Slider
         {...sliderProps}
         onChange={onChangeHandler}
         min={min}
         max={max}
         list={`${name}-dataList`}
       />
-
       <S.Datalist id={`${name}-dataList`}>
         {dataList.map(({ value, labelKey }) => (
           <option key={value} value={value}>
@@ -59,7 +62,5 @@ const Slider = (props: Props) => {
     </S.Container>
   );
 };
-
-Slider.defaultValue = defaultValue;
 
 export default Slider;

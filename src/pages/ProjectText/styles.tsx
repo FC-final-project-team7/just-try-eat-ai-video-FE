@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import ProjectTextarea from './ProjectTextarea';
 import ProjectVoiceOptions from './ProjectVoiceOptions';
 import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
-// import ProjectVoiceSelect from './ProjectVoiceSelect';
+import ProjectVoiceSelect from './ProjectVoiceSelect';
 
 export const Container = styled.div``;
 export const HeaderContainer = styled.div``;
@@ -30,10 +30,10 @@ export const Textarea = styled(ProjectTextarea)`
 export const VoiceOptions = styled(ProjectVoiceOptions)`
   grid-area: voice-options;
 `;
-//
-// export const VoiceSelect = styled(ProjectVoiceSelect)`
-//   grid-area: voice-select;
-// `;
+
+export const VoiceSelect = styled(ProjectVoiceSelect)`
+  grid-area: voice-select;
+`;
 
 export const StyledSVG = withApplyStyledSVG(css`
   ${({ theme }) => css`

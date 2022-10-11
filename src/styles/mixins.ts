@@ -26,7 +26,7 @@ export const textInputStyle = (options: {
 
 export const focusStyle = ({
   position,
-  width = '2px',
+  width,
   color,
 }: {
   position: 'border' | 'outline';
@@ -34,8 +34,7 @@ export const focusStyle = ({
   color?: string;
 }) => css`
   ${({ theme }) => css`
-    ${position}: ${width} solid
-        ${color || theme.colors.main.purple};
+    ${position}: ${width || '2px'} solid ${color || theme.colors.main.purple};
   `}
 `;
 
@@ -53,10 +52,10 @@ const _focus = ({
   `}
 `;
 
-type TFocusArgs = Omit<Parameters<typeof _focus>[0], 'position'>;
+type TFocusArgs = Omit<Parameters<typeof _focus>[0], 'target' | 'position'>;
 
-export const focusThisBorder = (options: TFocusArgs) =>
+export const focusThisBorder = (options?: TFocusArgs) =>
   _focus({ ...options, position: 'border' });
 
-export const focusThisOutline = (options: TFocusArgs) =>
+export const focusThisOutline = (options?: TFocusArgs) =>
   _focus({ ...options, position: 'outline' });

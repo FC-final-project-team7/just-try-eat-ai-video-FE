@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import ProjectTextarea from './ProjectTextarea';
-// import ProjectVoiceOptions from './ProjectVoiceOptions';
+import ProjectVoiceOptions from './ProjectVoiceOptions';
+import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
 // import ProjectVoiceSelect from './ProjectVoiceSelect';
 
 export const Container = styled.div``;
@@ -26,10 +27,16 @@ export const Textarea = styled(ProjectTextarea)`
   grid-area: textarea;
 `;
 
-// export const VoiceOptions = styled(ProjectVoiceOptions)`
-//   grid-area: voice-options;
-// `;
+export const VoiceOptions = styled(ProjectVoiceOptions)`
+  grid-area: voice-options;
+`;
 //
 // export const VoiceSelect = styled(ProjectVoiceSelect)`
 //   grid-area: voice-select;
 // `;
+
+export const StyledSVG = withApplyStyledSVG(css`
+  ${({ theme }) => css`
+    color: ${theme.bg.main};
+  `}
+`);

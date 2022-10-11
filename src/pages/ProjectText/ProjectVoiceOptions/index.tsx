@@ -1,55 +1,73 @@
-import { useCallback } from 'react';
+import { Fragment, useCallback, useRef } from 'react';
 
-import * as S from '~/pages/ProjectText/ProjectVoiceOptions/styles';
+// import SentenceInterval from './SentenceInterval';
+import Label from '../components/Label';
+// import IconButton from '../components/IconButton';
+import * as S from './styles';
+
+import { useTranslate } from '../translate/hooks';
+
+// import { ReactComponent as PlaySVG } from '~/assets/icons/play.svg';
+// import { ReactComponent as StopSVG } from '~/assets/icons/stop.svg';
+
+import { kSliderList } from './constants';
+
+import { TVoiceOption } from '~/types/project/voices';
 
 interface Props {
   className?: string;
+  defaultVoiceOptions: TVoiceOption;
+  onChange: (voiceOption: TVoiceOption) => void;
 }
 
-const dataList = [
-  {
-    id: 'speed-slider',
-    label: '속도 조절',
-    step: 0.1,
-    dataList: [
-      { value: -0.5, text: '0.5배' },
-      { value: 0.0, text: '1배' },
-      { value: 0.5, text: '1.5배' },
-    ],
-  },
-  {
-    id: 'tone-slider',
-    label: '톤 조절',
-    step: 0.1,
-    dataList: [
-      { value: -0.5, text: '로우톤' },
-      { value: 0.0, text: '기본' },
-      { value: 0.5, text: '하이톤' },
-    ],
-  },
-];
-
 const ProjectVoiceOptions = (props: Props) => {
-  const { className } = props;
+  const { className, defaultVoiceOptions, onChange } = props;
+  const { t } = useTranslate();
 
-  const onSliderHandler = useCallback((e: { id: string; value: number }) => {
-    const { id, value } = e;
-    console.log('ProjectVoiceOptions', id, value);
-  }, []);
+  const voiceOptions = useRef<TVoiceOption>(defaultVoiceOptions);
+  const onChangeOptionsHandler = useCallback(
+    ({ name, value }: { name: string; value: number }) => {
+      voiceOptions.current = {
+        ...defaultVoiceOptions,
+        [name]: value,
+      };
+
+      onChange(voiceOptions.current);
+    },
+    [defaultVoiceOptions, onChange]
+  );
 
   return (
     <S.Container className={className}>
-      {dataList.map((data) => (
-        <S.SliderContainer key={data.id}>
-          <S.Label htmlFor={data.id}>{data.label}</S.Label>
+      {kSliderList.map((slider) => (
+        <Fragment key={slider.key}>
+          <Label htmlFor={slider.key}>{t(slider.labelKey)}</Label>
           <S.Slider
-            id={data.id}
-            step={data.step}
-            dataList={data.dataList}
-            onChange={onSliderHandler}
+            name={slider.key}
+            onChange={onChangeOptionsHandler}
+            {...slider.props}
           />
-        </S.SliderContainer>
+        </Fragment>
       ))}
+      {/*<>*/}
+      {/*  <Label>{t(kSentenceOption.labelKey)}</Label>*/}
+      {/*  <SentenceInterval*/}
+      {/*    name={kSentenceOption.key}*/}
+      {/*    onChange={onChangeOptionsHandler}*/}
+      {/*    {...kSentenceOption.props}*/}
+      {/*  />*/}
+      {/*</>*/}
+      {/*<>*/}
+      {/*  <Label>{t('voiceOption.prelisten')}</Label>*/}
+      {/*  <S.Prelisten>*/}
+      {/*    <IconButton>*/}
+      {/*      <S.StyledSVG $svgr={PlaySVG} />*/}
+      {/*    </IconButton>*/}
+      {/*    <IconButton>*/}
+      {/*      <S.StyledSVG $svgr={StopSVG} />*/}
+      {/*    </IconButton>*/}
+      {/*  </S.Prelisten>*/}
+      {/*</>*/}
     </S.Container>
   );
 };

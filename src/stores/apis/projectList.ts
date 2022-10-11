@@ -1,5 +1,5 @@
 import { emptySplitApiWithReauth } from '.';
-import { TProjectData } from '~/types/projects';
+import { TProjectData } from '~/types/project/projects';
 
 export const projectListApi = emptySplitApiWithReauth.injectEndpoints({
   endpoints: (build) => ({

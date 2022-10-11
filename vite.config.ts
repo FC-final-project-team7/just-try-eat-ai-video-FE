@@ -9,7 +9,21 @@ const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svgr(), react()],
+  plugins: [
+    svgr(),
+    react({
+      babel: {
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              ssr: false,
+            },
+          ],
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './src'),

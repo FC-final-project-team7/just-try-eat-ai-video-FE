@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { focusThisOutline } from '~/styles/mixins';
+
 export const Container = styled.div`
   position: relative;
 `;
@@ -15,16 +17,19 @@ const listSelector = (selectors: string[], style: ReturnType<typeof css>) =>
       `
   );
 
-export const StyledSlider = styled.input.attrs(() => ({
+export const Slider = styled.input.attrs(() => ({
   type: 'range',
 }))`
   ${({ theme }) => css`
-    padding: 0;
-    padding-inline: 0;
-    margin: 0 0 8px;
+    ${focusThisOutline()};
+
     width: 100%;
     height: 20px;
     font-size: 20px;
+
+    margin: 0 0 8px;
+    padding: 0;
+    padding-inline: 0;
 
     background-color: transparent;
 
@@ -35,6 +40,7 @@ export const StyledSlider = styled.input.attrs(() => ({
 
         width: 1em;
         height: 1em;
+
         border-radius: 0.5em;
 
         background-color: ${theme.colors.main.purple};
@@ -48,6 +54,7 @@ export const StyledSlider = styled.input.attrs(() => ({
 
         height: 0.2em;
         width: 100%;
+
         border-radius: 0.2em;
 
         background-color: ${theme.colors.gray400};

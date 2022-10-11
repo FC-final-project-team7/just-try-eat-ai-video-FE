@@ -56,7 +56,7 @@ const Contents = ({ resource }: { resource: () => TProject }) => {
         onChange={onChangeText}
       />
       <S.VoiceOptions defaultVoiceOptions={data} onChange={onChangeHandler} />
-      {/*<S.VoiceSelect defaultOptions={data} />*/}
+      <S.VoiceSelect defaultOptions={data} />
     </>
   );
 };

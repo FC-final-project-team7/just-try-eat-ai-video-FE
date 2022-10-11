@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { pagesPath } from '~/pages/pages'
+import { pagesPath } from './pages'
+
+import GNB from '~/components/GNB'
 
 import MainPage from '~/pages/Main'
 import LoginPage from '~/pages/Login'
@@ -8,7 +10,6 @@ import ProjectTextPage from '~/pages/ProjectText'
 import SelectAvatarPage from './SelectAvatarPage'
 
 import ComponentsDisplayRoute from '~/pages/ComponentsDisplay'
-import GNB from '~/components/GNB'
 
 const Pages = () => {
   return (

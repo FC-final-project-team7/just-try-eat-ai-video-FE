@@ -6,10 +6,10 @@ import * as S from './styles';
 
 import { projectsApi } from '~/stores/apis/projects';
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
-// import { useTranslate } from './translate/hooks';
+import { useTranslate } from './translate/hooks';
 
 import { TProject } from '~/types/project/projects';
-// import { TVoiceOption } from '~/types/project/voices';
+import { TVoiceOption } from '~/types/project/voices';
 
 const ProjectTextPage = () => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const ProjectTextPage = () => {
 
 const Contents = ({ resource }: { resource: () => TProject }) => {
   const data = resource();
-  // const { t } = useTranslate();
+  const { t } = useTranslate();
 
   const options = useRef({ ...data });
   const onChangeText = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -41,27 +41,21 @@ const Contents = ({ resource }: { resource: () => TProject }) => {
     };
   }, []);
 
-  // const onChangeHandler = useCallback((v: TVoiceOption) => {
-  //   options.current = {
-  //     ...options.current,
-  //     ...v,
-  //   };
-  // }, []);
+  const onChangeHandler = useCallback((v: TVoiceOption) => {
+    options.current = {
+      ...options.current,
+      ...v,
+    };
+  }, []);
 
   return (
     <>
       <S.Textarea
-        placeholder="텍스트를 입력하세요."
+        placeholder={t('textArea.placeholder')}
         defaultValue={data.text}
         onChange={onChangeText}
       />
-
-      {/*<S.Textarea*/}
-      {/*  placeholder={t('textArea.placeholder')}*/}
-      {/*  defaultValue={data.text}*/}
-      {/*  onChange={onChangeText}*/}
-      {/*/>*/}
-      {/*<S.VoiceOptions defaultVoiceOptions={data} onChange={onChangeHandler} />*/}
+      <S.VoiceOptions defaultVoiceOptions={data} onChange={onChangeHandler} />
       {/*<S.VoiceSelect defaultOptions={data} />*/}
     </>
   );

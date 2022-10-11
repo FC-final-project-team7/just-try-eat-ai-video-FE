@@ -5,10 +5,10 @@ import { getDefaultNumber } from '~/utils/number';
 type Props = {
   className?: string;
 
-  id: string;
+  name: string;
   step: number;
   value?: number;
-  onChange?: (e: { id: string; value: number }) => void;
+  onChange?: (e: { name: string; value: number }) => void;
   disabled?: boolean;
 
   dataList: Array<{ value: number; text: string }>;
@@ -20,14 +20,14 @@ const defaultValue: Partial<Props> = {
 
 // TODO track 에 점은 나중에 더럽게 어렵네
 const Slider = (props: Props) => {
-  const { id } = props;
+  const { name } = props;
 
   const { className, dataList, onChange, ...sliderProps } = props;
   const onChangeHandler = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      onChange?.({ id, value: getDefaultNumber(e.target.value) });
+      onChange?.({ name, value: getDefaultNumber(e.target.value) });
     },
-    [onChange, id]
+    [onChange, name]
   );
 
   const [min, max] = useMemo(() => {
@@ -41,10 +41,10 @@ const Slider = (props: Props) => {
         onChange={onChangeHandler}
         min={min}
         max={max}
-        list={`${id}-dataList`}
+        list={`${name}-dataList`}
       />
 
-      <S.Datalist id={`${id}-dataList`}>
+      <S.Datalist id={`${name}-dataList`}>
         {dataList.map(({ value, text }) => (
           <option key={value} value={value}>
             {text}

@@ -14,7 +14,7 @@ const ProjectTextPage = () => {
         <ProjectTextStepper />
       </S.HeaderContainer>
       <S.ContentsContainer>
-        <S.Textarea />
+        <S.Textarea placeholder="텍스트를 입력하세요." />
         <S.VoiceOptions />
         <S.VoiceSelect />
       </S.ContentsContainer>

@@ -2,8 +2,8 @@ import { TVoiceSelect, TVoiceOption } from '~/types/project/voices';
 
 export type TProjectData = {
   projectId: number;
-  name: string;
-  createdDate: string;
+  projectName: string;
+  modifiedDate: string;
   thumbnail: string;
 };
 

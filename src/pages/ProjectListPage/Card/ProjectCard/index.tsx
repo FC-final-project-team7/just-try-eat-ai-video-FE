@@ -1,5 +1,5 @@
 import * as S from './style';
-import { TProjectData } from '~/types/projects';
+import { TProjectData } from '~/types/project/projects';
 import { useCallback, useState } from 'react';
 import remove from '~/assets/icons/remove.svg';
 import ConfirmModal from '~/components/Popup/ConfirmModal';

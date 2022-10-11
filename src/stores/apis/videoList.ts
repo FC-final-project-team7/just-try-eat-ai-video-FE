@@ -1,5 +1,5 @@
 import { emptySplitApiWithReauth } from '.';
-import { TVideoData } from '~/types/projects';
+import { TVideoData } from '~/types/project/projects';
 
 export const videoListApi = emptySplitApiWithReauth.injectEndpoints({
   endpoints: (build) => ({

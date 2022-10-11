@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery, baseQueryWithReauth } from './baseQuery';
 
-import { PROJECT_TEXT_TAG } from './tags';
+import { PROJECT_TEXT_TAG, PROJECT_LIST_TAG } from './tags';
 
 export const emptySplitApi = createApi({
   reducerPath: 'emptySplitApi',
@@ -11,7 +11,7 @@ export const emptySplitApi = createApi({
 
 export const emptySplitApiWithReauth = createApi({
   reducerPath: 'emptySplitApiWithReauth',
-  tagTypes: [PROJECT_TEXT_TAG],
+  tagTypes: [PROJECT_TEXT_TAG, PROJECT_LIST_TAG],
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),
 });

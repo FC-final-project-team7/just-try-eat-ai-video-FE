@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from '~/utils/styled-components-fast';
 
 export const CardBlock = styled.div`
@@ -14,7 +15,7 @@ export const CardBlock = styled.div`
   }
 `;
 
-export const CardHoverBlock = styled.div`
+export const CardHoverBlock = styled(Link)`
   position: absolute;
   left: 0;
   right: 0;
@@ -42,6 +43,7 @@ export const ImageBlock = styled.div`
   background-color: ${(props) => props.theme.colors.gray100};
   border-radius: 4px;
   margin: 0 auto;
+  overflow: hidden;
 `;
 
 export const ProjectInfo = styled.div`

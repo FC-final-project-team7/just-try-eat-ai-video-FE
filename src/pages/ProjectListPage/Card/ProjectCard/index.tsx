@@ -1,6 +1,8 @@
 import * as S from './style';
 import { TProjectData } from '~/types/project/projects';
 import { useCallback, useState } from 'react';
+import { pagesTo } from '~/pages/pages';
+
 import remove from '~/assets/icons/remove.svg';
 import ConfirmModal from '~/components/Popup/ConfirmModal';
 
@@ -41,7 +43,7 @@ function ProjectCard(props: Props) {
       </S.ProjectInfo>
       {showHoverBlock && (
         <>
-          <S.CardHoverBlock />
+          <S.CardHoverBlock to={pagesTo.text(project.projectId)} />
           <S.CardHoverButtonBlock onClick={onCardRemoveHandler}>
             <img src={remove} alt="remove-icon" />
           </S.CardHoverButtonBlock>
@@ -51,6 +53,7 @@ function ProjectCard(props: Props) {
         <ConfirmModal
           content="해당 프로젝트를 삭제할까요?"
           setShowConfirmModal={setShowConfirmModal}
+          projectId={project.projectId}
         />
       )}
     </S.CardBlock>

@@ -9,11 +9,11 @@ export const pagesTo = {
   signUp: '/sign-up',
 
   projects: '/projects',
-  text: (id: string) => `/text/${id}`,
-  sentence: (id: string) => `/sentence/${id}`,
+  text: (id: number | string) => `/text/${id}`,
+  sentence: (id: number | string) => `/sentence/${id}`,
   avatar: '/avatar',
-  // avatar: (id: string) => `/avatar/${id}`,
-  avatarUploadAudio: (id: string) => `/avatar-audio/${id}`,
+  // avatar: (id: number) => `/avatar/${id}`,
+  avatarUploadAudio: (id: number | string) => `/avatar-audio/${id}`,
 };
 
 // <Route path={pagesPath.login} element={<LoginPage />} />

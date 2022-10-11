@@ -34,7 +34,7 @@ type Props = {
   setShowErrorModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const ErrorModal = (props: Props) => {
+const UploadErrorModal = (props: Props) => {
   const { content, setShowErrorModal } = props;
 
   const onModalCloseHandler = () => {
@@ -56,4 +56,4 @@ const ErrorModal = (props: Props) => {
   );
 };
 
-export default ErrorModal;
+export default UploadErrorModal;

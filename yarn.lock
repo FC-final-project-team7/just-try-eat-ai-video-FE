@@ -734,7 +734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hoist-non-react-statics@npm:*, @types/hoist-non-react-statics@npm:^3.3.1":
+"@types/hoist-non-react-statics@npm:*, @types/hoist-non-react-statics@npm:^3, @types/hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.1
   resolution: "@types/hoist-non-react-statics@npm:3.3.1"
   dependencies:
@@ -3286,6 +3286,7 @@ __metadata:
   resolution: "just-try-eat-ai-video-fe@workspace:."
   dependencies:
     "@reduxjs/toolkit": ^1.8.6
+    "@types/hoist-non-react-statics": ^3
     "@types/node": 16.11.64
     "@types/react": ^18.0.21
     "@types/react-dom": ^18.0.6
@@ -3299,6 +3300,7 @@ __metadata:
     eslint: ^8.25.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-react: ^7.31.9
+    hoist-non-react-statics: ^3.3.2
     husky: ^8.0.1
     lint-staged: ^13.0.3
     msw: ^0.47.4

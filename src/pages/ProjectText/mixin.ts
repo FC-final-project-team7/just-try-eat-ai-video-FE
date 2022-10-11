@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from '~/utils/styled-components-fast';
 
 export const mixin = {
   base: css`

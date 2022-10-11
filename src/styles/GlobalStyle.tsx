@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css } from '~/utils/styled-components-fast';
 import { reset } from '~/styles/reset';
 import { fontFamily } from '~/styles/mixins';
 

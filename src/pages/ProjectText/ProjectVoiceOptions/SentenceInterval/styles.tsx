@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from '~/utils/styled-components-fast';
 
 import { textInputStyle } from '~/styles/mixins';
 

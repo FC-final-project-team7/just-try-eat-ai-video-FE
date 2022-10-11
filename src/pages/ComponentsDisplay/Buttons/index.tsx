@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '~/utils/styled-components-fast';
 import FilledButton from '~/components/Buttons/FilledButton';
 import OutlinedButton from '~/components/Buttons/OutlinedButton';
 import ImageButton from '~/components/Buttons/ImageButton';

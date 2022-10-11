@@ -109,11 +109,6 @@ export const ProcessSection = styled.div`
   position: relative;
 `;
 
-export const ProcessContent = styled.div`
-  position: absolute;
-  top: 0px;
-`;
-
 export const ProcessBg = styled.div`
   ${(props) => props.theme.flex.flexColumn}
   width: 1420px;
@@ -215,4 +210,65 @@ export const ProcessLogoTitle = styled.p`
   font-size: ${(props) => props.theme.fontSize.xxxLarge};
   font-weight: ${(props) => props.theme.fontWeight.bold};
   margin: 0;
+`;
+
+export const PartnersSection = styled.div`
+  margin-top: 82px;
+`;
+
+export const PartnersImg = styled.div`
+  ${(props) => props.theme.flex.flexCenter}
+  margin: 72px 0px 136px 0px;
+`;
+
+export const MainWrapper = styled.div`
+  position: relative;
+`;
+
+export const HexagonImg1 = styled.img`
+  position: absolute;
+  top: -200px;
+  z-index: -1;
+`;
+
+export const HexagonImg2 = styled.img`
+  position: absolute;
+  top: 150px;
+  right: 0px;
+  z-index: -1;
+`;
+
+export const HexagonImg3 = styled.img`
+  position: absolute;
+  top: 1100px;
+  left: 0px;
+  z-index: -1;
+`;
+
+export const HexagonImg4 = styled.img`
+  position: absolute;
+  top: 2023px;
+  right: -10px;
+  z-index: -1;
+`;
+
+export const HexagonImg5 = styled.img`
+  position: absolute;
+  bottom: 149px;
+  left: 0px;
+  z-index: -1;
+`;
+
+export const HexagonImg6 = styled.img`
+  position: absolute;
+  bottom: 149px;
+  right: 0px;
+  z-index: -1;
+`;
+
+export const HexagonImg7 = styled.img`
+  position: absolute;
+  bottom: -420px;
+  right: -7px;
+  z-index: -1;
 `;

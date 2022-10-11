@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { SvgrElement } from '*.svg';
+import { ReactHTMLElement } from 'react';
 
-import BaseButton, { BaseButtonProps } from '~/components/Buttons/BaseButton';
+import BaseButton, { BaseButtonProps } from '../BaseButton';
+
+import { SvgrElementType } from '~/types/types';
 
 type Props = {
-  children: React.ReactHTMLElement<HTMLImageElement> | SvgrElement;
+  children: ReactHTMLElement<HTMLImageElement> | SvgrElementType;
 } & Omit<BaseButtonProps, 'children' | 'width' | 'height'>;
 
 const ImageButton = (props: Props) => {

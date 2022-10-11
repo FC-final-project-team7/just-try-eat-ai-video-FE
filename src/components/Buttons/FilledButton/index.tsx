@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import BaseButton from '~/components/Buttons/BaseButton';
+import BaseButton from '../BaseButton';
 
 const FilledButton = styled(BaseButton)`
   ${({ theme }) => css`

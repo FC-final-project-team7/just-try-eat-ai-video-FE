@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import styled, { css, DefaultTheme } from 'styled-components';
 
 export type BaseButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
@@ -40,4 +42,4 @@ const BaseButton = styled.button<BaseButtonProps>`
   `}
 `;
 
-export default BaseButton;
+export default memo(BaseButton);

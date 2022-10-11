@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import BaseButton from '~/components/Buttons/BaseButton';
+
+import BaseButton from '../BaseButton';
 
 const OutlinedButton = styled(BaseButton)`
   ${({ theme }) => css`

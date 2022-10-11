@@ -2,28 +2,30 @@ import React, { Dispatch, SetStateAction, useRef } from 'react';
 import PopupPortal from '../PopupPortal';
 import * as S from './style';
 import useOnClickOutside from '../hooks';
+import { useDeleteProjectMutation } from '~/stores/apis/projectList';
 
 type Props = {
   content: string;
   setShowConfirmModal: Dispatch<SetStateAction<boolean>>;
+  projectId?: number | string;
 };
 
 function ConfirmModal(props: Props) {
-  const { content, setShowConfirmModal } = props;
+  const { content, setShowConfirmModal, projectId } = props;
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const [deleteProject] = useDeleteProjectMutation();
 
   useOnClickOutside(modalRef, () => {
     setShowConfirmModal(false);
   });
 
-  // project id 넘겨주기
-  const onRemoveHandler = () => {
-    console.log('프로젝트 삭제 완료');
+  const onRemoveHandler = (projectId: number | string | undefined) => {
+    if (projectId === undefined) return;
+    deleteProject(projectId);
     setShowConfirmModal(false);
   };
 
   const onCancelHandler = () => {
-    console.log('취소');
     setShowConfirmModal(false);
   };
 
@@ -37,7 +39,7 @@ function ConfirmModal(props: Props) {
             <S.ModalButton
               width="148px"
               height="48px"
-              onClick={onRemoveHandler}
+              onClick={() => onRemoveHandler(projectId)}
             >
               삭제
             </S.ModalButton>

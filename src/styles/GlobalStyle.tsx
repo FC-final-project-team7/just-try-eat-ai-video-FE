@@ -5,8 +5,6 @@ import { fontFamily } from '~/styles/mixins';
 const GlobalStyle = createGlobalStyle`
   ${reset}
   
-  // TODO 폰트 크기 최적화
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
   ${({ theme }) => css`
     * {
       box-sizing: border-box;

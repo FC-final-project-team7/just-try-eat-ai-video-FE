@@ -50,10 +50,11 @@ const ProjectVoiceSelect = (props: Props) => {
   );
 
   const voiceList = useMemo(() => {
-    const {
-      language = KVoiceSelectServerValueMapper.language.korean,
-      sex = KVoiceSelectServerValueMapper.sex.FEMALE,
-    } = options;
+    let { language, sex } = options;
+
+    language = language || KVoiceSelectServerValueMapper.language.korean;
+    sex = sex || KVoiceSelectServerValueMapper.sex.FEMALE;
+
     // ANCHOR 보여주는 리스트가 선택된 애가 우선인지 서버에 저장된 language/sex 우선인지
     return kAvatarVoiceList[language].voices[sex];
   }, [options]);

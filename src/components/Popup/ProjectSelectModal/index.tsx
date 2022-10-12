@@ -13,7 +13,7 @@ import useOnClickOutside from '../hooks';
 import UploadErrorModal from '../ErrorModal/UploadErrorModal';
 import {
   useTextProjectMutation,
-  useLazyAudioProjectQuery,
+  useAudioProjectMutation,
 } from '~/stores/apis/projectCreation';
 
 import cloud from '~/assets/icons/cloud.svg';
@@ -33,7 +33,7 @@ const ProjectSelectModal = (props: Props) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const [textProject] = useTextProjectMutation();
-  const [audioProject, { error: audioError }] = useLazyAudioProjectQuery();
+  const [audioProject, { error: audioError }] = useAudioProjectMutation();
 
   useEffect(() => {
     if (audioError) {

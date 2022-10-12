@@ -6,7 +6,6 @@ export const Container = styled.div`
   position: relative;
 `;
 
-// 선택자 리스트로 하면 이상하게 안됨
 const listSelector = (selectors: string[], style: ReturnType<typeof css>) =>
   selectors.map(
     (selector) =>
@@ -23,6 +22,8 @@ export const Slider = styled.input.attrs(() => ({
   ${({ theme }) => css`
     ${focusThisOutline()};
 
+    appearance: none;
+
     width: 100%;
     height: 20px;
     font-size: 20px;
@@ -34,12 +35,20 @@ export const Slider = styled.input.attrs(() => ({
     background-color: transparent;
 
     ${listSelector(
-      ['::-moz-range-thumb', '::-webkit-slider-thumb', '::-ms-thumb'],
+      ['::-moz-range-thumb', '::-ms-thumb'],
       css`
         all: unset;
+      `
+    )}
+
+    ${listSelector(
+      ['::-moz-range-thumb', '::-webkit-slider-thumb', '::-ms-thumb'],
+      css`
+        appearance: unset;
 
         width: 1em;
         height: 1em;
+        font-size: 1em;
 
         border-radius: 0.5em;
 
@@ -50,14 +59,11 @@ export const Slider = styled.input.attrs(() => ({
     ${listSelector(
       ['::-moz-range-track', '::-webkit-slider-runnable-track', '::-ms-track'],
       css`
-        all: unset;
-
-        height: 0.2em;
+        height: 1em;
         width: 100%;
 
-        border-radius: 0.2em;
-
-        background-color: ${theme.colors.gray400};
+        background: linear-gradient(${theme.colors.gray400} 0 0) scroll
+          no-repeat center / 100% 0.2em;
       `
     )}
   `}
@@ -65,7 +71,6 @@ export const Slider = styled.input.attrs(() => ({
 
 export const Datalist = styled.datalist`
   ${({ theme }) => css`
-    //position: relative;
     display: flex;
     justify-content: space-between;
     height: 20px;

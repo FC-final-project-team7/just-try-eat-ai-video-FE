@@ -3,8 +3,8 @@ import { tk } from '../translate/hooks';
 import ObjectEx from '~/utils/ObjectEx';
 
 import {
-  KVoiceSelectMapper,
-  KVoiceSelectValueMapper,
+  KVoiceSelectDataKeyMapper,
+  KVoiceSelectServerValueMapper,
 } from '~/types/project/voices';
 
 // https://vitejs.dev/guide/features.html#glob-import
@@ -20,27 +20,28 @@ const voicesFiles = Object.fromEntries(
   ])
 );
 
-const { language: languageValues, sex: sexValues } = KVoiceSelectValueMapper;
+const { language: languageValues, sex: sexValues } =
+  KVoiceSelectServerValueMapper;
 
 const voicesFileMapper = {
   key: {
-    [languageValues['한국어']]: 'kor',
-    [languageValues['영어']]: 'eng',
-    [languageValues['중국어']]: 'chi',
+    [languageValues.korean]: 'kor',
+    [languageValues.english]: 'eng',
+    [languageValues.chinese]: 'chi',
   } as Record<string, string>,
   sex: {
-    [sexValues['여자']]: 'w',
-    [sexValues['남자']]: 'm',
+    [sexValues.FEMALE]: 'w',
+    [sexValues.MALE]: 'm',
   } as Record<string, string>,
 };
 
 // noinspection SpellCheckingInspection
 const _avatarVoiceList = {
-  [languageValues['한국어']]: {
-    key: languageValues['한국어'],
-    labelKey: tk('avatarVoiceSelect.language.한국어'),
+  [languageValues.korean]: {
+    key: languageValues.korean,
+    labelKey: tk('avatarVoiceSelect.language.label'),
     voices: {
-      [sexValues['여자']]: [
+      [sexValues.FEMALE]: [
         {
           key: '가영',
           prelistenUrl: '',
@@ -58,7 +59,7 @@ const _avatarVoiceList = {
           prelistenUrl: '',
         },
       ],
-      [sexValues['남자']]: [
+      [sexValues.MALE]: [
         {
           key: '가온',
           prelistenUrl: '',
@@ -82,11 +83,11 @@ const _avatarVoiceList = {
       ],
     },
   },
-  [languageValues['영어']]: {
-    key: languageValues['영어'],
-    labelKey: tk('avatarVoiceSelect.language.영어'),
+  [languageValues['english']]: {
+    key: languageValues['english'],
+    labelKey: tk('avatarVoiceSelect.language.english'),
     voices: {
-      [sexValues['여자']]: [
+      [sexValues.FEMALE]: [
         {
           key: 'Abbi',
           prelistenUrl: '',
@@ -148,7 +149,7 @@ const _avatarVoiceList = {
           prelistenUrl: '',
         },
       ],
-      [sexValues['남자']]: [
+      [sexValues.MALE]: [
         {
           key: 'Alfie',
           prelistenUrl: '',
@@ -200,11 +201,11 @@ const _avatarVoiceList = {
       ],
     },
   },
-  [languageValues['중국어']]: {
-    key: languageValues['중국어'],
-    labelKey: tk('avatarVoiceSelect.language.중국어'),
+  [languageValues.chinese]: {
+    key: languageValues.chinese,
+    labelKey: tk('avatarVoiceSelect.language.chinese'),
     voices: {
-      [sexValues['여자']]: [
+      [sexValues.FEMALE]: [
         {
           key: 'HiuGaai(광둥어)',
           prelistenUrl: '',
@@ -266,7 +267,7 @@ const _avatarVoiceList = {
           prelistenUrl: '',
         },
       ],
-      [sexValues['남자']]: [
+      [sexValues.MALE]: [
         {
           key: 'YunJhe(대만어)',
           prelistenUrl: '',
@@ -316,7 +317,7 @@ export const kAvatarVoiceList = ObjectEx.mapValue(
 );
 
 export const kAvatarVoiceSexOption = {
-  key: KVoiceSelectMapper.sex,
+  key: KVoiceSelectDataKeyMapper.sex,
   labelKey: tk('avatarVoiceSelect.sex.label'),
   radioList: Object.values(sexValues).map((v) => ({
     key: v,
@@ -325,7 +326,7 @@ export const kAvatarVoiceSexOption = {
 };
 
 export const kAvatarVoiceLangSelectOption = {
-  key: KVoiceSelectMapper.language,
+  key: KVoiceSelectDataKeyMapper.language,
   labelKey: tk('avatarVoiceSelect.language.label'),
   options: Object.values(languageValues).map((v) => ({
     key: v,
@@ -334,6 +335,6 @@ export const kAvatarVoiceLangSelectOption = {
 };
 
 export const kAvatarVoiceOption = {
-  key: KVoiceSelectMapper.avatarAudio,
+  key: KVoiceSelectDataKeyMapper.avatarAudio,
   labelKey: tk('avatarVoiceSelect.avatarAudio.label'),
 };

@@ -5,7 +5,7 @@ import {
   updateProjectSentence,
 } from '~/mocks/handlers/data';
 
-import { TProject } from '~/types/project/projects';
+import { IProject } from '~/types/project/projects';
 import { getPaths } from '~/mocks/handlers/utils';
 
 export const projectTextHandlers = [
@@ -20,7 +20,7 @@ export const projectTextHandlers = [
 
   rest.put(getPaths('/projects/auto'), async (req, res, ctx) => {
     try {
-      const v = await req.json<TProject>();
+      const v = await req.json<IProject>();
       projectText[v.projectId] = v;
     } catch (e) {
       return res(ctx.status(400));
@@ -31,7 +31,7 @@ export const projectTextHandlers = [
 
   rest.put(getPaths('/projects/edit'), async (req, res, ctx) => {
     try {
-      const v = await req.json<TProject>();
+      const v = await req.json<IProject>();
       return res(ctx.status(200), ctx.json(updateProjectSentence(v)));
     } catch (e) {
       return res(ctx.status(400));

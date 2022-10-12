@@ -12,19 +12,19 @@ import { useTranslate } from '../translate/hooks';
 
 import { kSentenceOption, kSliderList } from './constants';
 
-import { TVoiceOption } from '~/types/project/voices';
+import { IVoiceOption } from '~/types/project/voices';
 
 interface Props {
   className?: string;
-  defaultVoiceOptions: TVoiceOption;
-  onChange: (voiceOption: TVoiceOption) => void;
+  defaultVoiceOptions: IVoiceOption;
+  onChange: (voiceOption: IVoiceOption) => void;
 }
 
 const ProjectVoiceOptions = (props: Props) => {
   const { className, defaultVoiceOptions, onChange } = props;
   const { t } = useTranslate();
 
-  const voiceOptions = useRef<TVoiceOption>(defaultVoiceOptions);
+  const voiceOptions = useRef<IVoiceOption>(defaultVoiceOptions);
   const onChangeOptionsHandler = useCallback(
     ({ name, value }: { name: string; value: number }) => {
       voiceOptions.current = {

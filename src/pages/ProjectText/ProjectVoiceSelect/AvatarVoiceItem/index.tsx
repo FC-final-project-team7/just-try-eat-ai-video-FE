@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 
 import IconButton from '../../components/IconButton';
+import StyledSVG from '../../components/StyledSVG';
 import * as S from './styles';
-import { StyledSVG } from '../../styles';
 
 import { ReactComponent as PlaySVG } from '~/assets/icons/play.svg';
 import { ReactComponent as StopSVG } from '~/assets/icons/stop.svg';

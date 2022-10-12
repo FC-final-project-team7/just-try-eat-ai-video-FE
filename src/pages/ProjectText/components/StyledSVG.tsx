@@ -1,8 +1,10 @@
-import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
 import { css } from '~/utils/styled-components-fast';
+import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
 
-export const StyledSVG = withApplyStyledSVG(css`
+const StyledSVG = withApplyStyledSVG(css`
   ${({ theme }) => css`
     color: ${theme.bg.main};
   `}
 `);
+
+export default StyledSVG;

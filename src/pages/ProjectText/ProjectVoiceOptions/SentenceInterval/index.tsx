@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEvent, useCallback, useState } from 'react';
 
 import Label from '../../components/Label';
 import IconButton from '../../components/IconButton';
-import { StyledSVG } from '../../components/StyledSVG';
+import StyledSVG from '../../components/StyledSVG';
 import * as S from './styles';
 
 import { useTranslate } from '../../translate/hooks';

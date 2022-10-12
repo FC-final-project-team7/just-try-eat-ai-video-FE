@@ -27,6 +27,12 @@ const ObjectEx = {
   },
 
   k: <O, K extends ObjectPath<O>>(obj: O, path: K) => path,
+
+  keyByKey: <O extends object>(o: O) => {
+    return ObjectEx.mapValue(o, ([key]) => key) as unknown as {
+      [key in keyof O]: key;
+    };
+  },
 };
 
 export default ObjectEx;

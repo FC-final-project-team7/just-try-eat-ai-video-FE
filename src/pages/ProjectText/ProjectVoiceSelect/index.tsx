@@ -14,11 +14,14 @@ import {
 } from './constants';
 import { kAvatarVoiceList, TVoice } from './constants';
 
-import { TVoiceSelect } from '~/types/project/voices';
+import {
+  IVoiceSelect,
+  KVoiceSelectServerValueMapper,
+} from '~/types/project/voices';
 
 interface Props {
   className?: string;
-  defaultOptions: TVoiceSelect;
+  defaultOptions: IVoiceSelect;
 }
 
 // TODO 최적화
@@ -47,7 +50,11 @@ const ProjectVoiceSelect = (props: Props) => {
   );
 
   const voiceList = useMemo(() => {
-    const { language, sex } = options;
+    const {
+      language = KVoiceSelectServerValueMapper.language.korean,
+      sex = KVoiceSelectServerValueMapper.sex.FEMALE,
+    } = options;
+    // ANCHOR 보여주는 리스트가 선택된 애가 우선인지 서버에 저장된 language/sex 우선인지
     return kAvatarVoiceList[language].voices[sex];
   }, [options]);
 

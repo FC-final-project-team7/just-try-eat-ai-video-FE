@@ -43,5 +43,9 @@ export const InputNumber = styled.input.attrs(() => ({
     text-align: center;
 
     border-radius: 4px;
+
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
   `}
 `;

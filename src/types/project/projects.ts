@@ -1,4 +1,4 @@
-import { TVoiceSelect, TVoiceOption } from '~/types/project/voices';
+import { IVoiceSelect, IVoiceOption } from '~/types/project/voices';
 
 export type TProjectData = {
   projectId: number;
@@ -15,9 +15,7 @@ export type TVideoData = {
   thumbnail: string;
 };
 
-export type TProject = {
-  projectId: number;
-  projectName: string;
+export interface IProject extends TProjectData, IVoiceOption, IVoiceSelect {
   avatar: string;
   text: string;
   audioName: string;
@@ -26,17 +24,16 @@ export type TProject = {
   category2: string;
   category3: string;
   background: string;
-} & TVoiceOption &
-  TVoiceSelect;
+}
 
-export type TSentence = {
+export interface ISentence {
   sentence: string;
   sentenceAudio: string;
-};
+}
 
-export type TProjectSentence = {
+export interface IProjectSentence {
   projectId: number;
   text: string;
   audio: string;
-  sentence: TSentence[];
-};
+  sentence: ISentence[];
+}

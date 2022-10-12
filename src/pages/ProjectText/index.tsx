@@ -8,12 +8,12 @@ import { projectsApi } from '~/stores/apis/projects';
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
 import { useTranslate } from './translate/hooks';
 
-import { TProject } from '~/types/project/projects';
-import { TVoiceOption } from '~/types/project/voices';
+import { IProject } from '~/types/project/projects';
+import { IVoiceOption } from '~/types/project/voices';
 
 const ProjectTextPage = () => {
   const { id } = useParams();
-  const resource = useRtkQueryResource<TProject>(projectsApi, 'getProject', id);
+  const resource = useRtkQueryResource<IProject>(projectsApi, 'getProject', id);
 
   return (
     <Suspense fallback={<h1>로딩중</h1>}>
@@ -29,8 +29,10 @@ const ProjectTextPage = () => {
   );
 };
 
-const Contents = ({ resource }: { resource: () => TProject }) => {
+const Contents = ({ resource }: { resource: () => IProject }) => {
   const data = resource();
+  console.log(data);
+
   const { t } = useTranslate();
 
   const options = useRef({ ...data });
@@ -41,7 +43,7 @@ const Contents = ({ resource }: { resource: () => TProject }) => {
     };
   }, []);
 
-  const onChangeHandler = useCallback((v: TVoiceOption) => {
+  const onChangeHandler = useCallback((v: IVoiceOption) => {
     options.current = {
       ...options.current,
       ...v,

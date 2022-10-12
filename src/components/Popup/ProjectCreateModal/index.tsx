@@ -11,6 +11,7 @@ import * as S from './style';
 import PopupPortal from '../PopupPortal';
 import useOnClickOutside from '../hooks';
 import UploadErrorModal from '../ErrorModal/UploadErrorModal';
+import Loader from '../Loaders/Loader';
 import {
   useTextProjectMutation,
   useAudioProjectMutation,
@@ -33,7 +34,8 @@ const ProjectCreateModal = (props: Props) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const [textProject] = useTextProjectMutation();
-  const [audioProject, { error: audioError }] = useAudioProjectMutation();
+  const [audioProject, { error: audioError, isLoading }] =
+    useAudioProjectMutation();
 
   useEffect(() => {
     if (audioError) {
@@ -51,6 +53,7 @@ const ProjectCreateModal = (props: Props) => {
   };
 
   const onFileUploadHandler = () => {
+    if (isLoading) return;
     inputRef.current?.click();
   };
 
@@ -60,7 +63,14 @@ const ProjectCreateModal = (props: Props) => {
     const formData = new FormData();
 
     formData.append('audioFile', file);
-    await audioProject(formData);
+
+    try {
+      const payloadData = await audioProject(formData).unwrap();
+      // TODO 경로 수정
+      navigate(pagesTo.text(payloadData.projectId));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const onMoveTextHandler = async () => {
@@ -79,9 +89,14 @@ const ProjectCreateModal = (props: Props) => {
           <S.ModalContainer>
             <S.ModalTitle>음성을 보유하고 계신가요?</S.ModalTitle>
             <S.ModalContent>
-              {/* 음성 업로드 버튼! */}
               <S.VideoUploadButton onClick={onFileUploadHandler}>
-                <img src={cloud} alt="upload-icon" />
+                {isLoading ? (
+                  <S.LoaderBlock>
+                    <Loader />
+                  </S.LoaderBlock>
+                ) : (
+                  <img src={cloud} alt="upload-icon" />
+                )}
                 <S.ButtonText>음성 업로드하기</S.ButtonText>
                 <input
                   name="audioFile"

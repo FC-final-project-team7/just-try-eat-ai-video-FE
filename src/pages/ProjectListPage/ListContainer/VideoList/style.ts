@@ -37,3 +37,8 @@ export const ListHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 32px;
 `;
+
+export const LoaderBlock = styled.div`
+  ${(props) => props.theme.flex.flexCenter}
+  margin-top: 94px;
+`;

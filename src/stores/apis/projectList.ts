@@ -8,6 +8,7 @@ export const projectListApi = emptySplitApiWithReauth.injectEndpoints({
       query: () => ({
         url: `/projects`,
       }),
+      transformResponse: (response: TProjectData[]) => response.reverse(),
       providesTags: [{ type: PROJECT_LIST_TAG }],
     }),
     deleteProject: build.mutation<TProjectData, number | string>({

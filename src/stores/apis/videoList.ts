@@ -7,6 +7,7 @@ export const videoListApi = emptySplitApiWithReauth.injectEndpoints({
       query: () => ({
         url: `projects/videos`,
       }),
+      transformResponse: (response: TVideoData[]) => response.reverse(),
     }),
   }),
 });

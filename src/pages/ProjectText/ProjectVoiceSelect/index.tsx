@@ -4,57 +4,42 @@ import AvatarVoiceSexRadioButtons from './AvatarVoiceSexRadioButtons';
 import AvatarVoiceLangSelect from './AvatarVoiceLangSelect';
 import * as S from './styles';
 
-import { useAudio } from './hooks';
+import { useAudio, useOptions } from './hooks';
 import { useTranslate } from '../translate/hooks';
 
 import {
   kAvatarVoiceLangSelectOption,
+  kAvatarVoiceList,
   kAvatarVoiceOption,
   kAvatarVoiceSexOption,
+  TVoice,
 } from './constants';
-import { kAvatarVoiceList, TVoice } from './constants';
 
-import {
-  IVoiceSelect,
-  KVoiceSelectServerValueMapper,
-} from '~/types/project/voices';
+import { IVoiceSelect } from '~/types/project/voices';
 
 interface Props {
   className?: string;
   defaultOptions: IVoiceSelect;
+  onChange: (e: IVoiceSelect) => void;
 }
 
 // TODO 최적화
 const ProjectVoiceSelect = (props: Props) => {
-  const { className, defaultOptions } = props;
+  const { className, defaultOptions: baseDefaultOptions, onChange } = props;
   const { t } = useTranslate();
 
-  const [options, setOptions] = useState({ ...defaultOptions });
-  const onChangeHandler = useCallback(
-    ({ name, value }: { name: string; value: string }) => {
-      setOptions((p) => ({
-        ...p,
-        [name]: value,
-      }));
-    },
-    []
-  );
+  const { options, onChangeHandler } = useOptions(baseDefaultOptions, onChange);
+  const [defaultOption] = useState({ ...options });
 
   const onSelectVoiceHandler = useCallback(
     (e: { name: string; value: string }) => {
-      const { value } = e;
       onChangeHandler(e);
-      console.log(value);
     },
     [onChangeHandler]
   );
 
   const voiceList = useMemo(() => {
-    const {
-      language = KVoiceSelectServerValueMapper.language.korean,
-      sex = KVoiceSelectServerValueMapper.sex.FEMALE,
-    } = options;
-    // ANCHOR 보여주는 리스트가 선택된 애가 우선인지 서버에 저장된 language/sex 우선인지
+    const { language, sex } = options;
     return kAvatarVoiceList[language].voices[sex];
   }, [options]);
 
@@ -76,7 +61,7 @@ const ProjectVoiceSelect = (props: Props) => {
           {t(kAvatarVoiceSexOption.labelKey)}
         </S.Label>
         <AvatarVoiceSexRadioButtons
-          defaultValue={defaultOptions.sex}
+          defaultValue={defaultOption.sex}
           onChange={onChangeHandler}
         />
       </S.SexGroup>
@@ -86,7 +71,7 @@ const ProjectVoiceSelect = (props: Props) => {
         </S.Label>
         <AvatarVoiceLangSelect
           id="voice-lang-select-head"
-          defaultValue={defaultOptions.language}
+          defaultValue={defaultOption.language}
           onChange={onChangeHandler}
         />
       </S.LangGroup>
@@ -99,7 +84,7 @@ const ProjectVoiceSelect = (props: Props) => {
             <S.AvatarVoiceItem
               key={voice.key}
               name={kAvatarVoiceOption.key}
-              defaultChecked={defaultOptions.avatarAudio === voice.key}
+              defaultChecked={defaultOption.avatarAudio === voice.key}
               onChange={onSelectVoiceHandler}
               voice={voice}
               onPlay={onPlayHandler}

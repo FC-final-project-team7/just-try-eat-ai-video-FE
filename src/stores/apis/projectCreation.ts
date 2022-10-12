@@ -11,15 +11,16 @@ export const projectCreationApi = emptySplitApiWithReauth.injectEndpoints({
       }),
       invalidatesTags: () => [{ type: PROJECT_LIST_TAG }],
     }),
-    audioProject: build.query<{ projectId: number }, FormData>({
+    audioProject: build.mutation<{ projectId: number }, FormData>({
       query: (formData) => ({
         url: '/projects/audio',
         method: 'POST',
         body: formData,
       }),
+      invalidatesTags: () => [{ type: PROJECT_LIST_TAG }],
     }),
   }),
 });
 
-export const { useTextProjectMutation, useLazyAudioProjectQuery } =
+export const { useTextProjectMutation, useAudioProjectMutation } =
   projectCreationApi;

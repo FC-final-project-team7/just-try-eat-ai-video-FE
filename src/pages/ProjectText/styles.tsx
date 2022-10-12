@@ -1,8 +1,7 @@
-import styled, { css } from '~/utils/styled-components-fast';
+import styled from '~/utils/styled-components-fast';
 
 import ProjectTextarea from './ProjectTextarea';
 import ProjectVoiceOptions from './ProjectVoiceOptions';
-import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
 import ProjectVoiceSelect from './ProjectVoiceSelect';
 
 export const Container = styled.div``;
@@ -34,9 +33,3 @@ export const VoiceOptions = styled(ProjectVoiceOptions)`
 export const VoiceSelect = styled(ProjectVoiceSelect)`
   grid-area: voice-select;
 `;
-
-export const StyledSVG = withApplyStyledSVG(css`
-  ${({ theme }) => css`
-    color: ${theme.bg.main};
-  `}
-`);

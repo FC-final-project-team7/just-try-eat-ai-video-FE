@@ -6,9 +6,10 @@ import { useGetProjectsQuery } from '~/stores/apis/projectList';
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
 import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
+import Loader from '~/components/Popup/Loaders/Loader';
 
 function ProjectList() {
-  const { data } = useGetProjectsQuery();
+  const { data, isLoading } = useGetProjectsQuery();
   const [showModal, setShowModal] = useState(false);
 
   const onProjectAddHandler = () => {
@@ -26,7 +27,11 @@ function ProjectList() {
           </S.Button>
         </S.ListHeader>
 
-        {data?.length === 0 ? (
+        {isLoading ? (
+          <S.LoaderBlock>
+            <Loader />
+          </S.LoaderBlock>
+        ) : data?.length === 0 ? (
           <S.EmptyBlock>
             <S.EmptyBlockTitle>
               새프로젝트 버튼을 눌러 프로젝트를 시작해보세요

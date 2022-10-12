@@ -54,3 +54,9 @@ export const ButtonText = styled.span`
   font-size: ${(props) => props.theme.fontSize.medium};
   font-weight: ${(props) => props.theme.fontWeight.bold};
 `;
+
+export const LoaderBlock = styled.div`
+  ${(props) => props.theme.flex.flexCenter}
+  width: 120px;
+  height: 120px;
+`;

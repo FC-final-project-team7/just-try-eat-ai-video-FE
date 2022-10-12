@@ -27,6 +27,7 @@ export const baseQueryWithToken = fetchBaseQuery({
   baseUrl,
   prepareHeaders: (headers) => {
     const access = Tokens.access;
+
     if (access) {
       headers.set('authorization', `Bearer ${access}`);
     }

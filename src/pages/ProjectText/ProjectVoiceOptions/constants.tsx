@@ -1,9 +1,9 @@
 import { tk } from '../translate/hooks';
-import { KVoiceOptionMapper } from '~/types/project/voices';
+import { KVoiceOptionDataKeyMapper } from '~/types/project/voices';
 
 export const kSliderList = [
   {
-    key: KVoiceOptionMapper.speed,
+    key: KVoiceOptionDataKeyMapper.speed,
     labelKey: tk('voiceOption.speed'),
     props: {
       step: 0.1,
@@ -15,7 +15,7 @@ export const kSliderList = [
     },
   },
   {
-    key: KVoiceOptionMapper.pitch,
+    key: KVoiceOptionDataKeyMapper.pitch,
     labelKey: tk('voiceOption.pitch'),
     props: {
       step: 0.1,
@@ -30,7 +30,7 @@ export const kSliderList = [
 
 const kTextInputList = [
   {
-    key: KVoiceOptionMapper.durationSilence,
+    key: KVoiceOptionDataKeyMapper.durationSilence,
     labelKey: tk('voiceOption.durationSilence'),
     props: {
       step: 0.1,

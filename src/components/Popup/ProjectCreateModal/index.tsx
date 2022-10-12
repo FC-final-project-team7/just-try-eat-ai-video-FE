@@ -24,7 +24,7 @@ type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const ProjectSelectModal = (props: Props) => {
+const ProjectCreateModal = (props: Props) => {
   const { setShowModal } = props;
   const [showErrorModal, setShowErrorModal] = useState(false);
   const navigate = useNavigate();
@@ -114,4 +114,4 @@ const ProjectSelectModal = (props: Props) => {
   );
 };
 
-export default ProjectSelectModal;
+export default ProjectCreateModal;

@@ -5,7 +5,7 @@ import { useGetProjectsQuery } from '~/stores/apis/projectList';
 
 import * as S from './style';
 import plus from '~/assets/icons/plus.svg';
-import ProjectSelectModal from '~/components/Popup/ProjectSelectModal';
+import ProjectCreateModal from '~/components/Popup/ProjectCreateModal';
 import Loader from '~/components/Popup/Loaders/Loader';
 
 function ProjectList() {
@@ -53,7 +53,7 @@ function ProjectList() {
           }
         />
       ) : (
-        showModal && <ProjectSelectModal setShowModal={setShowModal} />
+        showModal && <ProjectCreateModal setShowModal={setShowModal} />
       )}
     </>
   );

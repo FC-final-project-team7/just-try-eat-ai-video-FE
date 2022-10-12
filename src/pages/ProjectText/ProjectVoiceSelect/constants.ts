@@ -5,6 +5,8 @@ import ObjectEx from '~/utils/ObjectEx';
 import {
   KVoiceSelectDataKeyMapper,
   KVoiceSelectServerValueMapper,
+  TVoiceLanguage,
+  TVoiceSex,
 } from '~/types/project/voices';
 
 // https://vitejs.dev/guide/features.html#glob-import
@@ -315,6 +317,33 @@ export const kAvatarVoiceList = ObjectEx.mapValue(
     ),
   })
 );
+
+export const findLangSexKey = (
+  prelistenUrl: string
+): undefined | { language: TVoiceLanguage; sex: TVoiceSex } => {
+  let language = '' as TVoiceLanguage,
+    sex = '' as TVoiceSex;
+
+  const has = Object.entries(kAvatarVoiceList).find(([langKey, voiceObj]) => {
+    return Object.entries(voiceObj.voices).find(([sexKey, voiceList]) => {
+      return voiceList.find((voice) => {
+        const has = voice.prelistenUrl === prelistenUrl;
+        if (has) {
+          language = langKey as TVoiceLanguage;
+          sex = sexKey as TVoiceSex;
+        }
+        return has;
+      });
+    });
+  });
+
+  return has
+    ? {
+        language,
+        sex,
+      }
+    : undefined;
+};
 
 export const kAvatarVoiceSexOption = {
   key: KVoiceSelectDataKeyMapper.sex,

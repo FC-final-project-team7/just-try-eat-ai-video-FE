@@ -9,7 +9,7 @@ import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
 import { useTranslate } from './translate/hooks';
 
 import { IProject } from '~/types/project/projects';
-import { IVoiceOption } from '~/types/project/voices';
+import { IVoiceOption, IVoiceSelect } from '~/types/project/voices';
 
 const ProjectTextPage = () => {
   const { id } = useParams();
@@ -31,8 +31,6 @@ const ProjectTextPage = () => {
 
 const Contents = ({ resource }: { resource: () => IProject }) => {
   const data = resource();
-  console.log(data);
-
   const { t } = useTranslate();
 
   const options = useRef({ ...data });
@@ -43,7 +41,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
-  const onChangeHandler = useCallback((v: IVoiceOption) => {
+  const onChangeHandler = useCallback((v: IVoiceOption | IVoiceSelect) => {
     options.current = {
       ...options.current,
       ...v,
@@ -58,7 +56,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
         onChange={onChangeText}
       />
       <S.VoiceOptions defaultVoiceOptions={data} onChange={onChangeHandler} />
-      <S.VoiceSelect defaultOptions={data} />
+      <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
     </>
   );
 };

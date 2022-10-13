@@ -86,7 +86,8 @@ export const VoiceGroupListContainer = styled.div.attrs(() => ({}))`
 
   padding: 4px 8px;
 
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const AvatarVoiceItem = styled(AvatarVoiceItemBase)`

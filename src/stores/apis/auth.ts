@@ -14,7 +14,14 @@ import { ILogin, ITokenResult } from '~/types/auth';
 export const authApi = emptySplitApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.query<void, ILogin>({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
+      queryFn: async (
+        arg,
+        api,
+        extraOptions,
+        baseQuery
+      ): Promise<
+        QueryReturnValue<void, FetchBaseQueryError, FetchBaseQueryMeta>
+      > => {
         const result = await baseQuery({
           url: '/auth/login',
           body: arg,
@@ -34,7 +41,13 @@ export const authApi = emptySplitApi.injectEndpoints({
       },
     }),
     logout: build.query<void, void>({
-      queryFn: async (arg, api, extraOptions) => {
+      queryFn: async (
+        arg,
+        api,
+        extraOptions
+      ): Promise<
+        QueryReturnValue<void, FetchBaseQueryError, FetchBaseQueryMeta>
+      > => {
         const result = await baseQueryWithToken(
           {
             url: '/auth/login',

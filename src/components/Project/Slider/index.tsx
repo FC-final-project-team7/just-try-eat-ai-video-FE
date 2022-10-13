@@ -2,10 +2,9 @@ import { ChangeEvent, useCallback, useMemo } from 'react';
 
 import * as S from './styles';
 
-import { useTranslate } from '../../translate/hooks';
-
 import { makeDefaultProps } from '~/utils/makeDefaultProps';
 import { getDefaultNumber } from '~/utils/number';
+import { TGetTranslateUnsafe } from '~/hooks/useTranslate';
 
 type Props = {
   className?: string;
@@ -17,6 +16,7 @@ type Props = {
   disabled?: boolean;
 
   dataList: Array<{ value: number; labelKey: string | object }>;
+  getTranslateUnsafe: TGetTranslateUnsafe;
 };
 
 const defaultProps = makeDefaultProps<Props>()({
@@ -30,7 +30,7 @@ const Slider = (props: Props) => {
     ...defaultProps,
     ...props,
   };
-  const { tu } = useTranslate();
+  const { getTranslateUnsafe: tu } = props;
 
   const onChangeHandler = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {

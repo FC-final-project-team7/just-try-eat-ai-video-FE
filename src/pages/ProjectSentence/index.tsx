@@ -5,18 +5,22 @@ import ProjectStepper from './ProjectStepper';
 import FilledButton from '~/components/Buttons/FilledButton';
 import * as S from './styles';
 
-import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
-import { projectSentenceApi } from '~/stores/apis/projectSentence';
-
 import { IProjectSentence } from '~/types/project/sentence';
 
+import fakeData from './fakeData.json';
+
+// FIXME 서버 터지겠다
+const getFakeResource = () => () => fakeData as IProjectSentence;
+
 const ProjectSentencePage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id } = useParams();
-  const resource = useRtkQueryResource<IProjectSentence>(
-    projectSentenceApi,
-    'getSentences',
-    id
-  );
+  // const resource = useRtkQueryResource<IProjectSentence>(
+  //   projectSentenceApi,
+  //   'getSentences',
+  //   id
+  // );
+  const resource = getFakeResource();
 
   return (
     <Suspense fallback={<h1>생성 중....</h1>}>
@@ -43,6 +47,9 @@ const Contents = ({ resource }: { resource: () => IProjectSentence }) => {
     [sentenceList]
   );
 
+  // TODO sentenceList 업뎃되면 다시 요청해서 넣어야 됨
+  const [prelisten] = useState(data.audio);
+
   const onClickNextHandler = useCallback(async () => {
     console.log('onClickNextHandler');
   }, []);
@@ -61,7 +68,7 @@ const Contents = ({ resource }: { resource: () => IProjectSentence }) => {
         </S.TempContainer>
         <S.ContentsWrapper>
           <S.Textarea value={text} readOnly />
-          <S.PrelistenControl />
+          <S.Prelisten src={prelisten} />
           <S.EditSentence />
         </S.ContentsWrapper>
       </S.ContentsContainer>

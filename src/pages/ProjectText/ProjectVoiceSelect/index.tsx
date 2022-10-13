@@ -4,7 +4,7 @@ import AvatarVoiceSexRadioButtons from './AvatarVoiceSexRadioButtons';
 import AvatarVoiceLangSelect from './AvatarVoiceLangSelect';
 import * as S from './styles';
 
-import { useAudio, useOptions } from './hooks';
+import { useOptions } from './hooks';
 import { useTranslate } from '../translate/hooks';
 
 import {
@@ -16,6 +16,7 @@ import {
 } from './constants';
 
 import { IVoiceSelect } from '~/types/project/voices';
+import { useAudio } from '~/hooks/useAudio';
 
 interface Props {
   className?: string;

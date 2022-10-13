@@ -18,7 +18,9 @@ class ErrorBoundary extends Component<Props, State> {
     error: null,
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  public static getDerivedStateFromError(
+    error: Error | FetchBaseQueryError
+  ): State {
     return { hasError: true, error };
   }
 

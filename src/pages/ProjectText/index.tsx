@@ -5,6 +5,8 @@ import ProjectTextStepper from './ProjectTextStepper';
 import FilledButton from '~/components/Buttons/FilledButton';
 import * as S from './styles';
 
+import OverlayLoader from '~/components/Popup/Loaders/OverlayLoader.tsx';
+
 import { projectsApi } from '~/stores/apis/projects';
 import {
   useGoToSentenceMutation,
@@ -54,7 +56,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
-  const [updateText] = useUpdateProjectTextMutation();
+  const [updateText, { isLoading }] = useUpdateProjectTextMutation();
   const onClickSaveHandler = useCallback(async () => {
     await updateText(options.current).unwrap();
   }, []);
@@ -98,6 +100,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
           <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
         </S.ContentsWrapper>
       </S.ContentsContainer>
+      {isLoading && <OverlayLoader />}
     </>
   );
 };

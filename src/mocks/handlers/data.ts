@@ -37,7 +37,7 @@ export const getDefaultProjectSentence = (
     projectId: projectText.projectId,
     audio: 'http://23j4kl2j.wav',
     text: projectText.text,
-    sentence: projectText.text
+    sentenceList: projectText.text
       .split('.')
       .map((s) => s.trim())
       .map((s) => ({

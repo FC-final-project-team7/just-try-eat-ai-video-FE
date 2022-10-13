@@ -18,7 +18,7 @@ export interface ISentenceRequest
 
 export interface IProjectSentence
   extends Pick<IProject, 'audio' | 'projectId' | 'text'> {
-  sentence: ISentence[];
+  sentenceList: ISentence[];
 }
 
 export interface ISentence {

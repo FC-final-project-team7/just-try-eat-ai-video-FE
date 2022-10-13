@@ -31,7 +31,9 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
       > => {
         try {
           const getProject = dispatch(
-            projectsApi.endpoints.getProject.initiate(projectId)
+            projectsApi.endpoints.getProject.initiate(projectId, {
+              forceRefetch: true,
+            })
           );
 
           let project: Awaited<ReturnType<typeof getProject.unwrap>>;
@@ -41,15 +43,15 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
             getProject.unsubscribe();
           }
 
-          const getProjectSentence = dispatch(
+          const goToSentence = dispatch(
             projectTextApi.endpoints.goToSentence.initiate(project)
           );
 
-          let sentences: Awaited<ReturnType<typeof getProjectSentence.unwrap>>;
+          let sentences: Awaited<ReturnType<typeof goToSentence.unwrap>>;
           try {
-            sentences = await getProjectSentence.unwrap();
+            sentences = await goToSentence.unwrap();
           } finally {
-            getProjectSentence.unsubscribe();
+            goToSentence.unsubscribe();
           }
 
           return {

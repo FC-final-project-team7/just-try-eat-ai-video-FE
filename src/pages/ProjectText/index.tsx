@@ -8,10 +8,7 @@ import * as S from './styles';
 import OverlayLoader from '~/components/Popup/Loaders/OverlayLoader.tsx';
 
 import { projectsApi } from '~/stores/apis/projects';
-import {
-  useGoToSentenceMutation,
-  useUpdateProjectTextMutation,
-} from '~/stores/apis/projectText';
+import { useUpdateProjectTextMutation } from '~/stores/apis/projectText';
 
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
 import { useTranslate } from './translate/hooks';
@@ -56,15 +53,16 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
-  const [updateText, { isLoading }] = useUpdateProjectTextMutation();
+  const [updateText, { isLoading: isLoadingUpdate }] =
+    useUpdateProjectTextMutation();
   const onClickSaveHandler = useCallback(async () => {
     await updateText(options.current).unwrap();
   }, []);
 
   const navigate = useNavigate();
-  const [goToSentence] = useGoToSentenceMutation();
   const onClickNextHandler = useCallback(async () => {
-    await goToSentence(options.current).unwrap();
+    // 여기서 생성하면 서버가 힘들어.....
+    await updateText(options.current).unwrap();
     navigate(pagesTo.sentence(options.current.projectId));
   }, []);
 
@@ -100,7 +98,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
           <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
         </S.ContentsWrapper>
       </S.ContentsContainer>
-      {isLoading && <OverlayLoader />}
+      {isLoadingUpdate && <OverlayLoader />}
     </>
   );
 };

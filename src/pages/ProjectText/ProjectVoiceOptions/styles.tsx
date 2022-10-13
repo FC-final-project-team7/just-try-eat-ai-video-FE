@@ -1,6 +1,6 @@
 import styled, { css } from '~/utils/styled-components-fast';
 
-import SliderBase from './Slider';
+import SliderBase from '~/components/Project/Slider';
 import { projectPages } from '~/styles/mixins';
 
 export const Container = styled.div`

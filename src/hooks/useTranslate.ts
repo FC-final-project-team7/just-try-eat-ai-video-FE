@@ -24,6 +24,19 @@ type TValueFuncObj<O, K extends ObjectPath<O, TFunction>> = {
     : never
   : never;
 
+type ObjectPathStringNumber<O extends Record<string, unknown>> = ObjectPath<
+  O,
+  string | number
+>;
+type ObjectPathFunc<O extends Record<string, unknown>> = ObjectPath<
+  O,
+  TFunction
+>;
+
+export type TGetTranslateUnsafe = (
+  keyUnsafe: string | { k: string; v: any } | object
+) => string;
+
 // 나중에 i18n 으로 돌리는게 나을듯
 export const useTranslate = <
   O extends Record<string, Record<string, unknown>>,
@@ -32,14 +45,14 @@ export const useTranslate = <
   labels: O,
   defaultLang: LANG
 ) => {
-  const [lang, setLang] = useState(defaultLang);
+  const [lang, setLang] = useState<LANG>(defaultLang);
 
   const t = <
-    K extends ObjectPath<O[keyof O], string | number>,
-    U extends ObjectPath<O[keyof O], TFunction>
+    K extends ObjectPathStringNumber<O[keyof O]>,
+    U extends ObjectPathFunc<O[keyof O]>
   >(
     key: K | TValueFuncObj<O[keyof O], U>
-  ) => {
+  ): string => {
     if (typeof key === 'string') {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -65,7 +78,7 @@ export const useTranslate = <
 
   // keyUnsafe 말 그대로 ts 를 거치지 않으니 주의
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tu = (keyUnsafe: string | { k: string; v: any } | object) => {
+  const tu: TGetTranslateUnsafe = (keyUnsafe) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return t(keyUnsafe);
@@ -76,8 +89,8 @@ export const useTranslate = <
 
 const tk = <
   O extends Record<string, Record<string, unknown>>,
-  K extends ObjectPath<O[keyof O], string | number>,
-  U extends ObjectPath<O[keyof O], TFunction>
+  K extends ObjectPathStringNumber<O[keyof O]>,
+  U extends ObjectPathFunc<O[keyof O]>
 >(
   labels: O,
   key: K | TValueFuncObj<O[keyof O], U>
@@ -93,8 +106,8 @@ export const makeUseTranslate = <
   return {
     useTranslate: () => useTranslate(labels, defaultLang),
     tk: <
-      K extends ObjectPath<O[keyof O], string | number>,
-      U extends ObjectPath<O[keyof O], TFunction>
+      K extends ObjectPathStringNumber<O[keyof O]>,
+      U extends ObjectPathFunc<O[keyof O]>
     >(
       key: K | TValueFuncObj<O[keyof O], U>
     ) => tk(labels, key),

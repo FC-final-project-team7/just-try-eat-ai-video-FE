@@ -22,7 +22,7 @@ interface Props {
 
 const ProjectVoiceOptions = (props: Props) => {
   const { className, defaultVoiceOptions, onChange } = props;
-  const { t } = useTranslate();
+  const { t, tu } = useTranslate();
 
   const voiceOptions = useRef<IVoiceOption>(defaultVoiceOptions);
   const onChangeOptionsHandler = useCallback(
@@ -43,9 +43,10 @@ const ProjectVoiceOptions = (props: Props) => {
         <Fragment key={slider.key}>
           <Label htmlFor={slider.key}>{t(slider.labelKey)}</Label>
           <S.Slider
+            {...slider.props}
             name={slider.key}
             onChange={onChangeOptionsHandler}
-            {...slider.props}
+            getTranslateUnsafe={tu}
           />
         </Fragment>
       ))}

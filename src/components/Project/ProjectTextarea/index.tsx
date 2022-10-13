@@ -1,10 +1,9 @@
 import styled, { css } from '~/utils/styled-components-fast';
-import { textInputStyle } from '~/styles/mixins';
-import { mixin } from '../mixin';
+import { projectPages, textInputStyle } from '~/styles/mixins';
 
 const ProjectTextarea = styled.textarea`
   ${({ theme }) => css`
-    ${mixin.base}
+    ${projectPages.container.base}
     ${textInputStyle({
       borderWidth: '2px',
       placeholderColor: theme.textColors.dark,

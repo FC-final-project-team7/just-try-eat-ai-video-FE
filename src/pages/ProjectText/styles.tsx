@@ -1,6 +1,6 @@
 import styled from '~/utils/styled-components-fast';
 
-import ProjectTextarea from './ProjectTextarea';
+import ProjectTextarea from '../../components/Project/ProjectTextarea';
 import ProjectVoiceOptions from './ProjectVoiceOptions';
 import ProjectVoiceSelect from './ProjectVoiceSelect';
 

@@ -1,12 +1,12 @@
 import styled, { css } from '~/utils/styled-components-fast';
 
-import { mixin } from '../mixin';
 import SliderBase from './Slider';
+import { projectPages } from '~/styles/mixins';
 
 export const Container = styled.div`
   ${() => css`
-    ${mixin.base};
-    ${mixin.containerBg};
+    ${projectPages.container.base};
+    ${projectPages.container.bg};
 
     display: grid;
     grid-template-rows: repeat(1fr);

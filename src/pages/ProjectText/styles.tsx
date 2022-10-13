@@ -7,6 +7,21 @@ import ProjectVoiceSelect from './ProjectVoiceSelect';
 export const Container = styled.div``;
 export const HeaderContainer = styled.div``;
 export const ContentsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  grid-gap: 32px;
+
+  width: 1200px;
+  margin: 0 auto;
+`;
+
+export const TempContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  grid-gap: 16px;
+`;
+
+export const ContentsWrapper = styled.div`
   display: grid;
   grid-gap: 32px;
 
@@ -17,9 +32,7 @@ export const ContentsContainer = styled.div`
     'textarea voice-select'
     'voice-options voice-select';
 
-  width: 1200px;
   height: 648px;
-  margin: 0 auto;
 `;
 
 export const Textarea = styled(ProjectTextarea)`

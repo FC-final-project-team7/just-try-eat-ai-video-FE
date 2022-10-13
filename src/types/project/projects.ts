@@ -15,26 +15,37 @@ export type TVideoData = {
   thumbnail: string;
 };
 
-export interface IProject extends TProjectData, IVoiceOption, IVoiceSelect {
+export interface IProject
+  extends TProjectData,
+    IVoiceOption,
+    IVoiceSelect,
+    IProjectAvatar {
   audio: string;
+  isAudio: boolean;
+  text: string;
+}
+
+export interface IProjectTextSaveRequest
+  extends Pick<
+    IProject,
+    | 'audio'
+    | 'avatarAudio'
+    | 'durationSilence'
+    | 'isAudio'
+    | 'language'
+    | 'pitch'
+    | 'projectId'
+    | 'projectName'
+    | 'sex'
+    | 'speed'
+    | 'text'
+  > {}
+
+export interface IProjectAvatar {
   avatar: string;
   background: string;
   category1: string;
   category2: string;
   category3: string;
-  isAudio: true;
-  text: string;
-}
-
-export interface IProjectTextSaveRequest {
-  audio: string;
-  avatarAudio: string;
-  durationSilence: number;
-  language: string;
-  pitch: number;
   projectId: number;
-  projectName: string;
-  sex: string;
-  speed: number;
-  text: string;
 }

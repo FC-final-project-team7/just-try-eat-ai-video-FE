@@ -24,7 +24,7 @@ export const pagesPath = {
   findId: pagesTo.findId,
 
   // 내부 페이지에 맞춰서 추가 가능
-  signIn: pagesTo.signUp,
+  signUp: pagesTo.signUp,
 
   projects: pagesTo.projects,
   text: pagesTo.text(':id'),

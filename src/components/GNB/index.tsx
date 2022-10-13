@@ -1,19 +1,23 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import * as S from './style';
+import { pagesTo } from '~/pages/pages';
+import useProjectId from '~/hooks/useProjectId';
+
+import FilledButton from '~/components/Buttons/FilledButton';
+import TitleInput from './TitleInput';
+import Dropdown from './Dropdown';
+
 // import logo from '~/assets/icons/logo.svg';
 import profile from '~/assets/icons/profile.svg';
 import { ReactComponent as DropdownUp } from '~/assets/icons/dropdown-up.svg';
 import { ReactComponent as DropdownDown } from '~/assets/icons/dropdown-down.svg';
-import { pagesTo } from '~/pages/pages';
-
-import TitleInput from './TitleInput';
-import Dropdown from './Dropdown';
-import FilledButton from '~/components/Buttons/FilledButton';
 
 const GNB = () => {
   const location = useLocation().pathname;
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const id = useProjectId();
 
   const onDropdownHandler = () => {
     setShowDropdown(!showDropdown);
@@ -25,9 +29,10 @@ const GNB = () => {
         <h2>LOGO</h2>
         {/* <img src={logo} alt="logo" /> */}
       </Link>
-      {/* TODO 텍스트페이지(id) id받아서 추가 요망 */}
-      {location === pagesTo.avatar && <TitleInput defaultValue="프로젝트명" />}
-
+      {/* TODO 아바타 페이지도 추가 */}
+      {location === pagesTo.text(id) && (
+        <TitleInput defaultValue="프로젝트명" />
+      )}
       <S.ButtonGroup>
         {location === pagesTo.main && (
           <>
@@ -43,7 +48,6 @@ const GNB = () => {
             </Link>
           </>
         )}
-
         {location === pagesTo.findId && (
           <>
             <Link to={pagesTo.login}>
@@ -58,17 +62,18 @@ const GNB = () => {
             </Link>
           </>
         )}
-        {/* TODO 텍스트 입력, 수정 페이지 
         {location === pagesTo.text(id) && (
           <>
-            <S.ListButton width="136px" height="40px">
-              리스트
-            </S.ListButton>
+            <Link to={pagesTo.projects}>
+              <S.ListButton width="136px" height="40px">
+                리스트
+              </S.ListButton>
+            </Link>
             <FilledButton width="136px" height="40px">
               다음단계로
             </FilledButton>
           </>
-        )} */}
+        )}
         {location === pagesTo.avatar && (
           <>
             <Link to={pagesTo.projects}>

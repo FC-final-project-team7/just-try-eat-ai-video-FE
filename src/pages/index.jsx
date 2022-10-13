@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { pagesPath } from './pages'
 
 import GNB from '~/components/GNB'
+import StyleLayout from '~/components/StyleLayout'
 
 import ErrorBoundary from '~/components/ErrorBoundary'
 
@@ -20,8 +21,11 @@ const Pages = () => {
       <GNB />
       <ErrorBoundary>
         <Routes>
-          <Route path={pagesPath.main} element={<MainPage />} />
-          <Route path={pagesPath.login} element={<LoginPage />} />
+          <Route element={<StyleLayout />}>
+            <Route path={pagesPath.main} element={<MainPage />} />
+            <Route path={pagesPath.login} element={<LoginPage />} />
+          </Route>
+
           <Route path={pagesPath.projects} element={<ProjectListPage />} />
           <Route path={pagesPath.text} element={<ProjectTextPage />} />
           <Route path={pagesPath.sentence} element={<ProjectSentencePage />} />

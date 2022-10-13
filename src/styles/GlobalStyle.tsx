@@ -12,8 +12,12 @@ const GlobalStyle = createGlobalStyle`
     html {
       background: ${theme.bg.main};
       color: ${theme.colors.gray100};
-      ${fontFamily}
+      ${fontFamily};
+
+      // 스크롤바에 width 주니깐 자동으로 스크롤바가 생겨서 약간 편법 씀
+      width: calc(100vw - 6px);
     }
+
     a {
       text-decoration: none;
       color: inherit;
@@ -26,6 +30,9 @@ const GlobalStyle = createGlobalStyle`
     // 크롬 스크롤바
     ::-webkit-scrollbar {
       width: 4px;
+      height: 4px;
+
+      box-shadow: none;
     }
     ::-webkit-scrollbar-track {
       //background: #f1f1f1;

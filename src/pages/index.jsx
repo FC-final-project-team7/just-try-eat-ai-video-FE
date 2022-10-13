@@ -10,6 +10,7 @@ import ProjectListPage from './ProjectListPage'
 import ProjectTextPage from './ProjectText'
 import ProjectSentencePage from './ProjectSentence'
 import SelectAvatarPage from './SelectAvatarPage'
+import NotFound from './NotFound'
 
 import ComponentsDisplayRoute from './ComponentsDisplay'
 
@@ -31,6 +32,7 @@ const Pages = () => {
 
             <Route path="/__test__">{ComponentsDisplayRoute}</Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ErrorBoundary>
     </BrowserRouter>

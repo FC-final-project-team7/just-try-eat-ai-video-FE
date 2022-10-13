@@ -1,4 +1,4 @@
-import { IVoiceSelect, IVoiceOption } from '~/types/project/voices';
+import { IVoiceOption, IVoiceSelect } from '~/types/project/voices';
 
 export type TProjectData = {
   projectId: number;
@@ -37,30 +37,4 @@ export interface IProjectTextSaveRequest {
   sex: string;
   speed: number;
   text: string;
-}
-
-export interface IProjectSentenceRequest {
-  audio: string;
-  avatarAudio: string;
-  durationSilence: number;
-  isAudio: true;
-  language: string;
-  pitch: number;
-  projectId: number;
-  projectName: string;
-  sex: string;
-  speed: number;
-  text: string;
-}
-
-export interface ISentence {
-  sentence: string;
-  sentenceAudio: string;
-}
-
-export interface IProjectSentence {
-  projectId: number;
-  text: string;
-  audio: string;
-  sentence: ISentence[];
 }

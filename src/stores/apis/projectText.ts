@@ -30,5 +30,4 @@ export const projectTextApi = emptySplitApiWithReauth.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useUpdateProjectTextMutation, useGoToSentenceMutation } =
-  projectTextApi;
+export const { useUpdateProjectTextMutation } = projectTextApi;

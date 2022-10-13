@@ -1,4 +1,5 @@
-import { IProjectSentence, IProject } from '~/types/project/projects';
+import { IProject } from '~/types/project/projects';
+import { IProjectSentence } from '~/types/project/sentence';
 
 export const projectText: { [id: number]: IProject } = {};
 export const getDefaultProjectText = (id: string): IProject => {
@@ -12,8 +13,8 @@ export const getDefaultProjectText = (id: string): IProject => {
     pitch: 1,
     speed: 1,
     text: '안녕하세요 장호준입니다.',
-    audioName: '23j4kl2j.wav',
-    isaudio: false,
+    audio: '23j4kl2j.wav',
+    isAudio: false,
     avatar: 'url',
     category1: 'url',
     category2: 'url',
@@ -45,6 +46,7 @@ export const getDefaultProjectSentence = (
       })),
   };
 };
+
 export const updateProjectSentence = (projectText: IProject) => {
   const v = (projectSentence[projectText.projectId] =
     getDefaultProjectSentence(projectText));

@@ -1,5 +1,6 @@
 import styled from '~/utils/styled-components-fast';
 import ProjectTextarea from '~/components/Project/ProjectTextarea';
+import PrelistenBase from '~/pages/ProjectSentence/Prelisten';
 
 export const Container = styled.div``;
 export const HeaderContainer = styled.div``;
@@ -21,12 +22,12 @@ export const TempContainer = styled.div`
 export const ContentsWrapper = styled.div`
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: min-content 1fr;
   grid-template-rows: 1fr 1fr;
 
   grid-template-areas:
     'textarea edit-sentence'
-    'prelisten-controls edit-sentence';
+    'prelisten edit-sentence';
 
   grid-gap: 24px;
 `;
@@ -38,8 +39,8 @@ export const Textarea = styled(ProjectTextarea)`
   height: 480px;
 `;
 
-export const PrelistenControl = styled.div`
-  grid-area: prelisten-controls;
+export const Prelisten = styled(PrelistenBase)`
+  grid-area: prelisten;
 `;
 
 export const EditSentence = styled.div`

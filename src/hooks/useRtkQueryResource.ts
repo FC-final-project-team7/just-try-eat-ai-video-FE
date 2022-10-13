@@ -5,9 +5,15 @@
 import { SkipToken } from '@reduxjs/toolkit/query';
 import { UseQuerySubscription } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import { QueryDefinition } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/src/query/fetchBaseQuery';
 
 interface WrappedData<T> {
   data: T;
+}
+
+interface IUseQuery<T> extends WrappedData<T> {
+  status: 'pending' | 'rejected' | 'fulfilled';
+  error: FetchBaseQueryError;
 }
 
 export const useRtkQueryResource = <T>(
@@ -26,35 +32,57 @@ export const useRtkQueryResource = <T>(
   // @ts-ignore
   const useEndpointQuery = apiEndpointQuery?.useQuery;
 
-  const { data } = useEndpointQuery(arg, options) as WrappedData<T>;
+  const queryRes = useEndpointQuery(arg, options) as IUseQuery<T>;
+  const { data, error } = queryRes;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  let promise = api.util // @ts-ignore
-    .getRunningOperationPromise(endpointName, arg) as
-    | PromiseLike<WrappedData<T>>
-    | undefined;
+  const promise = new Promise<WrappedData<T> | IUseQuery<T>>(
+    (resolve, reject) => {
+      // getRunningOperationPromise 가 바로 promise 를 안 만들어 줄때가 있다
+      setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const opPromise = api.util.getRunningOperationPromise(
+          endpointName,
+          arg
+        ) as Promise<IUseQuery<T>> | undefined;
+
+        if (opPromise === undefined) {
+          if (data !== undefined) {
+            resolve({ data });
+          } else {
+            reject(
+              error ??
+                'Cannot get RTK Query promise and there is no data loaded yet'
+            );
+          }
+        } else {
+          resolve(opPromise);
+        }
+      });
+    }
+  );
 
   // Promise is undefined when data is there cached locally already,
   // in this case let's have a promise resolved with the locally cached data
-  if (promise === undefined) {
-    promise = new Promise((resolve, reject) => {
-      if (data !== undefined) {
-        resolve({ data });
-      } else {
-        reject('Cannot get RTK Query promise and there is no data loaded yet');
-      }
-    });
-  }
 
   let status = 'pending';
   let response: T;
 
   promise.then(
-    (res: WrappedData<T>) => {
-      status = 'success';
-      response = res.data;
+    (res: IUseQuery<T> | WrappedData<T>) => {
+      // getRunningOperationPromise 가 통신 에러는 throw 하질 않는다
+      if ('error' in res) {
+        status = 'error';
+        // 위에 타입을 안 바꾼 이유는 실제 사용하는 곳에서는 error 가 필요가 없다
+        // ErrorBoundary 에서만 쓰는데 사용하는 곳에서 타입체킹?
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        response = res.error;
+      } else {
+        status = 'success';
+        response = res.data;
+      }
     },
     (err) => {
       status = 'error';

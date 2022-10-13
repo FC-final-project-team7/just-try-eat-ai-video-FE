@@ -1,5 +1,10 @@
 import styled from '~/utils/styled-components-fast';
 
+export const MainWrapper = styled.div`
+  position: relative;
+  overflow-x: clip;
+`;
+
 export const MainSection = styled.div`
   ${(props) => props.theme.flex.flexCenter}
   gap: 148px;
@@ -219,10 +224,6 @@ export const PartnersSection = styled.div`
 export const PartnersImg = styled.div`
   ${(props) => props.theme.flex.flexCenter}
   margin: 72px 0px 136px 0px;
-`;
-
-export const MainWrapper = styled.div`
-  position: relative;
 `;
 
 export const HexagonImg1 = styled.img`

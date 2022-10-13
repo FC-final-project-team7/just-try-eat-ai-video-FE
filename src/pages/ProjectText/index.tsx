@@ -1,12 +1,20 @@
 import { ChangeEvent, Suspense, useCallback, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import ProjectTextStepper from './ProjectTextStepper';
+import FilledButton from '~/components/Buttons/FilledButton';
 import * as S from './styles';
 
 import { projectsApi } from '~/stores/apis/projects';
+import {
+  useNextMutation,
+  useUpdateProjectTextMutation,
+} from '~/stores/apis/projectText';
+
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
 import { useTranslate } from './translate/hooks';
+
+import { pagesTo } from '~/pages/pages';
 
 import { IProject } from '~/types/project/projects';
 import { IVoiceOption, IVoiceSelect } from '~/types/project/voices';
@@ -21,9 +29,7 @@ const ProjectTextPage = () => {
         <S.HeaderContainer>
           <ProjectTextStepper />
         </S.HeaderContainer>
-        <S.ContentsContainer>
-          <Contents resource={resource} />
-        </S.ContentsContainer>
+        <Contents resource={resource} />
       </S.Container>
     </Suspense>
   );
@@ -48,15 +54,50 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
+  const [updateText] = useUpdateProjectTextMutation();
+  const onClickSaveHandler = useCallback(async () => {
+    await updateText(options.current).unwrap();
+  }, []);
+
+  const navigate = useNavigate();
+  const [next] = useNextMutation();
+  const onClickNextHandler = useCallback(async () => {
+    await next(options.current).unwrap();
+    navigate(pagesTo.sentence(options.current.projectId));
+  }, []);
+
   return (
     <>
-      <S.Textarea
-        placeholder={t('textArea.placeholder')}
-        defaultValue={data.text}
-        onChange={onChangeText}
-      />
-      <S.VoiceOptions defaultVoiceOptions={data} onChange={onChangeHandler} />
-      <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
+      <S.ContentsContainer>
+        <S.TempContainer>
+          <FilledButton
+            width="small"
+            height="small"
+            onClick={onClickSaveHandler}
+          >
+            저장
+          </FilledButton>
+          <FilledButton
+            width="small"
+            height="small"
+            onClick={onClickNextHandler}
+          >
+            다음 페이지
+          </FilledButton>
+        </S.TempContainer>
+        <S.ContentsWrapper>
+          <S.Textarea
+            placeholder={t('textArea.placeholder')}
+            defaultValue={data.text}
+            onChange={onChangeText}
+          />
+          <S.VoiceOptions
+            defaultVoiceOptions={data}
+            onChange={onChangeHandler}
+          />
+          <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
+        </S.ContentsWrapper>
+      </S.ContentsContainer>
     </>
   );
 };

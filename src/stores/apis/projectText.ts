@@ -2,24 +2,28 @@ import { emptySplitApiWithReauth } from './';
 import { getUrl as _getUrl } from './baseQuery';
 
 import { PROJECT_TEXT_TAG } from './tags';
-import { IProjectSentence, IProject } from '~/types/project/projects';
+import {
+  IProjectSentence,
+  IProjectTextSaveRequest,
+  IProjectSentenceRequest,
+} from '~/types/project/projects';
 
-const getUrl = (path: string) => _getUrl(path, true);
+const getUrl = (path: string) => _getUrl(path, false);
 
 export const projectTextApi = emptySplitApiWithReauth.injectEndpoints({
   endpoints: (build) => ({
-    updateProjectText: build.mutation<Record<string, unknown>, IProject>({
-      query: (projectText: IProject) => ({
+    updateProjectText: build.mutation<void, IProjectTextSaveRequest>({
+      query: (projectText: IProjectTextSaveRequest) => ({
         url: getUrl('projects/auto'),
-        method: 'PUT',
+        method: 'POST',
         body: projectText,
       }),
       invalidatesTags: (result, error, { projectId }) => [
         { type: PROJECT_TEXT_TAG, id: projectId },
       ],
     }),
-    next: build.mutation<IProjectSentence, IProject>({
-      query: (projectText: IProject) => ({
+    next: build.mutation<IProjectSentence, IProjectSentenceRequest>({
+      query: (projectText: IProjectSentenceRequest) => ({
         url: getUrl('projects/edit'),
         method: 'PUT',
         body: projectText,
@@ -29,7 +33,8 @@ export const projectTextApi = emptySplitApiWithReauth.injectEndpoints({
   overrideExisting: false,
 });
 
+export const { useUpdateProjectTextMutation, useNextMutation } = projectTextApi;
+
+// 다시 만들 필요가 없음으로 reexport
 import { projectsApi } from '~/stores/apis/projects';
 export const { useGetProjectQuery: useGetProjectTextQuery } = projectsApi;
-
-// export const {} = projectTextApi;

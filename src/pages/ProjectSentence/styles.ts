@@ -1,15 +1,12 @@
 import styled from '~/utils/styled-components-fast';
-
-import ProjectTextarea from '../../components/Project/ProjectTextarea';
-import ProjectVoiceOptions from './ProjectVoiceOptions';
-import ProjectVoiceSelect from './ProjectVoiceSelect';
+import ProjectTextarea from '~/components/Project/ProjectTextarea';
 
 export const Container = styled.div``;
 export const HeaderContainer = styled.div``;
 export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  grid-gap: 32px;
+  gap: 16px;
 
   width: 1200px;
   margin: 0 auto;
@@ -23,26 +20,28 @@ export const TempContainer = styled.div`
 
 export const ContentsWrapper = styled.div`
   display: grid;
-  grid-gap: 32px;
 
-  grid-template-rows: 360px 256px;
-  grid-template-columns: 600px 568px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
   grid-template-areas:
-    'textarea voice-select'
-    'voice-options voice-select';
+    'textarea edit-sentence'
+    'prelisten-controls edit-sentence';
 
-  height: 648px;
+  grid-gap: 24px;
 `;
 
 export const Textarea = styled(ProjectTextarea)`
   grid-area: textarea;
+
+  width: 328px;
+  height: 480px;
 `;
 
-export const VoiceOptions = styled(ProjectVoiceOptions)`
-  grid-area: voice-options;
+export const PrelistenControl = styled.div`
+  grid-area: prelisten-controls;
 `;
 
-export const VoiceSelect = styled(ProjectVoiceSelect)`
-  grid-area: voice-select;
+export const EditSentence = styled.div`
+  grid-area: edit-sentence;
 `;

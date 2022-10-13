@@ -4,7 +4,10 @@ import styled from '~/utils/styled-components-fast';
 export const LoaderOverlay = styled.div`
   position: fixed;
   width: 100%;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: ${(props) => props.theme.bg.modal};
   z-index: 15;
 `;
@@ -21,7 +24,6 @@ export const LoaderBlocks = styled.div`
 `;
 export const LoaderTitle = styled.div`
   position: absolute;
-  width: 100;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

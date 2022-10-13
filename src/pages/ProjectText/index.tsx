@@ -7,7 +7,7 @@ import * as S from './styles';
 
 import { projectsApi } from '~/stores/apis/projects';
 import {
-  useNextMutation,
+  useGoToSentenceMutation,
   useUpdateProjectTextMutation,
 } from '~/stores/apis/projectText';
 
@@ -60,9 +60,9 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
   }, []);
 
   const navigate = useNavigate();
-  const [next] = useNextMutation();
+  const [goToSentence] = useGoToSentenceMutation();
   const onClickNextHandler = useCallback(async () => {
-    await next(options.current).unwrap();
+    await goToSentence(options.current).unwrap();
     navigate(pagesTo.sentence(options.current.projectId));
   }, []);
 

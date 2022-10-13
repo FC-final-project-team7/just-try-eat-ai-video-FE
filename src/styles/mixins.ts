@@ -59,3 +59,16 @@ export const focusThisBorder = (options?: TFocusArgs) =>
 
 export const focusThisOutline = (options?: TFocusArgs) =>
   _focus({ ...options, position: 'outline' });
+
+export const projectPages = {
+  container: {
+    base: css`
+      border-radius: 10px;
+    `,
+    bg: css`
+      ${({ theme }) => css`
+        background-color: ${theme.colors.sub.blueGray};
+      `}
+    `,
+  },
+};

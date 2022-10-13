@@ -3,12 +3,12 @@ import styled, { css } from '~/utils/styled-components-fast';
 import LabelBase from '../components/Label';
 import AvatarVoiceItemBase from './AvatarVoiceItem';
 
-import { mixin } from '~/pages/ProjectText/mixin';
+import { projectPages } from '~/styles/mixins';
 
 export const Container = styled.div`
   ${() => css`
-    ${mixin.base};
-    ${mixin.containerBg};
+    ${projectPages.container.base};
+    ${projectPages.container.bg};
 
     display: flex;
     flex-direction: column;

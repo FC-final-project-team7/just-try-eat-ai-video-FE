@@ -9,7 +9,6 @@ const IconButton = styled(FilledButton).attrs(() => ({
   ${({ theme, ...props }) =>
     css`
       ${theme.flex.flexCenter};
-      gap: 8px;
 
       min-width: ${props.width};
       min-height: ${props.height};

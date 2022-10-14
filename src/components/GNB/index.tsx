@@ -73,9 +73,9 @@ const GNB = () => {
                 리스트
               </S.ListButton>
             </Link>
-            <FilledButton width="136px" height="40px">
+            {/* <FilledButton width="136px" height="40px">
               다음단계로
-            </FilledButton>
+            </FilledButton> */}
           </>
         )}
         {location === pagesTo.avatar && (

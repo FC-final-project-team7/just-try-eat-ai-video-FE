@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FootetContainer = styled.div`
   padding: 44px 120px 32px;
-  & p {
+  p {
     margin: 0;
   }
 `;

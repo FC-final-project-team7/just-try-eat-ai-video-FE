@@ -3,6 +3,7 @@ import { pagesPath } from './pages'
 
 import StyleLayout from '~/components/StyleLayout'
 import ErrorBoundary from '~/components/ErrorBoundary'
+import RequireAuth from './RequireAuth'
 
 import MainPage from './Main'
 import LoginPage from './Login'
@@ -22,13 +23,16 @@ const Pages = () => {
           <Route element={<StyleLayout />}>
             <Route path={pagesPath.main} element={<MainPage />} />
             <Route path={pagesPath.login} element={<LoginPage />} />
-            <Route path={pagesPath.projects} element={<ProjectListPage />} />
-            <Route path={pagesPath.text} element={<ProjectTextPage />} />
-            <Route
-              path={pagesPath.sentence}
-              element={<ProjectSentencePage />}
-            />
-            <Route path={pagesPath.avatar} element={<SelectAvatarPage />} />
+
+            <Route element={<RequireAuth />}>
+              <Route path={pagesPath.projects} element={<ProjectListPage />} />
+              <Route path={pagesPath.text} element={<ProjectTextPage />} />
+              <Route
+                path={pagesPath.sentence}
+                element={<ProjectSentencePage />}
+              />
+              <Route path={pagesPath.avatar} element={<SelectAvatarPage />} />
+            </Route>
 
             <Route path="/__test__">{ComponentsDisplayRoute}</Route>
           </Route>

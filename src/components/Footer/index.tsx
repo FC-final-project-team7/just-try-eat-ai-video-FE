@@ -1,6 +1,6 @@
 import * as S from './style';
 
-// import logo from '~/assets/icons/logo-footer.svg';
+import logo from '~/assets/icons/logo-footer.svg';
 import homeImg from '~/assets/images/footer-link-home.png';
 import youtubeImg from '~/assets/images/footer-link-youtube.png';
 import teamImg from '~/assets/images/footer-link-team.png';
@@ -8,8 +8,8 @@ import teamImg from '~/assets/images/footer-link-team.png';
 const Footer = () => {
   return (
     <S.FootetContainer>
-      <div>LOGO</div>
-      {/* <img src={logo} alt="logo" /> */}
+      {/* <div>LOGO</div> */}
+      <img src={logo} alt="logo" />
       <S.FooterWrapper>
         <S.InfoArea>
           <p>대표 홍길동 &nbsp;&nbsp; | &nbsp;&nbsp; 전화번호 02-1234-5678</p>

@@ -18,7 +18,7 @@ import processText2 from '~/assets/images/process-text-2.svg';
 import processAvartar from '~/assets/images/process-avatar.svg';
 import processCheck from '~/assets/images/process-check.svg';
 import processCloud from '~/assets/images/process-cloud.svg';
-// import processLogo from '~/assets/images/process-logo.svg';
+import processLogo from '~/assets/images/process-logo.svg';
 import partners from '~/assets/images/partners.png';
 import hexagonImg1 from '~/assets/images/hexagon-1.png';
 import hexagonImg2 from '~/assets/images/hexagon-2.png';
@@ -70,9 +70,9 @@ const MainPage = () => {
           </S.VideoImgBlock>
         )}
         <S.LeftTextGroup>
-          <S.Title>AI 아바타 서비스를 소개합니다</S.Title>
+          <S.Title>아이바타 서비스를 소개합니다</S.Title>
           <S.Description>
-            AI 아바타에서는 입력만으로 디지털 휴먼이 말을 하는 <br />
+            아이바타에서는 입력만으로 디지털 휴먼이 말을 하는 <br />
             영상이 완성됩니다. 다양한 외국어로도 가능합니다.
           </S.Description>
         </S.LeftTextGroup>
@@ -214,7 +214,7 @@ const MainPage = () => {
           </S.SecondProcessGroup>
           <S.ProcessLogoBlock>
             <S.ProcessLogoTitle>무한한 영상세계</S.ProcessLogoTitle>
-            {/* <img src={processLogo} alt="logo" /> */}
+            <img src={processLogo} alt="logo" />
           </S.ProcessLogoBlock>
         </S.ProcessBg>
       </S.ProcessSection>

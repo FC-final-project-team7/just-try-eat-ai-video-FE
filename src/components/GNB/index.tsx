@@ -9,7 +9,7 @@ import FilledButton from '~/components/Buttons/FilledButton';
 import TitleInput from './TitleInput';
 import Dropdown from './Dropdown';
 
-// import logo from '~/assets/icons/logo.svg';
+import logo from '~/assets/icons/logo.svg';
 import profile from '~/assets/icons/profile.svg';
 import { ReactComponent as DropdownUp } from '~/assets/icons/dropdown-up.svg';
 import { ReactComponent as DropdownDown } from '~/assets/icons/dropdown-down.svg';
@@ -28,8 +28,8 @@ const GNB = () => {
   return (
     <S.GNBContainer>
       <Link to={pagesTo.main}>
-        <h2>LOGO</h2>
-        {/* <img src={logo} alt="logo" /> */}
+        {/* <h2>LOGO</h2> */}
+        <img src={logo} alt="logo" />
       </Link>
       {/* TODO 아바타 페이지도 추가 */}
       {location === pagesTo.text(id) && (

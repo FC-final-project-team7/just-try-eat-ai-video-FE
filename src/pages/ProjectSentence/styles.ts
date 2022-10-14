@@ -6,7 +6,9 @@ import EditSentenceBase from '~/pages/ProjectSentence/EditSentence';
 export const Container = styled.div`
   margin: 0 auto;
 `;
-export const HeaderContainer = styled.div``;
+export const HeaderContainer = styled.div`
+  padding: 20px 0 28px;
+`;
 export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;

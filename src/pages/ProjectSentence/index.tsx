@@ -1,8 +1,10 @@
 import { Suspense, useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 import ErrorBoundary from '~/components/ErrorBoundary';
 import FilledButton from '~/components/Buttons/FilledButton';
+import ProjectStepper from '~/components/Project/ProjectStepper';
 import * as S from './styles';
 
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
@@ -15,7 +17,6 @@ import {
 import { IProjectSentence } from '~/types/project/sentence';
 
 // import fakeData from './fakeData.json';
-import styled from 'styled-components';
 
 // FIXME 서버 터지겠다
 // const getFakeResource = () => () => fakeData as IProjectSentence;
@@ -46,7 +47,9 @@ const ProjectSentencePage = () => {
         }
       >
         <S.Container>
-          <S.HeaderContainer>{/*<ProjectStepper />*/}</S.HeaderContainer>
+          <S.HeaderContainer>
+            <ProjectStepper />
+          </S.HeaderContainer>
           <Contents resource={resource} />
         </S.Container>
       </Suspense>

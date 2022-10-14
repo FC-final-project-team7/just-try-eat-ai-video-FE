@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FilledButton from '~/components/Buttons/FilledButton';
-import * as S from './styles';
-
+import ProjectStepper from '~/components/Project/ProjectStepper';
 import ErrorBoundary from '~/components/ErrorBoundary';
 import OverlayLoader from '~/components/Popup/Loaders/OverlayLoader.tsx';
+import * as S from './styles';
 
 import { projectsApi } from '~/stores/apis/projects';
 import { useUpdateProjectTextMutation } from '~/stores/apis/projectText';
@@ -39,7 +39,9 @@ const ProjectTextPage = () => {
         }
       >
         <S.Container>
-          <S.HeaderContainer>{/*<ProjectTextStepper />*/}</S.HeaderContainer>
+          <S.HeaderContainer>
+            <ProjectStepper />
+          </S.HeaderContainer>
           <Contents resource={resource} />
         </S.Container>
       </Suspense>
@@ -64,8 +66,6 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
       ...options.current,
       ...v,
     };
-
-    console.log(options.current);
   }, []);
 
   const [updateText, { isLoading: isLoadingUpdate }] =

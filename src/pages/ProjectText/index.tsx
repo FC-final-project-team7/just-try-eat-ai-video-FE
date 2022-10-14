@@ -16,6 +16,7 @@ import { pagesTo } from '~/pages/pages';
 
 import { IProject } from '~/types/project/projects';
 import { IVoiceOption, IVoiceSelect } from '~/types/project/voices';
+import OverlayLoaderNoText from '~/components/Popup/Loaders/OverlayLoaderNoText';
 
 const ProjectTextPage = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const ProjectTextPage = () => {
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<OverlayLoaderNoText />}>
         <S.Container>
           <S.HeaderContainer>
             <ProjectStepper />
@@ -54,7 +55,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
-  const [updateText] = useUpdateProjectTextMutation();
+  const [updateText, { isLoading }] = useUpdateProjectTextMutation();
   const onClickSaveHandler = useCallback(async () => {
     await updateText(options.current).unwrap();
   }, []);
@@ -98,6 +99,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
           <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
         </S.ContentsWrapper>
       </S.ContentsContainer>
+      {isLoading && <OverlayLoaderNoText />}
     </>
   );
 };

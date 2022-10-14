@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import * as S from './style';
 import { pagesTo } from '~/pages/pages';
+import { Tokens } from '~/stores/token';
 import useProjectId from '~/hooks/useProjectId';
 
 import FilledButton from '~/components/Buttons/FilledButton';
@@ -18,6 +19,7 @@ const GNB = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const id = useProjectId();
+  const tokens = Tokens.has();
 
   const onDropdownHandler = () => {
     setShowDropdown(!showDropdown);
@@ -41,11 +43,13 @@ const GNB = () => {
                 프로젝트 리스트
               </S.MainButton>
             </Link>
-            <Link to={pagesTo.login}>
-              <S.MainButton width="136px" height="40px">
-                로그인
-              </S.MainButton>
-            </Link>
+            {tokens && (
+              <Link to={pagesTo.login}>
+                <S.MainButton width="136px" height="40px">
+                  로그인
+                </S.MainButton>
+              </Link>
+            )}
           </>
         )}
         {location === pagesTo.findId && (

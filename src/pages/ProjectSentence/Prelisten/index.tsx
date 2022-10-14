@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import * as S from './styles';
 
@@ -14,7 +14,10 @@ import {
 } from '~/pages/ProjectSentence/Prelisten/hooks';
 
 interface Props {
+  className?: string;
   src?: string;
+  isCreating: boolean;
+  onClickCreate: () => void;
 }
 
 const defaultProps = makeDefaultProps<Props>()({
@@ -22,10 +25,16 @@ const defaultProps = makeDefaultProps<Props>()({
 });
 
 const Prelisten = (props: Props) => {
-  const { src } = { ...defaultProps, ...props };
+  const { className, src, isCreating, onClickCreate } = {
+    ...defaultProps,
+    ...props,
+  };
   const { t, tu } = useTranslate();
 
-  const [disabled, setDisabled] = useState<boolean>(!!src);
+  const [disabled, setDisabled] = useState<boolean>(!src);
+  useEffect(() => {
+    setDisabled(!src);
+  }, [src]);
 
   const [second, setSecond] = useState<number>(0);
   const [seekbarDataList, setSeekbarDataList] = useState(() =>
@@ -55,27 +64,51 @@ const Prelisten = (props: Props) => {
     [setSecond, audio]
   );
 
+  const onClickDownload = useCallback(() => {
+    disabled
+      ? onClickCreate()
+      : (() => {
+          // 편법....
+          const a = document.createElement('a');
+          a.download = src;
+          a.href = src;
+          a.click();
+        })();
+  }, [disabled, src]);
+
   return (
-    <S.Container>
+    <S.Container className={className}>
       <S.Seekbar
         name="seekbar"
         step={1}
         value={second}
         onChange={onChangeSeekbarHandler}
         dataList={seekbarDataList}
-        disabled={disabled}
+        disabled={isCreating || disabled}
         getTranslateUnsafe={tu}
       />
       <S.Buttons>
         <S.ControlContainer>
-          <S.IconButton onClick={onPlayHandler} disabled={disabled}>
+          <S.IconButton
+            onClick={onPlayHandler}
+            disabled={isCreating || disabled}
+          >
             <StyledSVG $svgr={PlaySVG} />
           </S.IconButton>
-          <S.IconButton onClick={onStopHandler} disabled={disabled}>
+          <S.IconButton
+            onClick={onStopHandler}
+            disabled={isCreating || disabled}
+          >
             <StyledSVG $svgr={StopSVG} />
           </S.IconButton>
         </S.ControlContainer>
-        <S.DownloadButton>{t('prelisten.download')}</S.DownloadButton>
+        <S.DownloadButton onClick={onClickDownload} disabled={isCreating}>
+          {isCreating
+            ? t('prelisten.creating')
+            : disabled
+            ? t('prelisten.create')
+            : t('prelisten.download')}
+        </S.DownloadButton>
       </S.Buttons>
     </S.Container>
   );

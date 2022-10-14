@@ -16,7 +16,7 @@ export interface ISentenceRequest
     | 'text'
   > {}
 
-export const pickISentenceRequest = (o: ISentenceRequest) => ({
+export const toISentenceRequest = (o: ISentenceRequest) => ({
   audio: o.audio,
   avatarAudio: o.avatarAudio,
   durationSilence: o.durationSilence,
@@ -35,6 +35,15 @@ export interface IProjectSentence
   sentenceList: ISentence[];
 }
 
+export const fromIProjectSentence = (
+  o: IProjectSentence
+): IProjectSentence => ({
+  audio: o.audio,
+  projectId: o.projectId,
+  text: o.text,
+  sentenceList: o.sentenceList,
+});
+
 export interface ISentence {
   sentence: string;
   sentenceAudio: string;
@@ -45,7 +54,17 @@ export interface ICreateAudioSentenceData
   audioUrl: string;
 }
 
-export const pickICreateAudioSentenceData = (o: ICreateAudioSentenceData) => ({
+export const toICreateAudioSentenceData = (
+  o: ICreateAudioSentenceData
+): ICreateAudioSentenceData => ({
+  projectId: o.projectId,
+  audioUrl: o.audioUrl,
+  text: o.text,
+});
+
+export const fromICreateAudioSentenceData = (
+  o: ICreateAudioSentenceData
+): ICreateAudioSentenceData => ({
   projectId: o.projectId,
   audioUrl: o.audioUrl,
   text: o.text,
@@ -53,8 +72,10 @@ export const pickICreateAudioSentenceData = (o: ICreateAudioSentenceData) => ({
 
 export interface ICreateAudioTextData extends ICreateAudioSentenceData {}
 
-export const pickICreateAudioTextData = pickICreateAudioSentenceData;
+export const toICreateAudioTextData = toICreateAudioSentenceData;
+export const fromICreateAudioTextData = fromICreateAudioSentenceData;
 
 export interface IGoToAvatarRequest extends ICreateAudioSentenceData {}
 
-export const pickIGoToAvatarRequest = pickICreateAudioSentenceData;
+export const toIGoToAvatarRequest = toICreateAudioSentenceData;
+export const fromIGoToAvatarRequest = fromICreateAudioSentenceData;

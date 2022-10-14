@@ -3,7 +3,7 @@ import { reset } from '~/styles/reset';
 import { fontFamily } from '~/styles/mixins';
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  ${reset};
   
   ${({ theme }) =>
     css`

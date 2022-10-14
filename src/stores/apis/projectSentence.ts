@@ -13,12 +13,18 @@ import {
   ICreateAudioTextData,
   IGoToAvatarRequest,
   IProjectSentence,
-  pickICreateAudioSentenceData,
-  pickICreateAudioTextData,
-  pickIGoToAvatarRequest,
-  pickISentenceRequest,
+  toICreateAudioSentenceData,
+  toICreateAudioTextData,
+  toIGoToAvatarRequest,
+  toISentenceRequest,
+  fromIProjectSentence,
+  fromICreateAudioTextData,
 } from '~/types/project/sentence';
-import { IProjectAvatar } from '~/types/project/projects';
+import {
+  IProjectAvatar,
+  IProjectTextSaveRequest,
+  toIProjectTextSaveRequest,
+} from '~/types/project/projects';
 
 export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
   endpoints: (build) => ({
@@ -49,7 +55,7 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
 
           const goToSentence = dispatch(
             projectTextApi.endpoints.goToSentence.initiate(
-              pickISentenceRequest(project)
+              toISentenceRequest(project)
             )
           );
 
@@ -61,7 +67,7 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
           }
 
           return {
-            data: sentences,
+            data: fromIProjectSentence(sentences),
           };
         } catch (error) {
           return {
@@ -70,33 +76,89 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
         }
       },
     }),
-    createAudioSentence: build.query<
+    createAudioSentence: build.mutation<
       ICreateAudioSentenceData,
       ICreateAudioSentenceData
     >({
       query: (data: ICreateAudioSentenceData) => ({
         url: 'projects/audio/sentence',
         method: 'POST',
-        body: pickICreateAudioSentenceData(data),
+        body: toICreateAudioSentenceData(data),
       }),
     }),
-    createAudioText: build.query<ICreateAudioTextData, ICreateAudioTextData>({
-      query: (data: ICreateAudioTextData) => ({
-        url: 'projects/audio/text',
-        method: 'POST',
-        body: pickICreateAudioTextData(data),
-      }),
+    createAudioText: build.mutation<ICreateAudioTextData, ICreateAudioTextData>(
+      {
+        query: (data: ICreateAudioTextData) => ({
+          url: 'projects/audio/text',
+          method: 'POST',
+          body: toICreateAudioTextData(data),
+        }),
+        transformResponse: (res: ICreateAudioTextData) =>
+          fromICreateAudioTextData(res),
+      }
+    ),
+    patchAudioText: build.mutation<
+      void,
+      Pick<IProjectTextSaveRequest, 'projectId' | 'text' | 'audio'>
+    >({
+      queryFn: async (
+        args,
+        { dispatch }
+      ): Promise<
+        QueryReturnValue<void, FetchBaseQueryError, FetchBaseQueryMeta>
+      > => {
+        try {
+          const { projectId } = args;
+
+          const getProject = dispatch(
+            projectsApi.endpoints.getProject.initiate(projectId, {
+              forceRefetch: true,
+            })
+          );
+
+          let project: Awaited<ReturnType<typeof getProject.unwrap>>;
+          try {
+            project = await getProject.unwrap();
+          } finally {
+            getProject.unsubscribe();
+          }
+          const { text, audio } = args;
+
+          const updateProjectText = dispatch(
+            projectTextApi.endpoints.updateProjectText.initiate(
+              toIProjectTextSaveRequest({ ...project, text, audio })
+            )
+          );
+
+          try {
+            await updateProjectText.unwrap();
+          } finally {
+            updateProjectText.unsubscribe();
+          }
+
+          return {
+            data: undefined,
+          };
+        } catch (error) {
+          return {
+            error: error as FetchBaseQueryError,
+          };
+        }
+      },
     }),
     goToAvatar: build.mutation<IProjectAvatar, IGoToAvatarRequest>({
       query: (data: ICreateAudioSentenceData) => ({
         url: 'projects/edit/audio',
         method: 'PUT',
-        body: pickIGoToAvatarRequest(data),
+        body: toIGoToAvatarRequest(data),
       }),
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useLazyCreateAudioSentenceQuery, useLazyCreateAudioTextQuery } =
-  projectSentenceApi;
+export const {
+  useCreateAudioSentenceMutation,
+  useCreateAudioTextMutation,
+  usePatchAudioTextMutation,
+} = projectSentenceApi;

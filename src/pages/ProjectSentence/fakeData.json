@@ -1,27 +1,23 @@
 {
-  "projectId": 1,
-  "text": "test1.\ntest2.\ntest3.\ntest4.\ntest5.",
-  "audio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/2951e06f.wav",
+  "projectId": 19,
+  "text": "가나다라.\n마바다사.\ntest1.\ntest2.",
+  "audio": "https://d16d8cj4lvx40k.cloudfront.net/project/test1/37c79603.wav",
   "sentenceList": [
     {
+      "sentence": "가나다라.",
+      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test1/c2b9acb2.wav"
+    },
+    {
+      "sentence": "마바다사.",
+      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test1/126e34d5.wav"
+    },
+    {
       "sentence": "test1.",
-      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/db050656.wav"
+      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test1/379dafc4.wav"
     },
     {
-      "sentence": "\ntest2.",
-      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/45e8ec87.wav"
-    },
-    {
-      "sentence": "\ntest3.",
-      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/486cfcbd.wav"
-    },
-    {
-      "sentence": "\ntest4.",
-      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/34a23ddf.wav"
-    },
-    {
-      "sentence": "\ntest5.",
-      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test/e571b2e6.wav"
+      "sentence": "test2.",
+      "sentenceAudio": "https://d16d8cj4lvx40k.cloudfront.net/project/test1/6cf34ed8.wav"
     }
   ]
 }

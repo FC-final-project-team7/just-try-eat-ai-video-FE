@@ -17,7 +17,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   // const { register } = useForm();
 
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {} as Record<string, string>;
@@ -25,7 +25,7 @@ const LoginPage = () => {
       if (!(el instanceof HTMLInputElement)) continue;
       formData[el.name] = el.value;
     }
-    login(formData as unknown as ILogin);
+    await login(formData as unknown as ILogin);
     navigate(pagesTo.main);
   };
 

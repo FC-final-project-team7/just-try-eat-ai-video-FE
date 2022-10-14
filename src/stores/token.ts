@@ -23,6 +23,10 @@ export const Tokens = {
     };
   },
 
+  has() {
+    return !this.access || !this.refresh;
+  },
+
   clear() {
     this.access = '';
     this.refresh = '';

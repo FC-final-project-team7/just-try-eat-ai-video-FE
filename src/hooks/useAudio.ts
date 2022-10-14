@@ -27,7 +27,9 @@ export const useAudio = (key = '_________') => {
     audio.play();
   }, []);
 
-  const stop = useCallback(() => {
+  const stop = useCallback((src?: string) => {
+    if (!src || audio.currentSrc !== src) return;
+
     audio.pause();
   }, []);
 

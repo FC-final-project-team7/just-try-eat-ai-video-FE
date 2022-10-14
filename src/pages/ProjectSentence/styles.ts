@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import ProjectTextarea from '~/components/Project/ProjectTextarea';
 import PrelistenBase from '~/pages/ProjectSentence/Prelisten';
+import EditSentenceBase from '~/pages/ProjectSentence/EditSentence';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin: 0 auto;
+`;
 export const HeaderContainer = styled.div``;
 export const ContentsContainer = styled.div`
   display: flex;
@@ -43,6 +46,6 @@ export const Prelisten = styled(PrelistenBase)`
   grid-area: prelisten;
 `;
 
-export const EditSentence = styled.div`
+export const EditSentence = styled(EditSentenceBase)`
   grid-area: edit-sentence;
 `;

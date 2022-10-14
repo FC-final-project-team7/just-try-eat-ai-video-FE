@@ -2,6 +2,7 @@
 
 import { Component, ReactNode } from 'react';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import styled from 'styled-components';
 
 interface Props {
   children?: ReactNode;
@@ -28,7 +29,11 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       // TODO FetchBaseQueryError 쪽 에러면 여기서 적절하게 보여주자
       // TODO 내부 에러 페이지 꾸미기
-      return <h1>알 수 없는 에러가 발생했습니다! 메인으로</h1>;
+      return (
+        <Container>
+          <h1>알 수 없는 에러가 발생했습니다! 메인으로</h1>
+        </Container>
+      );
     }
 
     return this.props.children;
@@ -36,3 +41,9 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 export default ErrorBoundary;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

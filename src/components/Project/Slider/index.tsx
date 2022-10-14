@@ -12,6 +12,7 @@ type Props = {
   name: string;
   step: number;
   value?: number;
+  defaultValue?: number;
   onChange?: (e: { name: string; value: number }) => void;
   disabled?: boolean;
 

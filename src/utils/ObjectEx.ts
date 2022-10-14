@@ -5,7 +5,7 @@ const ObjectEx = {
   mapValue: <O extends object, U>(
     o: O,
     mapFn: (value: [keyof O, O[keyof O]], index: number, obj: O) => U
-  ) => {
+  ): { [key in keyof O]: U } => {
     const n = {} as { [key in keyof O]: U };
     const keys = ObjectTyped.keys(o);
 

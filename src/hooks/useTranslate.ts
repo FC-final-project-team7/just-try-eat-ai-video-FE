@@ -24,15 +24,6 @@ type TValueFuncObj<O, K extends ObjectPath<O, TFunction>> = {
     : never
   : never;
 
-type ObjectPathStringNumber<O extends Record<string, unknown>> = ObjectPath<
-  O,
-  string | number
->;
-type ObjectPathFunc<O extends Record<string, unknown>> = ObjectPath<
-  O,
-  TFunction
->;
-
 export type TGetTranslateUnsafe = (
   keyUnsafe: string | { k: string; v: any } | object
 ) => string;
@@ -48,8 +39,8 @@ export const useTranslate = <
   const [lang, setLang] = useState<LANG>(defaultLang);
 
   const t = <
-    K extends ObjectPathStringNumber<O[keyof O]>,
-    U extends ObjectPathFunc<O[keyof O]>
+    K extends ObjectPath<O[keyof O], string | number>,
+    U extends ObjectPath<O[keyof O], TFunction>
   >(
     key: K | TValueFuncObj<O[keyof O], U>
   ): string => {
@@ -89,8 +80,8 @@ export const useTranslate = <
 
 const tk = <
   O extends Record<string, Record<string, unknown>>,
-  K extends ObjectPathStringNumber<O[keyof O]>,
-  U extends ObjectPathFunc<O[keyof O]>
+  K extends ObjectPath<O[keyof O], string | number>,
+  U extends ObjectPath<O[keyof O], TFunction>
 >(
   labels: O,
   key: K | TValueFuncObj<O[keyof O], U>
@@ -106,8 +97,8 @@ export const makeUseTranslate = <
   return {
     useTranslate: () => useTranslate(labels, defaultLang),
     tk: <
-      K extends ObjectPathStringNumber<O[keyof O]>,
-      U extends ObjectPathFunc<O[keyof O]>
+      K extends ObjectPath<O[keyof O], string | number>,
+      U extends ObjectPath<O[keyof O], TFunction>
     >(
       key: K | TValueFuncObj<O[keyof O], U>
     ) => tk(labels, key),

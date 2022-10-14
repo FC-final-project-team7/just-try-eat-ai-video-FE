@@ -45,6 +45,7 @@ const ProjectVoiceOptions = (props: Props) => {
           <S.Slider
             {...slider.props}
             name={slider.key}
+            defaultValue={defaultVoiceOptions[slider.key]}
             onChange={onChangeOptionsHandler}
             getTranslateUnsafe={tu}
           />
@@ -54,6 +55,7 @@ const ProjectVoiceOptions = (props: Props) => {
         <Label>{t(kSentenceOption.labelKey)}</Label>
         <SentenceInterval
           name={kSentenceOption.key}
+          defaultValue={defaultVoiceOptions.durationSilence}
           onChange={onChangeOptionsHandler}
           {...kSentenceOption.props}
         />

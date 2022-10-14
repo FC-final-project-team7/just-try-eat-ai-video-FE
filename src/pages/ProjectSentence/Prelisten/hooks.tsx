@@ -98,8 +98,8 @@ export function useAudioAllPrelisten(
   }, [src]);
 
   const play = useCallback(() => {
-    playBase(src);
-  }, [src]);
+    playBase(srcRef.current);
+  }, []);
 
   const pause = useCallback(() => {
     audio.pause();

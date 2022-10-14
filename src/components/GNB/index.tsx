@@ -78,6 +78,18 @@ const GNB = () => {
             </FilledButton> */}
           </>
         )}
+        {location === pagesTo.sentence(id) && (
+          <>
+            <Link to={pagesTo.projects}>
+              <S.ListButton width="136px" height="40px">
+                리스트
+              </S.ListButton>
+            </Link>
+            {/* <FilledButton width="136px" height="40px">
+              다음단계로
+            </FilledButton> */}
+          </>
+        )}
         {location === pagesTo.avatar && (
           <>
             <Link to={pagesTo.projects}>

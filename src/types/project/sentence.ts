@@ -16,6 +16,20 @@ export interface ISentenceRequest
     | 'text'
   > {}
 
+export const pickISentenceRequest = (o: ISentenceRequest) => ({
+  audio: o.audio,
+  avatarAudio: o.avatarAudio,
+  durationSilence: o.durationSilence,
+  isAudio: o.isAudio,
+  language: o.language,
+  pitch: o.pitch,
+  projectId: o.projectId,
+  projectName: o.projectName,
+  sex: o.sex,
+  speed: o.speed,
+  text: o.text,
+});
+
 export interface IProjectSentence
   extends Pick<IProject, 'audio' | 'projectId' | 'text'> {
   sentenceList: ISentence[];
@@ -31,6 +45,16 @@ export interface ICreateAudioSentenceData
   audioUrl: string;
 }
 
+export const pickICreateAudioSentenceData = (o: ICreateAudioSentenceData) => ({
+  projectId: o.projectId,
+  audioUrl: o.audioUrl,
+  text: o.text,
+});
+
 export interface ICreateAudioTextData extends ICreateAudioSentenceData {}
 
+export const pickICreateAudioTextData = pickICreateAudioSentenceData;
+
 export interface IGoToAvatarRequest extends ICreateAudioSentenceData {}
+
+export const pickIGoToAvatarRequest = pickICreateAudioSentenceData;

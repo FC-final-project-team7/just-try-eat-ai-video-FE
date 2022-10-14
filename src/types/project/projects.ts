@@ -41,6 +41,20 @@ export interface IProjectTextSaveRequest
     | 'text'
   > {}
 
+export const pickIProjectTextSaveRequest = (o: IProjectTextSaveRequest) => ({
+  audio: o.audio,
+  avatarAudio: o.avatarAudio,
+  durationSilence: o.durationSilence,
+  isAudio: o.isAudio,
+  language: o.language,
+  pitch: o.pitch,
+  projectId: o.projectId,
+  projectName: o.projectName,
+  sex: o.sex,
+  speed: o.speed,
+  text: o.text,
+});
+
 export interface IProjectAvatar {
   avatar: string;
   background: string;

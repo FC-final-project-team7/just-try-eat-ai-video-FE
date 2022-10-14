@@ -13,6 +13,10 @@ import {
   ICreateAudioTextData,
   IGoToAvatarRequest,
   IProjectSentence,
+  pickICreateAudioSentenceData,
+  pickICreateAudioTextData,
+  pickIGoToAvatarRequest,
+  pickISentenceRequest,
 } from '~/types/project/sentence';
 import { IProjectAvatar } from '~/types/project/projects';
 
@@ -44,7 +48,9 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
           }
 
           const goToSentence = dispatch(
-            projectTextApi.endpoints.goToSentence.initiate(project)
+            projectTextApi.endpoints.goToSentence.initiate(
+              pickISentenceRequest(project)
+            )
           );
 
           let sentences: Awaited<ReturnType<typeof goToSentence.unwrap>>;
@@ -71,23 +77,26 @@ export const projectSentenceApi = emptySplitApiWithReauth.injectEndpoints({
       query: (data: ICreateAudioSentenceData) => ({
         url: 'projects/audio/sentence',
         method: 'POST',
-        body: data,
+        body: pickICreateAudioSentenceData(data),
       }),
     }),
     createAudioText: build.query<ICreateAudioTextData, ICreateAudioTextData>({
-      query: (data: ICreateAudioSentenceData) => ({
+      query: (data: ICreateAudioTextData) => ({
         url: 'projects/audio/text',
         method: 'POST',
-        body: data,
+        body: pickICreateAudioTextData(data),
       }),
     }),
-    goToAvatar: build.query<IProjectAvatar, IGoToAvatarRequest>({
+    goToAvatar: build.mutation<IProjectAvatar, IGoToAvatarRequest>({
       query: (data: ICreateAudioSentenceData) => ({
         url: 'projects/edit/audio',
         method: 'PUT',
-        body: data,
+        body: pickIGoToAvatarRequest(data),
       }),
     }),
   }),
   overrideExisting: false,
 });
+
+export const { useLazyCreateAudioSentenceQuery, useLazyCreateAudioTextQuery } =
+  projectSentenceApi;

@@ -1,10 +1,10 @@
 import { Suspense, useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
 import ErrorBoundary from '~/components/ErrorBoundary';
 import FilledButton from '~/components/Buttons/FilledButton';
 import ProjectStepper from '~/components/Project/ProjectStepper';
+import OverlayLoader from '~/components/Popup/Loaders/OverlayLoader';
 import * as S from './styles';
 
 import { useRtkQueryResource } from '~/hooks/useRtkQueryResource';
@@ -21,12 +21,6 @@ import { IProjectSentence } from '~/types/project/sentence';
 // FIXME 서버 터지겠다
 // const getFakeResource = () => () => fakeData as IProjectSentence;
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const ProjectSentencePage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id } = useParams();
@@ -39,13 +33,7 @@ const ProjectSentencePage = () => {
 
   return (
     <ErrorBoundary>
-      <Suspense
-        fallback={
-          <Container>
-            <h1>생성 중....</h1>
-          </Container>
-        }
-      >
+      <Suspense fallback={<OverlayLoader />}>
         <S.Container>
           <S.HeaderContainer>
             <ProjectStepper />

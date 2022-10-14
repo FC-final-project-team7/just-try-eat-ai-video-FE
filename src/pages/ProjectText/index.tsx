@@ -1,11 +1,9 @@
 import { ChangeEvent, Suspense, useCallback, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
 import FilledButton from '~/components/Buttons/FilledButton';
 import ProjectStepper from '~/components/Project/ProjectStepper';
 import ErrorBoundary from '~/components/ErrorBoundary';
-import OverlayLoader from '~/components/Popup/Loaders/OverlayLoader.tsx';
 import * as S from './styles';
 
 import { projectsApi } from '~/stores/apis/projects';
@@ -19,25 +17,13 @@ import { pagesTo } from '~/pages/pages';
 import { IProject } from '~/types/project/projects';
 import { IVoiceOption, IVoiceSelect } from '~/types/project/voices';
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const ProjectTextPage = () => {
   const { id } = useParams();
   const resource = useRtkQueryResource<IProject>(projectsApi, 'getProject', id);
 
   return (
     <ErrorBoundary>
-      <Suspense
-        fallback={
-          <Container>
-            <h1>로딩중</h1>
-          </Container>
-        }
-      >
+      <Suspense fallback={<></>}>
         <S.Container>
           <S.HeaderContainer>
             <ProjectStepper />
@@ -68,8 +54,7 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
     };
   }, []);
 
-  const [updateText, { isLoading: isLoadingUpdate }] =
-    useUpdateProjectTextMutation();
+  const [updateText] = useUpdateProjectTextMutation();
   const onClickSaveHandler = useCallback(async () => {
     await updateText(options.current).unwrap();
   }, []);
@@ -113,7 +98,6 @@ const Contents = ({ resource }: { resource: () => IProject }) => {
           <S.VoiceSelect defaultOptions={data} onChange={onChangeHandler} />
         </S.ContentsWrapper>
       </S.ContentsContainer>
-      {isLoadingUpdate && <OverlayLoader />}
     </>
   );
 };

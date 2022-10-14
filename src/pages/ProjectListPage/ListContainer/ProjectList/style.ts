@@ -1,4 +1,4 @@
-import styled from '~/utils/styled-components-fast';
+import styled, { DefaultTheme } from 'styled-components';
 import FilledButton from '~/components/Buttons/FilledButton';
 
 export const ListBlock = styled.div`
@@ -38,10 +38,12 @@ export const ListHeader = styled.div`
   margin-bottom: 32px;
 `;
 
-export const Button = styled(FilledButton).attrs(({ theme }) => ({
-  width: '148px',
-  height: theme.buttonsSize.big.h,
-}))`
+export const Button = styled(FilledButton).attrs(
+  ({ theme }: { theme: DefaultTheme }) => ({
+    width: '148px',
+    height: theme.buttonsSize.big.h,
+  })
+)`
   ${(props) => props.theme.flex.flexAround};
   padding: 12px 16px;
 `;

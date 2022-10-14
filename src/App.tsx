@@ -11,8 +11,10 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Pages />
+        <>
+          <GlobalStyle />
+          <Pages />
+        </>
       </ThemeProvider>
     </Provider>
   );

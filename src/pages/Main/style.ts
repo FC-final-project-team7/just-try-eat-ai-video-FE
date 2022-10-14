@@ -1,4 +1,4 @@
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 
 export const MainSection = styled.div`
   ${(props) => props.theme.flex.flexCenter}

@@ -1,8 +1,15 @@
-import '~/utils/styled-components-fast';
+import type { CSSProp } from 'styled-components';
+import Theme from './theme';
 
-import theme from '~/styles/theme';
-type ThemeType = typeof theme;
+type ThemeType = typeof Theme;
 
 declare module 'styled-components' {
   export interface DefaultTheme extends ThemeType {}
+}
+
+declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface DOMAttributes<T> {
+    css?: CSSProp;
+  }
 }

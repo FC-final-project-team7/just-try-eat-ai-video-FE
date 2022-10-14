@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 
 export const CardBlock = styled.div`
   width: 208px;

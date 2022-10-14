@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useRef } from 'react';
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 import FilledButton from '~/components/Buttons/FilledButton';
 import close from '~/assets/icons/close.svg';
 import PopupPortal from '../PopupPortal';

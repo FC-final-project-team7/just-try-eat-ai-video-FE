@@ -1,4 +1,4 @@
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const SliderRoot = styled.div`

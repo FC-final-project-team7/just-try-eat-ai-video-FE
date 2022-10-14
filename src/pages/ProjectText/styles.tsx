@@ -1,4 +1,4 @@
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 
 import ProjectTextarea from '../../components/Project/ProjectTextarea';
 import ProjectVoiceOptions from './ProjectVoiceOptions';

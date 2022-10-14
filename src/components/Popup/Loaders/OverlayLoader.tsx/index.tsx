@@ -1,5 +1,5 @@
 import Loader from '../Loader';
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 
 export const LoaderOverlay = styled.div`
   position: fixed;

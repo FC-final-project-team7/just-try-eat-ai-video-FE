@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import PopupPortal from '../PopupPortal';
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 import errorClose from '~/assets/icons/error-close.svg';
 import error from '~/assets/icons/error.svg';
 

@@ -1,10 +1,11 @@
-import { css } from '~/utils/styled-components-fast';
+import { css } from 'styled-components';
 import { withApplyStyledSVG } from '~/utils/WithApplyStyledSVG';
 
 const StyledSVG = withApplyStyledSVG(css`
-  ${() => css`
-    color: inherit;
-  `}
+  ${() =>
+    css`
+      color: inherit;
+    ` as TemplateStringsArray}
 `);
 
 export default StyledSVG;

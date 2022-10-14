@@ -1,4 +1,4 @@
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 import FilledButton from '~/components/Buttons/FilledButton';
 
 export const ModalBackground = styled.div`

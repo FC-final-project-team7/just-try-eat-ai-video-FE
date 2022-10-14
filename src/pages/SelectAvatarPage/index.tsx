@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '~/utils/styled-components-fast';
+import styled from 'styled-components';
 import SelectedAvatarPreview from './SelectedAvatarPreview';
 import SelectAvatarList from './SelectAvatarList';
 import TabMenuList from './TabMenuList';

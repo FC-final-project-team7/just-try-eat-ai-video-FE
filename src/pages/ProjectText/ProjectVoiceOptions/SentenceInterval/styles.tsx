@@ -1,4 +1,4 @@
-import styled, { css } from '~/utils/styled-components-fast';
+import styled, { css } from 'styled-components';
 
 import { textInputStyle } from '~/styles/mixins';
 
@@ -23,29 +23,30 @@ export const ContainerInputNumber = styled.div`
 export const InputNumber = styled.input.attrs(() => ({
   type: 'number',
 }))`
-  ${({ theme }) => css`
-    ${textInputStyle({
-      borderWidth: '1px',
-      placeholderColor: theme.textColors.light,
-    })}
-    appearance: textfield;
+  ${({ theme }) =>
+    css`
+      ${textInputStyle({
+        borderWidth: '1px',
+        placeholderColor: theme.textColors.light,
+      })}
+      appearance: textfield;
 
-    flex-grow: 1;
-    flex-shrink: 0;
+      flex-grow: 1;
+      flex-shrink: 0;
 
-    width: 56px;
-    min-width: 56px;
-    height: 100%;
+      width: 56px;
+      min-width: 56px;
+      height: 100%;
 
-    background-color: ${theme.colors.gray400};
-    color: ${theme.textColors.light};
+      background-color: ${theme.colors.gray400};
+      color: ${theme.textColors.light};
 
-    text-align: center;
+      text-align: center;
 
-    border-radius: 4px;
+      border-radius: 4px;
 
-    &::-webkit-inner-spin-button {
-      display: none;
-    }
-  `}
+      &::-webkit-inner-spin-button {
+        display: none;
+      }
+    ` as TemplateStringsArray}
 `;

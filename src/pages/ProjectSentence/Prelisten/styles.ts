@@ -1,4 +1,4 @@
-import styled, { css } from '~/utils/styled-components-fast';
+import styled, { css } from 'styled-components';
 
 import Slider from '~/components/Project/Slider';
 import FilledButton from '~/components/Buttons/FilledButton';
@@ -29,20 +29,21 @@ export const IconButton = styled(FilledButton).attrs(() => ({
   width: '40px',
   height: '40px',
 }))`
-  ${({ theme, ...props }) => css`
-    ${theme.flex.flexCenter};
+  ${({ theme, ...props }) =>
+    css`
+      ${theme.flex.flexCenter};
 
-    min-width: ${props.width};
-    min-height: ${props.height};
+      min-width: ${props.width};
+      min-height: ${props.height};
 
-    border: ${theme.textColors.light} 1px solid;
-    border-radius: 100%;
+      border: ${theme.textColors.light} 1px solid;
+      border-radius: 100%;
 
-    background-color: ${theme.colors.main.purple};
-    color: ${theme.textColors.light};
+      background-color: ${theme.colors.main.purple};
+      color: ${theme.textColors.light};
 
-    ${focusThisOutline()};
-  `}
+      ${focusThisOutline()};
+    ` as TemplateStringsArray}
 `;
 
 export const DownloadButton = styled(FilledButton).attrs(() => ({

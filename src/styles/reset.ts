@@ -1,4 +1,4 @@
-import { css } from '~/utils/styled-components-fast';
+import { css } from 'styled-components';
 
 export const reset = css`
   /***
@@ -89,4 +89,4 @@ export const reset = css`
   :where([draggable='true']) {
     -webkit-user-drag: element;
   }
-`;
+` as TemplateStringsArray;

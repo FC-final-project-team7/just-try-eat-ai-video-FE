@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 
-import { SvgrComponentType } from '~/types/types';
+import { SvgrComponentType } from '~/types/svgr';
 
 export type Props = { $svgr: SvgrComponentType };
 

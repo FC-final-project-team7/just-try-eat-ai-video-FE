@@ -28,22 +28,27 @@ export type TGetTranslateUnsafe = (
   keyUnsafe: string | { k: string; v: any } | object
 ) => string;
 
+type TTransObject = Record<string, unknown>;
+type TPackObject = Record<string, TTransObject>;
+
+type TTFuncParam<O extends TTransObject> =
+  | ObjectPath<O, string | number>
+  | TValueFuncObj<O, ObjectPath<O, TFunction>>;
+
+type TTFunc<O extends TTransObject> = (key: TTFuncParam<O>) => string;
+
 // 나중에 i18n 으로 돌리는게 나을듯
 export const useTranslate = <
-  O extends Record<string, Record<string, unknown>>,
-  LANG extends keyof O
+  O extends TPackObject,
+  LANG extends keyof O,
+  O_ extends TTransObject = O[LANG]
 >(
   labels: O,
   defaultLang: LANG
 ) => {
   const [lang, setLang] = useState<LANG>(defaultLang);
 
-  const t = <
-    K extends ObjectPath<O[keyof O], string | number>,
-    U extends ObjectPath<O[keyof O], TFunction>
-  >(
-    key: K | TValueFuncObj<O[keyof O], U>
-  ): string => {
+  const t: TTFunc<O_> = (key) => {
     if (typeof key === 'string') {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -78,29 +83,35 @@ export const useTranslate = <
   return { setLang, t, tu };
 };
 
-const tk = <
-  O extends Record<string, Record<string, unknown>>,
-  K extends ObjectPath<O[keyof O], string | number>,
-  U extends ObjectPath<O[keyof O], TFunction>
+type TTkFunc = <
+  O extends TPackObject,
+  O_ extends O[keyof O] = O[keyof O],
+  K extends TTFuncParam<O_> = TTFuncParam<O_>
 >(
   labels: O,
-  key: K | TValueFuncObj<O[keyof O], U>
-) => key;
+  key: K
+) => K;
 
-export const makeUseTranslate = <
-  O extends Record<string, Record<string, unknown>>,
-  LANG extends keyof O
+const tk: TTkFunc = (labels, key) => key;
+
+type TTkFuncOnlyKey<
+  O extends TPackObject,
+  O_ extends O[keyof O] = O[keyof O]
+> = <K extends TTFuncParam<O_>>(key: K) => K;
+
+export const makeUseTranslate: <
+  O extends TPackObject,
+  LANG extends keyof O,
+  O_ extends O[LANG] = O[LANG]
 >(
   labels: O,
   defaultLang: LANG
 ) => {
+  tk: TTkFuncOnlyKey<O, O_>;
+  useTranslate: () => ReturnType<typeof useTranslate<O, LANG>>;
+} = (labels, defaultLang) => {
   return {
     useTranslate: () => useTranslate(labels, defaultLang),
-    tk: <
-      K extends ObjectPath<O[keyof O], string | number>,
-      U extends ObjectPath<O[keyof O], TFunction>
-    >(
-      key: K | TValueFuncObj<O[keyof O], U>
-    ) => tk(labels, key),
+    tk: (key) => tk(labels, key),
   };
 };

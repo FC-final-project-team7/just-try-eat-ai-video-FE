@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-const useProjectId = () => {
+const useProjectId = (): string => {
   const { id } = useParams();
   return String(id);
 };

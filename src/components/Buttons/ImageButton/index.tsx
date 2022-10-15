@@ -2,7 +2,7 @@ import { ReactHTMLElement } from 'react';
 
 import BaseButton, { BaseButtonProps } from '../BaseButton';
 
-import { SvgrElementType } from '~/types/types';
+import { SvgrElementType } from '~/types/svgr';
 
 type Props = {
   children: ReactHTMLElement<HTMLImageElement> | SvgrElementType;

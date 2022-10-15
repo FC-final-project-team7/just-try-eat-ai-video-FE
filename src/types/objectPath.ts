@@ -56,3 +56,6 @@ export type ObjectPathValue<
     ? T[P]
     : never
   : never;
+
+export type ObjectPathStringNumber<O> = ObjectPath<O, string | number>;
+export type ObjectPathFunction<O> = ObjectPath<O, TFunction>;

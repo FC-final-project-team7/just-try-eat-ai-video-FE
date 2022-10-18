@@ -59,3 +59,8 @@ export type ObjectPathValue<
 
 export type ObjectPathStringNumber<O> = ObjectPath<O, string | number>;
 export type ObjectPathFunction<O> = ObjectPath<O, TFunction>;
+
+export type ObjectPathValueFunction<
+  O,
+  P extends ObjectPathFunction<O>
+> = ObjectPathValue<O, P, TFunction>;

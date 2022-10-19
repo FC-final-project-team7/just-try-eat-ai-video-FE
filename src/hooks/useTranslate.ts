@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
-import { ObjectPath, ObjectPathValue, TFunction } from '~/types/objectPath';
+import {
+  ObjectPathFunction,
+  ObjectPathStringNumber,
+  ObjectPathValueFunction,
+  TFunction,
+} from '~/types/objectPath';
 import ObjectEx from '~/utils/ObjectEx';
 
 type Parameters<T extends (...args: any) => any> = T extends (
@@ -11,12 +16,12 @@ type Parameters<T extends (...args: any) => any> = T extends (
   ? P
   : never;
 
-type TValueFuncObj<O, K extends ObjectPath<O, TFunction>> = {
+type TValueFuncObj<O, K extends ObjectPathFunction<O>> = {
   k: K;
-  v: ObjectPathValue<O, K, TFunction>;
+  v: ObjectPathValueFunction<O, K>;
 } extends { k: infer FK; v: infer FV }
-  ? FK extends ObjectPath<O, TFunction>
-    ? FV extends ObjectPathValue<O, FK, TFunction>
+  ? FK extends ObjectPathFunction<O>
+    ? FV extends ObjectPathValueFunction<O, FK>
       ? FV extends TFunction
         ? { k: FK; v: Parameters<FV> }
         : never
@@ -29,26 +34,24 @@ export type TGetTranslateUnsafe = (
 ) => string;
 
 type TTransObject = Record<string, unknown>;
-type TPackObject = Record<string, TTransObject>;
+type TRootObject = Record<string, TTransObject>;
 
-type TTFuncParam<O extends TTransObject> =
-  | ObjectPath<O, string | number>
-  | TValueFuncObj<O, ObjectPath<O, TFunction>>;
-
-type TTFunc<O extends TTransObject> = (key: TTFuncParam<O>) => string;
+type TGetTranslateParam<O_ extends TTransObject> =
+  | ObjectPathStringNumber<O_>
+  | TValueFuncObj<O_, ObjectPathFunction<O_>>;
 
 // 나중에 i18n 으로 돌리는게 나을듯
 export const useTranslate = <
-  O extends TPackObject,
+  O extends TRootObject,
   LANG extends keyof O,
-  O_ extends TTransObject = O[LANG]
+  O_ extends TTransObject = O[keyof O]
 >(
   labels: O,
   defaultLang: LANG
 ) => {
   const [lang, setLang] = useState<LANG>(defaultLang);
 
-  const t: TTFunc<O_> = (key) => {
+  const t = (key: TGetTranslateParam<O_>): string => {
     if (typeof key === 'string') {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -73,7 +76,6 @@ export const useTranslate = <
   };
 
   // keyUnsafe 말 그대로 ts 를 거치지 않으니 주의
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tu: TGetTranslateUnsafe = (keyUnsafe) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -83,35 +85,21 @@ export const useTranslate = <
   return { setLang, t, tu };
 };
 
-type TTkFunc = <
-  O extends TPackObject,
-  O_ extends O[keyof O] = O[keyof O],
-  K extends TTFuncParam<O_> = TTFuncParam<O_>
->(
+const tk = <O extends TRootObject, O_ extends TTransObject = O[keyof O]>(
   labels: O,
-  key: K
-) => K;
+  key: TGetTranslateParam<O_>
+) => key;
 
-const tk: TTkFunc = (labels, key) => key;
-
-type TTkFuncOnlyKey<
-  O extends TPackObject,
-  O_ extends O[keyof O] = O[keyof O]
-> = <K extends TTFuncParam<O_>>(key: K) => K;
-
-export const makeUseTranslate: <
-  O extends TPackObject,
+export const makeUseTranslate = <
+  O extends TRootObject,
   LANG extends keyof O,
-  O_ extends O[LANG] = O[LANG]
+  O_ extends TTransObject = O[keyof O]
 >(
   labels: O,
   defaultLang: LANG
 ) => {
-  tk: TTkFuncOnlyKey<O, O_>;
-  useTranslate: () => ReturnType<typeof useTranslate<O, LANG>>;
-} = (labels, defaultLang) => {
   return {
     useTranslate: () => useTranslate(labels, defaultLang),
-    tk: (key) => tk(labels, key),
+    tk: (key: TGetTranslateParam<O_>) => tk(labels, key),
   };
 };

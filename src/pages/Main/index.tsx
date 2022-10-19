@@ -57,7 +57,7 @@ const MainPage = () => {
 
       <S.VideoSection>
         {showVideo && (
-          <video autoPlay controls width="640">
+          <video autoPlay controls width="640" controlsList="nodownload">
             <source src={video} type="video/mp4" />
           </video>
         )}
@@ -70,9 +70,9 @@ const MainPage = () => {
           </S.VideoImgBlock>
         )}
         <S.LeftTextGroup>
-          <S.Title>아이바타 서비스를 소개합니다</S.Title>
+          <S.Title>AI 아바타 서비스를 소개합니다</S.Title>
           <S.Description>
-            아이바타에서는 입력만으로 디지털 휴먼이 말을 하는 <br />
+            AI 아바타에서는 입력만으로 디지털 휴먼이 말을 하는 <br />
             영상이 완성됩니다. 다양한 외국어로도 가능합니다.
           </S.Description>
         </S.LeftTextGroup>

@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { pagesTo } from '~/pages/pages';
+import { Tokens } from '~/stores/token';
 import styled from 'styled-components';
 import FilledButton from '~/components/Buttons/FilledButton';
 
@@ -40,6 +42,14 @@ export const CorpList = styled.p`
 `;
 
 function Dropdown() {
+  const navigate = useNavigate();
+  const clearTokens = Tokens.clear();
+
+  const onLogoutHandler = () => {
+    clearTokens;
+    navigate(pagesTo.main);
+  };
+
   return (
     <DropdownContainer>
       <Link to="#">
@@ -47,7 +57,7 @@ function Dropdown() {
           계정관리
         </FilledButton>
       </Link>
-      <LogoutButton width="136px" height="40px">
+      <LogoutButton onClick={onLogoutHandler} width="136px" height="40px">
         로그아웃
       </LogoutButton>
       <CorpBlock>

@@ -14,19 +14,11 @@ export const Form = styled.form`
   margin-top: 64px;
 `;
 
-export const FormInput = styled.input`
-  width: 100%;
-  height: 48px;
+export const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-bottom: 24px;
-  padding: 0 20px;
-  border-radius: 10px;
-  border: none;
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.colors.main.purple};
-  }
-  &::placeholder {
-    color: ${(props) => props.theme.colors.gray300};
-  }
+  gap: 24px;
 `;
 
 export const FormButton = styled(FilledButton)`

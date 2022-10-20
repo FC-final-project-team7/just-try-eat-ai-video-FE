@@ -1,21 +1,29 @@
 import { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { ILogin } from '~/types/auth';
 import { useLazyLoginQuery } from '~/stores/apis/auth';
 import { pagesTo } from '../pages';
-// import { Tokens } from '~/stores/token';
+import { FORM_REG, ERROR_MSG } from '~/utils/constants';
+import FormInput from '~/components/FormInput';
 
 import * as S from './style';
 import logo from '~/assets/icons/logo-login.svg';
 import google from '~/assets/icons/google.svg';
 import naver from '~/assets/icons/naver.svg';
 
+type FormInputs = {
+  username: string;
+  password: string;
+};
+
 const LoginPage = () => {
   const [login] = useLazyLoginQuery();
   const navigate = useNavigate();
-  // const { register } = useForm();
+  const { register, formState } = useForm<FormInputs>({
+    mode: 'onChange',
+  });
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,31 +40,38 @@ const LoginPage = () => {
   return (
     <S.Container>
       <img src={logo} alt="logo" />
-      <S.Form
-        style={{
-          display: 'flex',
-          flexFlow: 'column',
-        }}
-        onSubmit={onSubmitHandler}
-      >
-        <label>
-          <S.FormInput
-            name="username"
+      <S.Form onSubmit={onSubmitHandler}>
+        <S.InputGroup>
+          <FormInput
             type="text"
-            defaultValue="test"
-            placeholder="로그인"
-            // {...register('username', { required: true, maxLength: 20 })}
+            placeholder="아이디"
+            errorMsg={formState.errors['username']?.message}
+            inputProps={{
+              ...register('username', {
+                pattern: {
+                  value: FORM_REG.regexId,
+                  message: ERROR_MSG.invalidId,
+                },
+                required: ERROR_MSG.required,
+              }),
+            }}
           />
-        </label>
-        <label>
-          <S.FormInput
-            name="password"
+          <FormInput
             type="password"
-            defaultValue="1234"
             placeholder="비밀번호"
-            // {...register('password', { pattern: /^[A-Za-z]+$/i })}
+            errorMsg={formState.errors['password']?.message}
+            inputProps={{
+              ...register('password', {
+                // pattern: {
+                //   value: FORM_REG.regexPw,
+                //   message: ERROR_MSG.invalidPw,
+                // },
+                required: ERROR_MSG.required,
+              }),
+            }}
           />
-        </label>
+        </S.InputGroup>
+
         <S.FormButton width="392px" height="48px" type="submit">
           로그인
         </S.FormButton>
@@ -89,15 +104,6 @@ const LoginPage = () => {
           <p>가입하기</p>
         </Link>
       </S.SignUpBlock>
-
-      {/* <h3>login result</h3>
-      <textarea rows={20} value={JSON.stringify(result, null, 2)} readOnly />
-      <h3>localstorage tokens</h3>
-      <textarea
-      rows={10}
-      value={JSON.stringify(Tokens.getBody(), null, 2)}
-      readOnly
-    /> */}
     </S.Container>
   );
 };

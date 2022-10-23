@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FirstStepper = styled.div`
+export const StepperContainer = styled.div`
   position: relative;
   width: 800px;
   height: 80px;

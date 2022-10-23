@@ -7,6 +7,8 @@ export const pagesTo = {
 
   // 내부 페이지에 맞춰서 추가 가능
   signUp: '/sign-up',
+  info: '/sign-up/info',
+  completed: '/sign-up/completed',
 
   projects: '/projects',
   text: (id: number | string) => `/text/${id}`,
@@ -25,6 +27,8 @@ export const pagesPath = {
 
   // 내부 페이지에 맞춰서 추가 가능
   signUp: pagesTo.signUp,
+  info: pagesTo.info,
+  completed: pagesTo.completed,
 
   projects: pagesTo.projects,
   text: pagesTo.text(':id'),

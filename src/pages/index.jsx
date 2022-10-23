@@ -6,6 +6,9 @@ import RequireAuth from './RequireAuth'
 
 import MainPage from './Main'
 import LoginPage from './Login'
+import SignUpPage from './SignUp'
+import Info from './SignUp/Info'
+import Completed from './SignUp/Completed'
 import ProjectListPage from './ProjectListPage'
 import ProjectTextPage from './ProjectText'
 import ProjectSentencePage from './ProjectSentence'
@@ -21,6 +24,9 @@ const Pages = () => {
         <Route element={<StyleLayout />}>
           <Route path={pagesPath.main} element={<MainPage />} />
           <Route path={pagesPath.login} element={<LoginPage />} />
+          <Route path={pagesPath.signUp} element={<SignUpPage />} />
+          <Route path={pagesPath.info} element={<Info />} />
+          <Route path={pagesPath.completed} element={<Completed />} />
 
           <Route element={<RequireAuth />}>
             <Route path={pagesPath.projects} element={<ProjectListPage />} />

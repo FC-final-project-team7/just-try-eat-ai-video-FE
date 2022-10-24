@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 export const StepperContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
   width: 800px;
   height: 80px;
+  margin-top: 12px;
 `;
 
 export const StepperLine = styled.div`
@@ -15,7 +18,7 @@ export const CircleList = styled.div`
   display: flex;
   position: absolute;
   top: 6px;
-  left: 59px;
+  left: 79px;
   gap: 219px;
 `;
 

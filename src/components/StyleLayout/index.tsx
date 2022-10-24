@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { pagesPath } from '~/pages/pages';
+import { pagesPath, pagesTo } from '~/pages/pages';
 
 import Footer from '~/components/Footer';
 import GNB from '../GNB';
@@ -8,7 +8,14 @@ import GNB from '../GNB';
 const StyleLayout = () => {
   const pathname = useLocation().pathname;
   const footerPath = useMemo(
-    () => [pagesPath.main, pagesPath.login, pagesPath.signUp, pagesPath.findId],
+    () => [
+      pagesPath.main,
+      pagesPath.login,
+      pagesPath.signUp,
+      pagesPath.info,
+      pagesTo.completed,
+      pagesPath.findId,
+    ],
     []
   );
 

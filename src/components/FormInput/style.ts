@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type Props = {
+  width: string | undefined;
+};
+
 export const Label = styled.label`
   display: inline-block;
   font-size: ${(props) => props.theme.fontSize.medium};
@@ -7,8 +11,10 @@ export const Label = styled.label`
   margin-bottom: 8px;
 `;
 
-export const Input = styled.input`
-  width: 100%;
+export const Input = styled.input.attrs<Props>(({ ...props }) => ({
+  width: props.width ?? '100%',
+}))<Props>`
+  width: ${({ width }) => width};
   height: 48px;
   padding: 0 20px;
   border-radius: 10px;

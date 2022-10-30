@@ -1,6 +1,6 @@
 # 📹 AI 아바타 비디오 서비스
 누구나 쉽게 만들 수 있는 AI 영상제작 서비스 <br />
-에이아이파크 기업의 표준화된 서비스 제공을 위한 웹페이지 개발
+기업 연계 프로젝트: 에이아이파크의 표준화된 서비스 제공을 위한 웹페이지 개발
 > ‘시간과 공간의 제약 및 언어의 장벽 없이 콘텐츠로 소통하는 시대를 만든다’ 라는 에이아이파크의 미션 달성에 이바지하는 것이 이 프로젝트의 목표입니다. 
 <br /> 기존에 다양한 방식으로 제공되고 있던 서비스에 공통된 UX/UI 적용하여 보다 표준화된 디지털 휴먼 제작 서비스를 제공할 수 있도록 
 <br /> 직관적이고 사용이 편리한 웹페이지를 제작하였습니다.
@@ -35,18 +35,7 @@ Back-End
 ">Back-End github</a>
 
 
-## 프로젝트 내용
-
-
-### 🛠 기술 스택
- - React.js
- - TypeScript
- - RTK Query
- - React-Router
- - Styled Components
- - Eslint
- - Vite
-
+## 👀 프로젝트 내용
 ### ⭐️ 주요 기능
 - 로그인 회원 프로젝트 제작(최대 5개)
 - 음성 파일 업로드와 텍스트 입력 중 선택하여 프로젝트를 생성
@@ -58,6 +47,14 @@ Back-End
 <img width="1000" alt="스크린샷 2022-10-30 오후 11 04 02" src="https://user-images.githubusercontent.com/85099612/198882884-d467802b-341a-4328-b3af-31bae002763c.png">
 <img width="1000" alt="스크린샷 2022-10-30 오후 11 04 22" src="https://user-images.githubusercontent.com/85099612/198882901-08945686-3412-4256-ad2e-698b96a07dca.png">
 
+### 🛠 기술 스택
+ - React.js
+ - TypeScript
+ - RTK Query
+ - React Router
+ - Styled Components
+ - Eslint
+ - Vite
 
 ### 🌳 폴더 구조
 

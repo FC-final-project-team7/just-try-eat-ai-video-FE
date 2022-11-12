@@ -24,7 +24,7 @@ export const Tokens = {
   },
 
   has() {
-    return !this.access || !this.refresh;
+    return this.access || this.refresh;
   },
 
   clear() {

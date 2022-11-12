@@ -1,6 +1,8 @@
 import { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { auth } from '~/firebaseConfig';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 import { ILogin } from '~/types/auth';
 import { useLazyLoginQuery } from '~/stores/apis/auth';
@@ -35,6 +37,21 @@ const LoginPage = () => {
     }
     await login(formData as unknown as ILogin);
     navigate(pagesTo.main);
+  };
+
+  const googleLoginHandler = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        // const user = result.user;
+        localStorage.setItem('accessToken', token as string);
+        navigate(pagesTo.main);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -88,7 +105,11 @@ const LoginPage = () => {
       <S.OAuthGrop>
         <h2>간편 로그인</h2>
         <S.OAuthButtonGroup>
-          <S.OAuthButton width="392px" height="48px">
+          <S.OAuthButton
+            onClick={googleLoginHandler}
+            width="392px"
+            height="48px"
+          >
             <img src={google} alt="google" />
             Google로 로그인
           </S.OAuthButton>

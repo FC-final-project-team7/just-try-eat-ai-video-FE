@@ -43,7 +43,7 @@ const GNB = () => {
                 프로젝트 리스트
               </S.MainButton>
             </Link>
-            {tokens && (
+            {!tokens && (
               <Link to={pagesTo.login}>
                 <S.MainButton width="136px" height="40px">
                   로그인

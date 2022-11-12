@@ -9,7 +9,7 @@ const RequireAuth = () => {
   useEffect(() => {
     const tokens = Tokens.has();
 
-    if (tokens) {
+    if (!tokens) {
       navigate(pagesTo.login);
       return;
     }

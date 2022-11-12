@@ -369,3 +369,5 @@ $RECYCLE.BIN/
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,visualstudiocode,webstorm,yarn,node,react
+
+./src/firebaseConfig.ts
